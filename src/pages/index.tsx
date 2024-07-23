@@ -17,7 +17,7 @@ import { Footer } from "../components/Footer";
 
 const Index = () => (
   <Container height={'100vh'}>
-    <Hero title="Elliot Land"/>
+    <Hero title="Elliot Land" />
     <Main>
       
     </Main>

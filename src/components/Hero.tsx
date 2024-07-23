@@ -1,15 +1,24 @@
-import { Flex, Heading } from "@chakra-ui/react";
+import { Avatar, Flex, Heading, Wrap, WrapItem, Text } from "@chakra-ui/react";
 
 export const Hero = ({ title }: { title: string }) => (
   <Flex
     justifyContent="center"
     alignItems="center"
-    height="100vh"
-    bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
-    bgClip="text"
-    
+    marginTop={"2em"}
+    flexDirection={"column"}
   >
-    <Heading fontSize="6vw">{title}</Heading>
+    <Avatar src="avatar.jpg" size="2xl" name="Elliot Land" />
+
+    <Heading
+      fontSize="5em"
+      bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
+      bgClip="text"
+    >
+      {title}
+    </Heading>
+    <Text fontSize="2xl">
+      Welcome to my site! Scroll down to learn more and contact me.
+    </Text>
   </Flex>
 );
 
