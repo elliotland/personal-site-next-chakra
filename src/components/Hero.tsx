@@ -7,7 +7,7 @@ export const Hero = ({ title }: { title: string }) => (
     marginTop={"2em"}
     flexDirection={"column"}
   >
-    <Avatar src="avatar.jpg" size="2xl" name="Elliot Land" />
+    <Avatar src="avatar.jpg" size="2xl" name="Elliot Land"/>
 
     <Heading
       fontSize="5em"

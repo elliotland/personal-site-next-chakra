@@ -3,27 +3,44 @@ import {
   Text,
   Code,
   List,
+  Box,
   ListIcon,
   ListItem,
+  Flex,
+  Card,
+  Grid,
+  GridItem,
+  Container,
+  Button,
+  Center,
 } from "@chakra-ui/react";
-import { CheckCircleIcon, LinkIcon } from "@chakra-ui/icons";
 
 import { Hero } from "../components/Hero";
-import { Container } from "../components/Container";
-import { Main } from "../components/Main";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
-import { CTA } from "../components/CTA";
-import { Footer } from "../components/Footer";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
 const Index = () => (
-  <Container height={'100vh'}>
-    <Hero title="Elliot Land" />
-    <Main>
-      
-    </Main>
+  <>
+    <Box
+      maxW={"100%"}
+      m={"0px"}
+      color="black"
+      _dark={{
+        color: "white",
+      }}
+      transition="all 0.15s ease-out"
+    >
+      <Hero title="Elliot Land" />
 
-    <DarkModeSwitch />
-  </Container>
+      <Container centerContent marginTop={"4em"}>
+        <Button size={"lg"} className="animate-bounce ">
+          <ChevronDownIcon boxSize={"10"} />
+        </Button>
+      </Container>
+
+      <DarkModeSwitch />
+    </Box>
+  </>
 );
 
 export default Index;
