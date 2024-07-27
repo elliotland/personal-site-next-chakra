@@ -2,6 +2,8 @@ import { extendTheme } from "@chakra-ui/react";
 
 const fonts = { mono: `'Menlo', monospace` };
 
+import '@fontsource/bungee-shade';
+
 const breakpoints = {
   sm: "40em",
   md: "52em",
@@ -10,6 +12,7 @@ const breakpoints = {
 };
 
 const theme = extendTheme({
+  
   semanticTokens: {
     colors: {
       text: {
@@ -32,7 +35,10 @@ const theme = extendTheme({
   colors: {
     black: "#16161D",
   },
-  fonts,
+    fonts: {
+    heading: `'Bungee Shade', sans-serif`,
+    body: `'Raleway', sans-serif`,
+  },
   breakpoints,
 });
 

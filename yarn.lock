@@ -871,6 +871,21 @@
 "@emotion/weak-memoize@^0.3.1":
   version "0.3.1"
 
+"@fontsource/bungee-shade@^5.0.21":
+  version "5.0.21"
+  resolved "https://registry.npmjs.org/@fontsource/bungee-shade/-/bungee-shade-5.0.21.tgz"
+  integrity sha512-1fY40KzQ8Mq011fR8yMTfUJKyWdyTdSaEWTJ8q/BHgoRewCWUE1c3ky3LnIqF2RAQRp7sJ4h6B2hMm0FttRM+Q==
+
+"@fontsource/open-sans@^5.0.28":
+  version "5.0.28"
+  resolved "https://registry.npmjs.org/@fontsource/open-sans/-/open-sans-5.0.28.tgz"
+  integrity sha512-hBvJHY76pJT/JynGUB5EXWhnzjYfLdcMn655J5p1v9lTT9HdQSy+keq2KPVXO2Htlg998BBa3p6u/jlrZ6w0kg==
+
+"@fontsource/raleway@^5.0.19":
+  version "5.0.19"
+  resolved "https://registry.npmjs.org/@fontsource/raleway/-/raleway-5.0.19.tgz"
+  integrity sha512-S4fAg/Kmvkw5g6Z2eoxGijeYcopsfQIla+iXbOYZsIUaFHcS49l/qBNO3MWZ8iJ+PCFulz9juv2OjPPvMW43oA==
+
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"
   resolved "https://registry.npmjs.org/@isaacs/cliui/-/cliui-8.0.2.tgz"

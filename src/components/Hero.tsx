@@ -16,9 +16,6 @@ export const Hero = ({ title }: { title: string }) => (
     >
       {title}
     </Heading>
-    <Text fontSize="2xl">
-      Welcome to my site! Scroll down to learn more and contact me.
-    </Text>
   </Flex>
 );
 
