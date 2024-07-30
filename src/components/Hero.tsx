@@ -13,6 +13,8 @@ export const Hero = ({ title }: { title: string }) => (
       fontSize="5em"
       bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
       bgClip="text"
+      textStyle='hero'
+      variant={'Bungee'}
     >
       {title}
     </Heading>
