@@ -54,13 +54,12 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
               size={"lg"}
               top={expanded ? "25%" : "0"}
               textTransform={"capitalize"}
+              w={"100%"}
             >
               {expanded ? fullTitle : shortTitle}
             </Heading>
           </Box>
           <Box>
-            {/* if expanded is true render the Stack, and if not render another component */}
-
             {expanded ? (
               <Stack divider={<StackDivider />} spacing="4">
                 <Box >
@@ -84,7 +83,7 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
                     Leader
                   </Heading>
                   <Text pt="2" fontSize="md">
-                    Together we are greater than the sum of our parts, and I help bring people together.
+                    I bring people together to tackle the big problems.
                   </Text>
                 </Box>
               </Stack>
