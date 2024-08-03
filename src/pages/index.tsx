@@ -27,13 +27,14 @@ import {
   Collapse,
 } from "@chakra-ui/react";
 
-import { Hero } from "../components/Hero";
+import Hero from "../components/Hero";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import { LargeContainer } from "../components/LargeContainer";
 import GetToKnowMe from "../components/GetToKnowMe";
 import BusinessCard from "../components/BusinessCard";
+import { motion } from "framer-motion";
 
 const Index = () => {
   const [isContentVisible, setIsContentVisible] = useState(false);
@@ -42,6 +43,10 @@ const Index = () => {
     setIsContentVisible((prev) => !prev);
     onToggle();
   };
+
+
+
+  const MotionButton = motion(isContentVisible ? IconButton : Button);
 
   return (
     <>
@@ -56,46 +61,60 @@ const Index = () => {
         display={"flex"}
         flexDirection={"column"}
         alignItems={"center"}
-        height={"100vh"}
       >
-        <Hero title="Elliot Land" />
+        <Hero
+          title="Elliot Land"
+          smallMode={!isContentVisible}
+        />
 
         <DarkModeSwitch />
-        <IconButton
+
+        <MotionButton
           position="fixed"
-          top={4}
-          right={20}
-          icon={<ChevronUpIcon />}
+          top={isContentVisible ? "4" : "auto"}
+          bottom={isContentVisible ? "auto" : "4"}
+          transform={isContentVisible ? "none" : "translateX(-50%)"}
+          icon={isContentVisible ? <ChevronUpIcon /> : <ChevronDownIcon boxSize="10" />}
+          className="animate-pulse"
           aria-label="Toggle Site Content"
           colorScheme="blue"
-          hidden={!isContentVisible}
-          onClick={() => handleClick()}
-        />
+          onClick={handleClick}
+          initial={false}
+          animate={{
+            top: isContentVisible ? "16px" : "auto",
+            bottom: isContentVisible ? "auto" : "16px",
+            right: isContentVisible ? "4.5em" : "auto",
+            x: isContentVisible ? 0 : "-50%",
+            rotate: isContentVisible ? 180 : 0,
+          }}          
+          transition={{
+            type: "spring",
+            stiffness: 10,
+            damping: 20,
+            duration: 2
+          }}
+          {...(!isContentVisible && {
+            w: "10%",
+            padding: "2em 2em 2em 2em",
+            maxWidth: "50%",
+            minWidth: "fit-content",
+            size: "lg",
+            flexDirection: "column",
+            alignSelf: "center",
+            className: "animate-bounce",
+          })}
+        >
+          {!isContentVisible && <ChevronDownIcon boxSize="10" />}
+        </MotionButton>
 
         <Container
           display={"flex"}
           flexDirection={"column"}
           justifyContent={"space-between"}
-          height={"100vh"}
           maxW={"container.lg"}
           mt={"2em"}
         >
           <BusinessCard expanded={!isContentVisible} />
-          <Button
-            w={"10%"}
-            padding={"2em 2em 2em 2em"}
-            maxWidth={"50%"}
-            minWidth={"fit-content"}
-            size={"lg"}
-            className={"animate-bounce"}
-            hidden={isContentVisible}
-            flexDirection={"column"}
-            alignSelf={"center"}
-            colorScheme={"blue"}
-            onClick={handleClick}
-          >
-            <ChevronDownIcon boxSize={"10"} />
-          </Button>
         </Container>
         <LargeContainer hidden={!isContentVisible}>
           <Collapse in={isOpen} animateOpacity>
