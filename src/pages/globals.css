@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.wavy-line-background {
+    --mask: radial-gradient(152.05px at 50% calc(100% - 204px), #000 99%, #0000 101%) calc(50% - 136px) 0/272px 100%,
+            radial-gradient(152.05px at 50% calc(100% + 136px), #0000 99%, #000 101%) 50% calc(100% - 68px)/272px 100% repeat-x;
+    -webkit-mask: var(--mask);
+            mask: var(--mask);
+    background-color: linear-gradient(135deg,#1f005c, #5b0060, #870160, #ac255e, #ca485c, #e16b5c, #f39060, #ffb56b);
+  }
+  

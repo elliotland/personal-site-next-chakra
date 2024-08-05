@@ -76,10 +76,12 @@ const Index = () => {
           transform={isContentVisible ? "none" : "translateX(-50%)"}
           icon={isContentVisible ? <ChevronUpIcon /> : <ChevronDownIcon boxSize="10" />}
           className="animate-pulse"
+          zIndex={2}
           aria-label="Toggle Site Content"
           colorScheme="blue"
           onClick={handleClick}
           initial={false}
+          
           animate={{
             top: isContentVisible ? "16px" : "auto",
             bottom: isContentVisible ? "auto" : "16px",
