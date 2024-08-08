@@ -118,11 +118,12 @@ const Index = () => {
         >
           <BusinessCard expanded={!isContentVisible} />
         </Container>
-        <LargeContainer hidden={!isContentVisible}>
+        <Flex hidden={!isContentVisible} w={'100%'} direction={'column'} mt={'2em'} bgColor={'cornflowerblue'}
+        pt={'2em'} pb={'2em'}>
           <Collapse in={isOpen} animateOpacity>
             <GetToKnowMe />
           </Collapse>
-        </LargeContainer>
+        </Flex>
       </Box>
     </>
   );
