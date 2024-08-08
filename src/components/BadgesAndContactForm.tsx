@@ -20,7 +20,7 @@ const BadgesAndContactForm = () => {
           />
         </Box>
       </Tooltip>
-      <Tooltip label="I'm experienced with JavaScript and TypeScript to write my code.">
+      <Tooltip label="I lean on the quality of TypeScript for my code.">
         <Box>
           <Image
             src="typescript-icon.256x256.png"
@@ -30,6 +30,16 @@ const BadgesAndContactForm = () => {
           />
         </Box>
       </Tooltip>
+      <Tooltip label="I use JavaScript for its flexibility and power in web apps.">
+        <Box ml={'1.5em'}>
+          <Image
+            src="javascript-js.256x256.png"
+            alt="javascript badge"
+            boxSize="50px"
+            borderRadius={"8px"}
+          />
+        </Box>
+      </Tooltip>  
     </Flex>
   );
 };

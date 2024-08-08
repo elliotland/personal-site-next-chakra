@@ -1,9 +1,7 @@
 import { Button, ButtonGroup, Input } from "@chakra-ui/react";
-import { right } from "@popperjs/core";
-import exp from "constants";
 import { useState, useEffect } from "react";
 
-const EmailComponent = ({ onClose }) => {
+const EmailComponent = ({ onClose , onSuccessClose}) => {
   const [text, setText] = useState<string>("");
 
   const sendEmail = async () => {
@@ -15,14 +13,18 @@ const EmailComponent = ({ onClose }) => {
       method: "POST",
       body: JSON.stringify(body),
     });
-    const data = await res.json();
-    console.log(data);
+
+    if (res.ok) {
+        onSuccessClose();
+    } else {
+      console.log("Error sending email");
+    }  
   };
 
   return (
     <>
       <Input
-        placeholder="Hey Elliot..."
+        placeholder="I want to tell you..."
         type={"string"}
         value={text}
         onChange={(e) => setText(e.target.value)}

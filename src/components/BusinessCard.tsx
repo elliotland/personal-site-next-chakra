@@ -23,6 +23,8 @@ import {
   ModalHeader,
   ModalOverlay,
   useDisclosure,
+  Grid,
+  useToast,
 } from "@chakra-ui/react";
 import React from "react";
 import BadgesAndContactForm from "./BadgesAndContactForm";
@@ -54,8 +56,21 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
   expanded = true,
   ...props
 }) => {
+  const toast = useToast();
   const shortTitle = "Product Innovator";
   const fullTitle = title || "Innovating Products through user-focused designs";
+
+  const handleCloseWithSuccess = () => {
+    onClose();
+    toast({
+      title: "Message Sent",
+      description: "I'll reach out soon.",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+      position: "bottom-right",
+    });
+  };
 
   const OverlayOne = () => (
     <ModalOverlay
@@ -88,47 +103,56 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
             right="0"
             bottom="0"
             zIndex="0"
-            height={"9em"}
+            height={expanded ? "9em" : "7em"}
             bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
-          >
-            <Heading
-              colorScheme={"blue"}
-              textAlign={"center"}
-              size={"lg"}
-              pt={"10px"}
-            >
-              {expanded ? fullTitle : shortTitle}
-            </Heading>
-          </Box>
-          <Box w={"100%"} mt={"7em"}>
+          ></Box>
+          <Box w={"100%"} mt={expanded ? "5em" : "2em"}>
             {expanded ? (
-              <HStack
-                spacing={4}
-                w="100%"
-                alignItems="stretch"
-                textAlign={"center"}
-              >
-                <Feature
-                  title="Designer"
-                  desc="I take a user-focused approach to building products."
-                  flex={1}
-                />
-                <Feature
-                  title="Developer"
-                  desc="Full-stack capable with a focus on frontend user experience."
-                  flex={1}
-                />
-                <Feature
-                  title="Leader"
-                  desc="I bring people together to tackle the big problems."
-                  flex={1}
-                />
-              </HStack>
+              <>
+                <Heading
+                  colorScheme={"blue"}
+                  textAlign={"center"}
+                  size={"lg"}
+                  pb={"1em"}
+                >
+                  {expanded ? fullTitle : shortTitle}
+                </Heading>
+                <HStack
+                  spacing={4}
+                  w="100%"
+                  alignItems="stretch"
+                  textAlign={"center"}
+                >
+                  <Feature
+                    title="Designer"
+                    desc="I take a user-focused approach to building products."
+                    flex={1}
+                  />
+                  <Feature
+                    title="Developer"
+                    desc="Full-stack capable with a focus on frontend user experience."
+                    flex={1}
+                  />
+                  <Feature
+                    title="Leader"
+                    desc="I bring people together to tackle the big problems."
+                    flex={1}
+                  />
+                </HStack>
+              </>
             ) : (
               <>
-                <Box>
+                <Flex w={"100%"} mt={"2em"} justifyContent={"space-around"} h={"3em"}>
+                  <Heading
+                    colorScheme={"blue"}
+                    textAlign={"center"}
+                    size={"lg"}
+                    pb={"1em"}
+                  >
+                    {expanded ? fullTitle : shortTitle}
+                  </Heading>
                   <BadgesAndContactForm />
-                </Box>
+                </Flex>
               </>
             )}
           </Box>
@@ -157,10 +181,10 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
         <Modal isCentered isOpen={isOpen} onClose={onClose}>
           {overlay}
           <ModalContent>
-            <ModalHeader>Contact Form</ModalHeader>
+            <ModalHeader>Hey Elliot</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              <EmailComponent onClose={onClose} />
+              <EmailComponent onClose={onClose} onSuccessClose={handleCloseWithSuccess} />
             </ModalBody>
           </ModalContent>
         </Modal>
