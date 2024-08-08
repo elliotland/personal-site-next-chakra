@@ -78,7 +78,7 @@ const Index = () => {
           className="animate-pulse"
           zIndex={2}
           aria-label="Toggle Site Content"
-          colorScheme="blue"
+          colorScheme="gray"
           onClick={handleClick}
           initial={false}
           

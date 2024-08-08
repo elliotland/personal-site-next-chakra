@@ -15,10 +15,19 @@ import {
   HStack,
   CardFooter,
   Button,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
 import BadgesAndContactForm from "./BadgesAndContactForm";
 import { EmailIcon } from "@chakra-ui/icons";
+import EmailComponent from "./emailMessage";
 
 function Feature({ title, desc, ...rest }) {
   return (
@@ -47,6 +56,16 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
 }) => {
   const shortTitle = "Product Innovator";
   const fullTitle = title || "Innovating Products through user-focused designs";
+
+  const OverlayOne = () => (
+    <ModalOverlay
+      bg="blackAlpha.300"
+      backdropFilter="blur(10px) hue-rotate(90deg)"
+    />
+  );
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [overlay, setOverlay] = React.useState(<OverlayOne />);
 
   return (
     <Card
@@ -123,13 +142,28 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
         </VStack>
       </CardBody>
       <CardFooter p={0}>
-        <Button w={"100%"} 
+        <Button
+          w={"100%"}
           colorScheme={"blue"}
           borderTopRadius={0}
           leftIcon={<EmailIcon />}
-          >
-            Contact Me
-          </Button>
+          onClick={() => {
+            setOverlay(<OverlayOne />);
+            onOpen();
+          }}
+        >
+          Contact Me
+        </Button>
+        <Modal isCentered isOpen={isOpen} onClose={onClose}>
+          {overlay}
+          <ModalContent>
+            <ModalHeader>Contact Form</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <EmailComponent onClose={onClose} />
+            </ModalBody>
+          </ModalContent>
+        </Modal>
       </CardFooter>
     </Card>
   );
