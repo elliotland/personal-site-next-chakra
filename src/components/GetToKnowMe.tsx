@@ -49,7 +49,7 @@ function GetToKnowMe() {
 
       if (response.ok) {
         const data: ChatResponse = await response.json();
-        setAIText(data.response);
+        setAIText(data);
         setUserText("");
       } else {
         console.log("Error with AI Chat:", response.statusText);
