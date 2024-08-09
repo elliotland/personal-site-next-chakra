@@ -14,9 +14,10 @@ type HeroProps = {
   smallMode: boolean;
   isOpen?: boolean;  
   onToggle?: () => void;
+  size?: string;
 };
 
-const Hero = ({ title, smallMode, isOpen = true, onToggle }: HeroProps) => {
+const Hero = ({ title, smallMode, isOpen = true, onToggle, size }: HeroProps) => {
   const animationValue = "all 0.3s ease-in-out";
 
   return (
@@ -24,9 +25,10 @@ const Hero = ({ title, smallMode, isOpen = true, onToggle }: HeroProps) => {
       <Flex
         justifyContent="center"
         alignItems="center"
-        marginTop={"2em"}
+        marginTop={smallMode ? "2em" : '0em'}
         flexDirection={smallMode ? "column" : "row"}
         transition={animationValue}
+        alignContent={'center'}
           >
         <Avatar
           src="avatar.jpg"
@@ -37,7 +39,7 @@ const Hero = ({ title, smallMode, isOpen = true, onToggle }: HeroProps) => {
         />
 
         <Heading
-          fontSize={smallMode ? "5em" : "3em"}
+          size={smallMode ? "2xl" : size}
           transition={animationValue}
           bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
           bgClip="text"

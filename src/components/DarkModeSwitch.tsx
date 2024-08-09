@@ -13,6 +13,7 @@ export const DarkModeSwitch = () => {
       aria-label="Toggle Theme"
       colorScheme="green"
       onClick={toggleColorMode}
+      zIndex={5}
     />
   );
 };

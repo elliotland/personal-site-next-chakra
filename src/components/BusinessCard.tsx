@@ -25,11 +25,14 @@ import {
   useDisclosure,
   Grid,
   useToast,
+  Icon,
+  IconButton,
 } from "@chakra-ui/react";
 import React from "react";
 import BadgesAndContactForm from "./BadgesAndContactForm";
 import { EmailIcon } from "@chakra-ui/icons";
 import EmailComponent from "./emailMessage";
+import Hero from "./Hero";
 
 function Feature({ title, desc, ...rest }) {
   return (
@@ -82,7 +85,7 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
 
-  return (
+  return expanded ? (
     <Card
       w={"100%"}
       h={expanded ? "auto" : "auto"}
@@ -142,15 +145,13 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
               </>
             ) : (
               <>
-                <Flex w={"100%"} mt={"2em"} justifyContent={"space-around"} h={"3em"}>
-                  <Heading
-                    colorScheme={"blue"}
-                    textAlign={"center"}
-                    size={"lg"}
-                    pb={"1em"}
-                  >
-                    {expanded ? fullTitle : shortTitle}
-                  </Heading>
+                <Flex
+                  w={"100%"}
+                  mt={"2em"}
+                  justifyContent={"space-around"}
+                  h={"5em"}
+                >
+                  <Hero title="Elliot Land" size={"lg"} smallMode={expanded} />
                   <BadgesAndContactForm />
                 </Flex>
               </>
@@ -178,18 +179,54 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
         >
           Contact Me
         </Button>
+      </CardFooter>
+    </Card>
+  ) : (
+    <>
+      <Box
+        className="wavy-line-background"
+        position="absolute"
+        top="0"
+        left="0"
+        right="0"
+        bottom="0"
+        height={expanded ? "9em" : "6em"}
+        bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
+        maxW={'100%'}
+      />
+      <Flex direction={"row"} justifyContent={"space-around"} mt={"1.5em"}
+        >
+        <Hero title="Elliot Land" size={"lg"} smallMode={expanded} />
+        <BadgesAndContactForm />
+        <Button
+          colorScheme={"blue"}
+          aria-label="contact button"
+          mt={"5px"}
+          h={"52px"}
+          leftIcon={<EmailIcon />}
+          onClick={() => {
+            setOverlay(<OverlayOne />);
+            onOpen();
+          }}
+        >
+          Contact Me
+        </Button>
+      </Flex>
         <Modal isCentered isOpen={isOpen} onClose={onClose}>
           {overlay}
           <ModalContent>
             <ModalHeader>Hey Elliot</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              <EmailComponent onClose={onClose} onSuccessClose={handleCloseWithSuccess} />
+              <EmailComponent
+                onClose={onClose}
+                onSuccessClose={handleCloseWithSuccess}
+              />
             </ModalBody>
           </ModalContent>
         </Modal>
-      </CardFooter>
-    </Card>
-  );
+    </>
+  )
+  
 };
 export default BusinessCard;
