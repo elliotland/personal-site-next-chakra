@@ -50,7 +50,7 @@ const Index = () => {
           display={"flex"}
           flexDirection={"column"}
           justifyContent={"space-between"}
-          w={"container.lg"}
+          w={ "container.lg"}
           mt={"2em"}
           maxW={"100%"}
         >

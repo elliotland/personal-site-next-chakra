@@ -1,4 +1,3 @@
-// a component that returns a flex box withe evenly justified boxes, and the boxes return my images from the public folder and one more which is a contact form
 import { Box, Circle, Flex, Image, Text, Tooltip } from "@chakra-ui/react";
 import React from "react";
 
