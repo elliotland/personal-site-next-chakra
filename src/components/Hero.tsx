@@ -2,11 +2,7 @@ import {
   Avatar,
   Flex,
   Heading,
-  Wrap,
-  WrapItem,
-  Text,
   Collapse,
-  useDisclosure,
 } from "@chakra-ui/react";
 
 type HeroProps = {
@@ -25,21 +21,21 @@ const Hero = ({ title, smallMode, isOpen = true, onToggle, size }: HeroProps) =>
       <Flex
         justifyContent="center"
         alignItems="center"
-        marginTop={smallMode ? "2em" : '0em'}
-        flexDirection={smallMode ? "column" : "row"}
+        marginTop={smallMode ? "em" : '2em'}
+        flexDirection={smallMode ? "row" : "column"}
         transition={animationValue}
         alignContent={'center'}
           >
         <Avatar
           src="avatar.jpg"
-          size={smallMode ? "2xl" : "lg"}
+          size={smallMode ? "lg" : "2xl"}
           name="Elliot Land"
-          marginRight={smallMode ? "0" : "1em"}
+          marginRight={smallMode ? "1em" : "0"}
           transition={animationValue}
         />
 
         <Heading
-          size={smallMode ? "2xl" : size}
+          size={smallMode ? size : "2xl"}
           transition={animationValue}
           bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
           bgClip="text"

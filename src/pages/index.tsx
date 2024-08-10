@@ -1,51 +1,24 @@
 import {
-  Link as ChakraLink,
-  Text,
-  Code,
-  List,
   Box,
-  ListIcon,
-  ListItem,
-  Flex,
-  Card,
-  Grid,
-  GridItem,
-  Container,
-  Button,
-  Center,
-  CardBody,
-  CardHeader,
-  CardFooter,
-  Heading,
-  SimpleGrid,
-  Stack,
-  StackDivider,
-  Divider,
-  IconButton,
-  ScaleFade,
-  useDisclosure,
   Collapse,
+  Container,
+  Flex,
+  useDisclosure,
 } from "@chakra-ui/react";
-
 import Hero from "../components/Hero";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
-import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 import GetToKnowMe from "../components/GetToKnowMe";
 import BusinessCard from "../components/BusinessCard";
-import { motion } from "framer-motion";
+import ExpansionButton from "../components/ExpansionButton";
 
 const Index = () => {
-  const [isContentVisible, setIsContentVisible] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const { isOpen, onToggle } = useDisclosure();
-  const handleClick = () => {
-    setIsContentVisible((prev) => !prev);
+  const toggleExpansion = () => {
+    setIsExpanded((prev) => !prev);
     onToggle();
   };
-
-
-
-  const MotionButton = motion(isContentVisible ? IconButton : Button);
 
   return (
     <>
@@ -61,52 +34,17 @@ const Index = () => {
         flexDirection={"column"}
         alignItems={"center"}
       >
-        {isContentVisible ? (
+        {isExpanded ? (
           <></>
-        ) : (<><Hero
-          title="Elliot Land"
-          smallMode={!isContentVisible}
-        /></>)}
+        ) : (
+          <>
+            <Hero title="Elliot Land" smallMode={isExpanded} />
+          </>
+        )}
 
         <DarkModeSwitch />
 
-        <MotionButton
-          position="fixed"
-          top={isContentVisible ? "4" : "auto"}
-          bottom={isContentVisible ? "auto" : "4"}
-          transform={isContentVisible ? "none" : "translateX(-50%)"}
-          icon={isContentVisible ? <ChevronUpIcon /> : <ChevronDownIcon boxSize="10" />}
-          zIndex={5}
-          aria-label="Toggle Site Content"
-          colorScheme="gray"
-          onClick={handleClick}
-          initial={false}          
-          animate={{
-            top: isContentVisible ? "16px" : "auto",
-            bottom: isContentVisible ? "auto" : "16px",
-            right: isContentVisible ? "4.5em" : "auto",
-            x: isContentVisible ? 0 : "-50%",
-            rotate: isContentVisible ? 180 : 0,
-          }}          
-          transition={{
-            type: "spring",
-            stiffness: 10,
-            damping: 20,
-            duration: 2
-          }}
-          {...(!isContentVisible && {
-            w: "10%",
-            padding: "2em 2em 2em 2em",
-            maxWidth: "50%",
-            minWidth: "fit-content",
-            size: "lg",
-            flexDirection: "column",
-            alignSelf: "center",
-            className: "animate-bounce",
-          })}
-        >
-          {!isContentVisible && <ChevronDownIcon boxSize="10" />}
-        </MotionButton>
+        <ExpansionButton isExpanded={isExpanded} onClick={toggleExpansion} />
 
         <Container
           display={"flex"}
@@ -114,12 +52,19 @@ const Index = () => {
           justifyContent={"space-between"}
           w={"container.lg"}
           mt={"2em"}
-          maxW={'100%'}
+          maxW={"100%"}
         >
-          <BusinessCard expanded={!isContentVisible} />
+          <BusinessCard expandedSiteView={isExpanded} />
         </Container>
-        <Flex hidden={!isContentVisible} w={'100%'} direction={'column'} mt={'2em'} bgColor={'cornflowerblue'}
-        pt={'2em'} pb={'2em'} >
+        <Flex
+          hidden={!isExpanded}
+          w={"100%"}
+          direction={"column"}
+          mt={"2em"}
+          bgColor={"cornflowerblue"}
+          pt={"2em"}
+          pb={"2em"}
+        >
           <Collapse in={isOpen} animateOpacity>
             <GetToKnowMe />
           </Collapse>

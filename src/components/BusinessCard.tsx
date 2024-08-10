@@ -1,13 +1,8 @@
 import {
   Card,
   CardBody,
-  SimpleGrid,
   Box,
   Heading,
-  Stack,
-  StackDivider,
-  GridItem,
-  Divider,
   CardProps,
   Text,
   Flex,
@@ -27,6 +22,7 @@ import {
   useToast,
   Icon,
   IconButton,
+  FocusLock,
 } from "@chakra-ui/react";
 import React from "react";
 import BadgesAndContactForm from "./BadgesAndContactForm";
@@ -48,7 +44,7 @@ type BusinessCardProps = CardProps & {
   description?: string;
   image?: string;
   link?: string;
-  expanded?: boolean;
+  expandedSiteView?: boolean;
 };
 
 const BusinessCard: React.FC<BusinessCardProps> = ({
@@ -56,7 +52,7 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
   description,
   image,
   link,
-  expanded = true,
+  expandedSiteView = false,
   ...props
 }) => {
   const toast = useToast();
@@ -85,103 +81,7 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = React.useState(<OverlayOne />);
 
-  return expanded ? (
-    <Card
-      w={"100%"}
-      h={expanded ? "auto" : "auto"}
-      boxShadow={"dark-lg"}
-      _light={{}}
-      border={"1px solid #1B9AAA"}
-      colorScheme={"white"}
-      transition={"all 0.3s ease-in-out"}
-      {...props}
-    >
-      <CardBody>
-        <VStack spacing={0} w={"100%"}>
-          <Box
-            className="wavy-line-background"
-            position="absolute"
-            top="0"
-            left="0"
-            right="0"
-            bottom="0"
-            zIndex="0"
-            height={expanded ? "9em" : "7em"}
-            bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
-          ></Box>
-          <Box w={"100%"} mt={expanded ? "5em" : "2em"}>
-            {expanded ? (
-              <>
-                <Heading
-                  colorScheme={"blue"}
-                  textAlign={"center"}
-                  size={"lg"}
-                  pb={"1em"}
-                >
-                  {expanded ? fullTitle : shortTitle}
-                </Heading>
-                <HStack
-                  spacing={4}
-                  w="100%"
-                  alignItems="stretch"
-                  textAlign={"center"}
-                >
-                  <Feature
-                    title="Designer"
-                    desc="I take a user-focused approach to building products."
-                    flex={1}
-                  />
-                  <Feature
-                    title="Developer"
-                    desc="Full-stack capable with a focus on frontend user experience."
-                    flex={1}
-                  />
-                  <Feature
-                    title="Leader"
-                    desc="I bring people together to tackle the big problems."
-                    flex={1}
-                  />
-                </HStack>
-              </>
-            ) : (
-              <>
-                <Flex
-                  w={"100%"}
-                  mt={"2em"}
-                  justifyContent={"space-around"}
-                  h={"5em"}
-                >
-                  <Hero title="Elliot Land" size={"lg"} smallMode={expanded} />
-                  <BadgesAndContactForm />
-                </Flex>
-              </>
-            )}
-          </Box>
-          {expanded ? (
-            <Box w={"100%"} mt={"2em"}>
-              <BadgesAndContactForm />
-            </Box>
-          ) : (
-            <></>
-          )}
-        </VStack>
-      </CardBody>
-      <CardFooter p={0}>
-        <Button
-          w={"100%"}
-          colorScheme={"blue"}
-          borderTopRadius={0}
-          leftIcon={<EmailIcon />}
-          onClick={() => {
-            setOverlay(<OverlayOne />);
-            onOpen();
-          }}
-        >
-          Contact Me
-        </Button>
-      </CardFooter>
-    </Card>
-  ) : (
+  return expandedSiteView ? (
     <>
       <Box
         className="wavy-line-background"
@@ -190,13 +90,13 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
         left="0"
         right="0"
         bottom="0"
-        height={expanded ? "9em" : "6em"}
+        height={expandedSiteView ? "6em" : "9em"}
         bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
         maxW={'100%'}
       />
       <Flex direction={"row"} justifyContent={"space-around"} mt={"1.5em"}
         >
-        <Hero title="Elliot Land" size={"lg"} smallMode={expanded} />
+        <Hero title="Elliot Land" size={"lg"} smallMode={expandedSiteView} />
         <BadgesAndContactForm />
         <Button
           colorScheme={"blue"}
@@ -226,6 +126,102 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
           </ModalContent>
         </Modal>
     </>
+  ) : (
+    <Card
+      w={"100%"}
+      h={"auto"}
+      boxShadow={"dark-lg"}
+      _light={{}}
+      border={"1px solid #1B9AAA"}
+      colorScheme={"white"}
+      transition={"all 0.3s ease-in-out"}
+      {...props}
+    >
+      <CardBody>
+        <VStack spacing={0} w={"100%"}>
+          <Box
+            className="wavy-line-background"
+            position="absolute"
+            top="0"
+            left="0"
+            right="0"
+            bottom="0"
+            zIndex="0"
+            height={expandedSiteView ? "7em" : "9em"}
+            bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
+          ></Box>
+          <Box w={"100%"} mt={expandedSiteView ? "2em" : "5em"}>
+            {expandedSiteView ? (
+              <>
+                <Flex
+                  w={"100%"}
+                  mt={"2em"}
+                  justifyContent={"space-around"}
+                  h={"5em"}
+                >
+                  <Hero title="Elliot Land" size={"lg"} smallMode={expandedSiteView} />
+                  <BadgesAndContactForm />
+                </Flex>
+              </>
+            ) : (
+              <>
+                <Heading
+                  colorScheme={"blue"}
+                  textAlign={"center"}
+                  size={"lg"}
+                  pb={"1em"}
+                >
+                  {expandedSiteView ? shortTitle : fullTitle}
+                </Heading>
+                <HStack
+                  spacing={4}
+                  w="100%"
+                  alignItems="stretch"
+                  textAlign={"center"}
+                >
+                  <Feature
+                    title="Designer"
+                    desc="I take a user-focused approach to building products."
+                    flex={1}
+                  />
+                  <Feature
+                    title="Developer"
+                    desc="Full-stack capable with a focus on frontend user experience."
+                    flex={1}
+                  />
+                  <Feature
+                    title="Leader"
+                    desc="I bring people together to tackle the big problems."
+                    flex={1}
+                  />
+                </HStack>
+              </>
+            )}
+          </Box>
+          {expandedSiteView ? (
+            <></>
+          ) : (
+            <Box w={"100%"} mt={"2em"}>
+              <BadgesAndContactForm />
+            </Box>
+          )}
+        </VStack>
+      </CardBody>
+      <CardFooter p={0}>
+        <Button
+          w={"100%"}
+          colorScheme={"blue"}
+          borderTopRadius={0}
+          leftIcon={<EmailIcon />}
+          onClick={() => {
+            setOverlay(<OverlayOne />);
+            onOpen();
+          }}
+        >
+          Contact Me
+        </Button>
+      </CardFooter>
+    </Card>
   )
   
 };
