@@ -25,13 +25,6 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-type GetToKnowMeProps = {};
-
-type ChatResponse = {
-  score: number;
-  response: string;
-};
-
 function GetToKnowMe() {
   const [userText, setUserText] = useState<string>("");
   const [aiText, setAIText] = useState<string>("");
@@ -48,7 +41,8 @@ function GetToKnowMe() {
       });
 
       if (response.ok) {
-        const data: ChatResponse = await response.json();
+        const data = await response.json();
+        console.log('response data ----' + data);
         setAIText(data);
         setUserText("");
       } else {
@@ -123,7 +117,7 @@ function GetToKnowMe() {
                   </Flex>
                 </>
               ) : (
-                aiText
+                <Box>{aiText}</Box>
               )}
             </CardBody>
           </Card>

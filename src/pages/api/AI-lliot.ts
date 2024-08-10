@@ -22,14 +22,14 @@ export default async function handler(
 
   try {
     let message = await getClaudeResponse(text, claudeScoreStarter);
-    console.log("Initial Message:", message);
 
     if (message && !message.error && (message.score === 1 || message.score === 2)) {
-      // Make another call to Claude with the initial response
       const followUpMessage = await getFollowUpResponse(text);
       console.log("Follow-up Message:", followUpMessage);
 
         message = followUpMessage;
+    } else {
+      res.status(200).json(message.response)
     }
 
     if (message && !message.error) {
@@ -69,10 +69,8 @@ async function getClaudeResponse(text: string, claudeScoreStarter: string) {
 
   try {
     const answerObj = JSON.parse(claudeScoreStarter + answerString);
-    console.log("Parsed answer:", answerObj);
     return answerObj;
   } catch (error) {
-    console.error("Error parsing JSON:", error);
     return { error: "Failed to parse Claude's response" };
   }
 }
