@@ -11,10 +11,9 @@ import {
   HStack,
   CardFooter,
 } from "@chakra-ui/react";
-import BadgesAndContactForm from "./BadgesAndContactForm";
+import BadgesAndContactForm from "./Badges";
 import Hero from "./Hero";
 import ContactMeButton from "./ContactMeButton";
-
 
 function Feature({ title, desc, ...rest }) {
   return (
@@ -55,79 +54,83 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
         bottom="0"
         height={expandedSiteView ? "6em" : "9em"}
         bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
-        maxW={'100%'}
+        maxW={"100%"}
       />
-      <Flex direction={"row"} justifyContent={"space-around"} mt={"1.5em"}>
+      <Flex direction={"row"} justifyContent={"space-around"} mt={".5em"}>
         <Hero title="Elliot Land" size={"lg"} smallMode={expandedSiteView} />
         <BadgesAndContactForm />
         <ContactMeButton expandedSiteView={expandedSiteView} />
       </Flex>
     </>
   ) : (
-    <Card
-      w={"100%"}
-      h={"auto"}
-      boxShadow={"dark-lg"}
-      _light={{}}
-      border={"1px solid #1B9AAA"}
-      colorScheme={"white"}
-      transition={"all 0.3s ease-in-out"}
-      {...props}
-    >
-      <CardBody>
-        <VStack spacing={0} w={"100%"}>
-          <Box
-            className="wavy-line-background"
-            position="absolute"
-            top="0"
-            left="0"
-            right="0"
-            bottom="0"
-            zIndex="0"
-            height={expandedSiteView ? "7em" : "9em"}
-            bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
-          ></Box>
-          <Box w={"100%"} mt={expandedSiteView ? "2em" : "5em"}>
-            <Heading
-              colorScheme={"blue"}
-              textAlign={"center"}
-              size={"lg"}
-              pb={"1em"}
-            >
-              {expandedSiteView ? shortTitle : fullTitle}
-            </Heading>
-            <HStack
-              spacing={4}
-              w="100%"
-              alignItems="stretch"
-              textAlign={"center"}
-            >
-              <Feature
-                title="Designer"
-                desc="I take a user-focused approach to building products."
-                flex={1}
-              />
-              <Feature
-                title="Developer"
-                desc="Full-stack capable with a focus on frontend user experience."
-                flex={1}
-              />
-              <Feature
-                title="Leader"
-                desc="I bring people together to tackle the big problems."
-                flex={1}
-              />
-            </HStack>
-          </Box>
-          <Box w={"100%"} mt={"2em"}>
-            <BadgesAndContactForm />
-          </Box>
-        </VStack>
-      </CardBody>
-      <CardFooter p={0}>
-        <ContactMeButton expandedSiteView={expandedSiteView} />
-      </CardFooter>
-    </Card>
+    <>
+      <Hero title="Elliot Land" size={"lg"} smallMode={expandedSiteView} />
+      <Card
+        w={"100%"}
+        h={"auto"}
+        mt={"2em"}
+        boxShadow={"dark-lg"}
+        _light={{}}
+        border={"1px solid #1B9AAA"}
+        colorScheme={"white"}
+        transition={"all 0.3s ease-in-out"}
+        {...props}
+      >
+        <CardBody>
+          <VStack spacing={0} w={"100%"}>
+            <Box
+              className="wavy-line-background"
+              position="absolute"
+              top="0"
+              left="0"
+              right="0"
+              bottom="0"
+              zIndex="0"
+              height={expandedSiteView ? "7em" : "9em"}
+              bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
+            />
+            <Box w={"100%"} mt={expandedSiteView ? "2em" : "5em"}>
+              <Heading
+                colorScheme={"blue"}
+                textAlign={"center"}
+                size={"lg"}
+                pb={"1em"}
+              >
+                {expandedSiteView ? shortTitle : fullTitle}
+              </Heading>
+              <HStack
+                spacing={4}
+                w="100%"
+                alignItems="stretch"
+                textAlign={"center"}
+              >
+                <Feature
+                  title="Designer"
+                  desc="I take a user-focused approach to building products."
+                  flex={1}
+                />
+                <Feature
+                  title="Developer"
+                  desc="Full-stack capable with a focus on frontend user experience."
+                  flex={1}
+                />
+                <Feature
+                  title="Leader"
+                  desc="I bring people together to tackle the big problems."
+                  flex={1}
+                />
+              </HStack>
+            </Box>
+            <Box w={"100%"} mt={"2em"}>
+              <BadgesAndContactForm />
+            </Box>
+          </VStack>
+        </CardBody>
+        <CardFooter p={0}>
+          <ContactMeButton expandedSiteView={expandedSiteView} />
+        </CardFooter>
+      </Card>
+    </>
   );
 };
 

@@ -41,6 +41,7 @@ const Hero = ({ title, smallMode, isOpen = true, onToggle, size }: HeroProps) =>
           bgClip="text"
           textStyle="hero"
           variant={"Bungee"}
+          mt={'10px'}
         >
           {title}
         </Heading>

@@ -8,9 +8,10 @@ import {
 import Hero from "../components/Hero";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
 import { useState } from "react";
-import GetToKnowMe from "../components/GetToKnowMe";
+import AI_lliot from "../components/AI_lliot";
 import BusinessCard from "../components/BusinessCard";
 import ExpansionButton from "../components/ExpansionButton";
+import MovingTaskRole from "../components/MovingRow";
 
 const Index = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -34,14 +35,6 @@ const Index = () => {
         flexDirection={"column"}
         alignItems={"center"}
       >
-        {isExpanded ? (
-          <></>
-        ) : (
-          <>
-            <Hero title="Elliot Land" smallMode={isExpanded} />
-          </>
-        )}
-
         <DarkModeSwitch />
 
         <ExpansionButton isExpanded={isExpanded} onClick={toggleExpansion} />
@@ -51,8 +44,9 @@ const Index = () => {
           flexDirection={"column"}
           justifyContent={"space-between"}
           w={ "container.lg"}
-          mt={"2em"}
+          mt={isExpanded ? "3em" : "0em"}
           maxW={"100%"}
+          
         >
           <BusinessCard expandedSiteView={isExpanded} />
         </Container>
@@ -60,13 +54,27 @@ const Index = () => {
           hidden={!isExpanded}
           w={"100%"}
           direction={"column"}
-          mt={"2em"}
+          mt={"1em"}
           bgColor={"cornflowerblue"}
           pt={"2em"}
-          pb={"2em"}
+          h={'calc(100vh - 100px)'}
+          minH={'800px'}
         >
           <Collapse in={isOpen} animateOpacity>
-            <GetToKnowMe />
+            <AI_lliot />
+          </Collapse>
+        </Flex>
+        <Flex
+          hidden={!isExpanded}
+          w={"100%"}
+          direction={"column"}
+          bgColor={"thistle"}
+          pt={"2em"}
+          h={'calc(100vh - 160px)'}
+          minH={'800px'}
+        >
+          <Collapse in={isOpen} animateOpacity>
+            <MovingTaskRole />
           </Collapse>
         </Flex>
       </Box>

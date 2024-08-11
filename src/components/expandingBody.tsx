@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import GetToKnowMe from "./GetToKnowMe";
+import GetToKnowMe from "./AI_lliot";
 
 type Props = {
   isOpen: boolean;

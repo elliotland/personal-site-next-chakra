@@ -25,7 +25,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-function GetToKnowMe() {
+function AI_lliot() {
   const [userText, setUserText] = useState<string>("");
   const [aiText, setAIText] = useState<string>("");
 
@@ -75,6 +75,7 @@ function GetToKnowMe() {
             placeholder="Is Elliot good at..."
             value={userText}
             onChange={(e) => setUserText(e.target.value)}
+            colorScheme={"white"}
           />
           <Button
             ml={"1em"}
@@ -97,7 +98,7 @@ function GetToKnowMe() {
         mt={"2em"}
       >
         <Flex>
-          <Card width={"container.lg"} h={"20vh"}>
+          <Card width={"container.lg"} h={"40vh"} minH={'400px'}>
             <CardHeader>
               <Heading size={"lg"} textAlign={"center"} variant={"Menlo"}>
                 AI Response
@@ -127,4 +128,4 @@ function GetToKnowMe() {
   );
 }
 
-export default GetToKnowMe;
+export default AI_lliot;
