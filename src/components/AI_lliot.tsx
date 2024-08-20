@@ -22,14 +22,17 @@ import {
   CardBody,
   CardHeader,
   SkeletonCircle,
+  SkeletonText,
 } from "@chakra-ui/react";
 import { useState } from "react";
 
 function AI_lliot() {
   const [userText, setUserText] = useState<string>("");
   const [aiText, setAIText] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const sendChat = async () => {
+    setIsLoading(true);
     const body = {
       text: userText,
     };
@@ -42,15 +45,18 @@ function AI_lliot() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log('response data ----' + data);
+        console.log("response data ----" + data);
+        setIsLoading(false);
         setAIText(data);
         setUserText("");
       } else {
         console.log("Error with AI Chat:", response.statusText);
+        setIsLoading(false);
         setAIText("Sorry, there was an error processing your request.");
       }
     } catch (error) {
       console.error("Error sending chat:", error);
+      setIsLoading(false);
     }
   };
 
@@ -60,7 +66,7 @@ function AI_lliot() {
         <Heading size={"2xl"} textAlign={"center"} variant={"Menlo"}>
           Skip the Scrolling
         </Heading>
-        <Heading size={"md"} textAlign={"center"} variant={'Menlo'}>
+        <Heading size={"md"} textAlign={"center"} variant={"Menlo"}>
           Ask an AI About Me
         </Heading>
 
@@ -86,6 +92,7 @@ function AI_lliot() {
             onClick={sendChat}
             pl={"2em"}
             pr={"2em"}
+            isLoading={isLoading}
           >
             Ask AI-lliot
           </Button>
@@ -98,7 +105,7 @@ function AI_lliot() {
         mt={"2em"}
       >
         <Flex>
-          <Card width={"container.lg"} h={"40vh"} minH={'400px'}>
+          <Card width={"container.lg"} h={"40vh"} minH={"400px"}>
             <CardHeader>
               <Heading size={"lg"} textAlign={"center"} variant={"Menlo"}>
                 AI Response
@@ -109,17 +116,27 @@ function AI_lliot() {
               flexDir={"column"}
               justifyContent={"end"}
             >
-              {aiText === "" ? (
-                <>
-                  <Flex direction={"row"} justifyContent={"center"}>
-                    <SkeletonCircle size="2" />
-                    <SkeletonCircle ml={"2px"} size="2" />
-                    <SkeletonCircle ml={"2px"} size="2" />
-                  </Flex>
-                </>
-              ) : (
-                <Box>{aiText}</Box>
-              )}
+              <Box mt={4}>
+                <Box mt={2}>
+                  {isLoading ? (
+                    <SkeletonText
+                      noOfLines={4}
+                      spacing="4"
+                      skeletonHeight="2"
+                    />
+                  ) : aiText === "" ? (
+                    <Box>
+                      <Flex direction={"row"} justifyContent={"center"}>
+                        <SkeletonCircle size="2" />
+                        <SkeletonCircle ml={"2px"} size="2" />
+                        <SkeletonCircle ml={"2px"} size="2" />
+                      </Flex>
+                    </Box>
+                  ) : (
+                    <Box>{aiText}</Box>
+                  )}
+                </Box>
+              </Box>
             </CardBody>
           </Card>
         </Flex>

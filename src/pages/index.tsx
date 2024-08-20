@@ -12,6 +12,7 @@ import AI_lliot from "../components/AI_lliot";
 import BusinessCard from "../components/BusinessCard";
 import ExpansionButton from "../components/ExpansionButton";
 import MovingTaskRole from "../components/MovingRow";
+import CircularCarousel from "../components/ProjectCarousal";
 
 const Index = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -43,10 +44,9 @@ const Index = () => {
           display={"flex"}
           flexDirection={"column"}
           justifyContent={"space-between"}
-          w={ "container.lg"}
+          w={"container.lg"}
           mt={isExpanded ? "3em" : "0em"}
           maxW={"100%"}
-          
         >
           <BusinessCard expandedSiteView={isExpanded} />
         </Container>
@@ -57,8 +57,8 @@ const Index = () => {
           mt={"1em"}
           bgColor={"cornflowerblue"}
           pt={"2em"}
-          h={'calc(100vh - 100px)'}
-          minH={'800px'}
+          h={"calc(100vh - 100px)"}
+          minH={"800px"}
         >
           <Collapse in={isOpen} animateOpacity>
             <AI_lliot />
@@ -70,11 +70,11 @@ const Index = () => {
           direction={"column"}
           bgColor={"thistle"}
           pt={"2em"}
-          h={'calc(100vh - 160px)'}
-          minH={'800px'}
+          h={"calc(100vh - 160px)"}
+          minH={"800px"}
         >
           <Collapse in={isOpen} animateOpacity>
-            <MovingTaskRole />
+            <CircularCarousel />
           </Collapse>
         </Flex>
       </Box>

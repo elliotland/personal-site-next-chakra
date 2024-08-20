@@ -9,4 +9,52 @@
             mask: var(--mask);
     background-color: linear-gradient(135deg,#1f005c, #5b0060, #870160, #ac255e, #ca485c, #e16b5c, #f39060, #ffb56b);
   }
-  
+
+  .circular-carousel {
+        display: flex;
+        justify-content: center;
+        width: 800px;
+        height: 400px;
+        margin: 0 auto;
+        perspective: 250px;
+        perspective-origin: 50% 50%;
+      }
+      
+      .circular-carousel--image {
+        width: 350px;
+        height: 250px;
+        overflow: hidden;
+        align-self: center;
+        background: #e3e3e3;
+        box-shadow: 1px 1px 5px 1px #000;
+        transition: all 0.5s ease-in-out;
+        flex-basis: auto;
+      }
+      
+      .circular-carousel--image.far-left {
+        transform: rotateY(-35deg) scale(0.5, 0.5);
+        visibility: hidden;
+        order: 1;
+        flex-shrink: 10;
+      }
+      
+      .circular-carousel--image.left {
+        transform: rotateY(-25deg) scale(0.7, 0.7);
+        order: 2;
+      }
+      
+      .circular-carousel--image.center {
+        order: 3;
+      }
+      
+      .circular-carousel--image.right {
+        transform: rotateY(25deg) scale(0.7, 0.7);
+        order: 4;
+      }
+      
+      .circular-carousel--image.far-right {
+        transform: rotateY(35deg) scale(0.5, 0.5);
+        visibility: hidden;
+        order: 5;
+        flex-shrink: 10;
+      }

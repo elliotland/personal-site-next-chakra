@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 
 const EmailComponent = ({ onClose , onSuccessClose}) => {
   const [text, setText] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const sendEmail = async () => {
+    setIsLoading(true);
     const body = {
       text: text,
     };
@@ -15,9 +17,12 @@ const EmailComponent = ({ onClose , onSuccessClose}) => {
     });
 
     if (res.ok) {
+        setIsLoading(false);
         onSuccessClose();
     } else {
       console.log("Error sending email");
+      setIsLoading(false);
+      
     }  
   };
 
@@ -34,7 +39,7 @@ const EmailComponent = ({ onClose , onSuccessClose}) => {
         <Button onClick={onClose} variant={"outline"}>
           Close
         </Button>
-        <Button type="submit" onClick={sendEmail} colorScheme="blue">
+        <Button type="submit" onClick={sendEmail} colorScheme="blue" isLoading={isLoading}>
           Send Message
         </Button>
       </ButtonGroup>
