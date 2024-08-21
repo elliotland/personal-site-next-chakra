@@ -75,7 +75,7 @@ const Index = () => {
           minH={"800px"}
         >
           <Collapse in={isOpen} animateOpacity>
-            <CircularCarousel projects={projects} />
+            <CircularCarousel />
           </Collapse>
         </Flex>
       </Box>

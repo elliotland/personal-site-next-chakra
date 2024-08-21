@@ -20,7 +20,13 @@ export const projects = [
   {
     title: 'Project 4',
     image: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-    header: 'Project 3 Header',
-    description: 'Project 3 Description',
+    header: 'Project 4 Header',
+    description: 'Project 4 Description',
+  },
+  {
+    title: 'Project 5',
+    image: 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+    header: 'Project 5 Header',
+    description: 'Project 5 Description',
   },
 ];
