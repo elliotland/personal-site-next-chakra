@@ -1,4 +1,4 @@
-import { ChatIcon } from "@chakra-ui/icons";
+import { ChatIcon, DeleteIcon } from "@chakra-ui/icons";
 import {
   useSteps,
   Box,
@@ -33,6 +33,7 @@ function AI_lliot() {
 
   const sendChat = async () => {
     setIsLoading(true);
+    clearMessages();
     const body = {
       text: userText,
     };
@@ -58,6 +59,11 @@ function AI_lliot() {
       console.error("Error sending chat:", error);
       setIsLoading(false);
     }
+  };
+
+  const clearMessages = () => {
+    setUserText("");
+    setAIText("");
   };
 
   return (
@@ -90,12 +96,27 @@ function AI_lliot() {
             textAlign={"center"}
             leftIcon={<ChatIcon />}
             onClick={sendChat}
-            pl={"2em"}
-            pr={"2em"}
+            pl={"2.5em"}
+            pr={"2.5em"}
             isLoading={isLoading}
           >
             Ask AI-lliot
           </Button>
+          {aiText === '' ? (<></>) : (
+          <Button
+            ml={"1em"}
+            colorScheme="red"
+            width={"auto"}
+            textAlign={"center"}
+            leftIcon={<DeleteIcon />}
+            onClick={clearMessages}
+            pl={"2.5em"}
+            pr={"2.5em"}
+            isLoading={isLoading}
+          >
+            Clears
+          </Button>)
+          }
         </Flex>
       </Container>
       <Flex
@@ -105,7 +126,7 @@ function AI_lliot() {
         mt={"2em"}
       >
         <Flex>
-          <Card width={"container.lg"} h={"40vh"} minH={"400px"}>
+          <Card width={"container.lg"} >
             <CardHeader>
               <Heading size={"lg"} textAlign={"center"} variant={"Menlo"}>
                 AI Response
@@ -117,25 +138,17 @@ function AI_lliot() {
               justifyContent={"end"}
             >
               <Box mt={4}>
-                <Box mt={2}>
-                  {isLoading ? (
-                    <SkeletonText
-                      noOfLines={4}
-                      spacing="4"
-                      skeletonHeight="2"
-                    />
-                  ) : aiText === "" ? (
-                    <Box>
-                      <Flex direction={"row"} justifyContent={"center"}>
-                        <SkeletonCircle size="2" />
-                        <SkeletonCircle ml={"2px"} size="2" />
-                        <SkeletonCircle ml={"2px"} size="2" />
-                      </Flex>
-                    </Box>
-                  ) : (
-                    <Box>{aiText}</Box>
-                  )}
-                </Box>
+                {isLoading ? (
+                  <SkeletonText noOfLines={4} spacing="4" skeletonHeight="2" />
+                ) : aiText === "" ? (
+                    <Flex direction={"row"} justifyContent={"center"}>
+                      <SkeletonCircle size="2" />
+                      <SkeletonCircle ml={"2px"} size="2" />
+                      <SkeletonCircle ml={"2px"} size="2" />
+                    </Flex>
+                ) : (
+                  <>{aiText}</>
+                )}
               </Box>
             </CardBody>
           </Card>

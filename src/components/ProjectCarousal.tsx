@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { projects } from './projects';
+import { Heading } from '@chakra-ui/react';
 
-const CircularCarousel = () => {
+const CircularCarousel = ({projects}) => {
   const [images, setImages] = useState([]);
   const [order, setOrder] = useState([]);
 
   useEffect(() => {
-    // Initialize images (you can replace these with your actual image URLs)
     const initialImages = Array(7).fill('http://placekitten.com/400/200');
     setImages(initialImages);
     process(initialImages);
@@ -43,13 +44,14 @@ const CircularCarousel = () => {
         <div className="grid-row">
           <div className="grid-cell-4of4--phone">
             <div className="circular-carousel">
-              {images.map((src, index) => (
+
+              {projects.map((project, index) => (
                 <div
                   key={index}
                   className={`circular-carousel--image ${order[index]}`}
                   onClick={() => rotate(index)}
                 >
-                  <img src={src} alt="" />
+                  <Heading>{project.title}</Heading>
                 </div>
               ))}
             </div>

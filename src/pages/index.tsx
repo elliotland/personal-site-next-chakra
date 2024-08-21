@@ -13,6 +13,7 @@ import BusinessCard from "../components/BusinessCard";
 import ExpansionButton from "../components/ExpansionButton";
 import MovingTaskRole from "../components/MovingRow";
 import CircularCarousel from "../components/ProjectCarousal";
+import { projects } from "../components/projects";
 
 const Index = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -74,7 +75,7 @@ const Index = () => {
           minH={"800px"}
         >
           <Collapse in={isOpen} animateOpacity>
-            <CircularCarousel />
+            <CircularCarousel projects={projects} />
           </Collapse>
         </Flex>
       </Box>
