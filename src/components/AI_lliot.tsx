@@ -68,12 +68,12 @@ function AI_lliot() {
 
   return (
     <>
-      <Container maxW={"lg"} display={"flex"} flexDirection={"column"}>
-        <Heading size={"2xl"} textAlign={"center"} variant={"Menlo"}>
+      <Container maxW={"3xl"} display={"flex"} flexDirection={"column"} justifyContent={'space-evenly'} minH={'300px'} minW={'xl'}>
+        <Heading size={"4xl"} textAlign={"center"} variant={"Menlo"} width={'max-content'}>
           Skip the Scrolling
         </Heading>
         <Heading size={"md"} textAlign={"center"} variant={"Menlo"}>
-          Ask an AI About Me
+          Ask my AI assistant whatever you want to know about me.
         </Heading>
 
         <Flex
@@ -87,7 +87,16 @@ function AI_lliot() {
             placeholder="Is Elliot good at..."
             value={userText}
             onChange={(e) => setUserText(e.target.value)}
-            colorScheme={"white"}
+            
+        _dark={{
+          color: "white",
+          bgColor: '#2D3748',
+        }}
+        
+        _light={{
+          color: "black",
+          bgColor: "white",
+        }}
           />
           <Button
             ml={"1em"}
@@ -114,7 +123,7 @@ function AI_lliot() {
             pr={"2.5em"}
             isLoading={isLoading}
           >
-            Clears
+            Clear
           </Button>)
           }
         </Flex>
@@ -127,13 +136,13 @@ function AI_lliot() {
       >
         <Flex>
           <Card width={"container.lg"} >
-            <CardHeader>
+            {/* <CardHeader>
               <Heading size={"lg"} textAlign={"center"} variant={"Menlo"}>
                 AI Response
               </Heading>
-            </CardHeader>
+            </CardHeader> */}
             <CardBody
-              display={"flex"}
+              display={"flex"} 
               flexDir={"column"}
               justifyContent={"end"}
             >
@@ -141,11 +150,7 @@ function AI_lliot() {
                 {isLoading ? (
                   <SkeletonText noOfLines={4} spacing="4" skeletonHeight="2" />
                 ) : aiText === "" ? (
-                    <Flex direction={"row"} justifyContent={"center"}>
-                      <SkeletonCircle size="2" />
-                      <SkeletonCircle ml={"2px"} size="2" />
-                      <SkeletonCircle ml={"2px"} size="2" />
-                    </Flex>
+                    <p className="text-gray-500 opacity-35">Elliot is great at designing products.</p>
                 ) : (
                   <>{aiText}</>
                 )}

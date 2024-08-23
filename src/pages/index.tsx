@@ -58,8 +58,7 @@ const Index = () => {
           mt={"1em"}
           bgColor={"cornflowerblue"}
           pt={"2em"}
-          h={"calc(100vh - 100px)"}
-          minH={"800px"}
+          pb={'2em'}
         >
           <Collapse in={isOpen} animateOpacity>
             <AI_lliot />

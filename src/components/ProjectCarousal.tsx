@@ -1,49 +1,39 @@
 import React, { useState } from "react";
 import { projects } from "./projects";
-import { Box, Card, CardBody, CardHeader, Heading } from "@chakra-ui/react";
+import { Box, Card, CardBody, CardHeader, Heading, Grid, Flex, Center } from "@chakra-ui/react";
 
-const CircularCarousel = () => {
-  const [order, setOrder] = useState([
-    "far-left",
-    "left",
-    "center",
-    "right",
-    "far-right",
-  ]);
+const ProjectGallery = () => {
+  const [activeProject, setActiveProject] = useState(0);
 
-  const rotate = (index) => {
-    if (order[index] === "left") {
-      setOrder((prevOrder) => [...prevOrder.slice(1), prevOrder[0]]);
-    } else if (order[index] === "right") {
-      setOrder((prevOrder) => [
-        prevOrder[prevOrder.length - 1],
-        ...prevOrder.slice(0, -1),
-      ]);
-    }
+  const handleProjectClick = (index) => {
+    setActiveProject(index === activeProject ? 0 : index);
   };
 
   return (
-    <Box className="circular-carousel" w={'container.lg'}>
-      {projects.map((project, index) => (
-        <Card
-          key={index}
-          className={`circular-carousel--image ${order[index]}`}
-          onClick={() => rotate(index)}
-          overflow={'hidden'}
-          transition={'all 2s ease-in-out'}
-          alignSelf={'center'}
-          size={'lg'}
-        >
-          <CardHeader>
-            <Heading textAlign={'center'}>{project.title}</Heading>
-          </CardHeader>
-          <CardBody>
-            <img src={project.image} alt={project.title} />
-            <p>{project.description}</p>
-          </CardBody>
-        </Card>
-      ))}
-    </Box>
+    <Center flexDirection={'row'} justifyContent={'space-between'} w={'container.lg'} h={'400px'} m={'0 auto'}>
+        {projects.map((project, index) => (
+          <Card
+            key={index}
+            onClick={() => handleProjectClick(index)}
+            overflow={'hidden'}
+            cursor="pointer"
+            className={activeProject === index ? 'activeProject' : 'inactiveProject'}
+          >
+            <CardHeader>
+              <Heading textAlign={'center'} fontSize="lg">{project.title}</Heading>
+            </CardHeader>
+            <CardBody>
+              <img src={project.image} alt={project.title} style={{width: '100%', height: 'auto'}} />
+              {activeProject === index && (
+                <Box mt={4}>
+                  <p>{project.description}</p>
+                </Box>
+              )}
+            </CardBody>
+          </Card>
+        ))}
+    </Center>
   );
 };
-export default CircularCarousel;
+
+export default ProjectGallery;

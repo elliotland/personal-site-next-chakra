@@ -32,19 +32,32 @@
   /* width: 800px;
   height: 400px; */
   margin: 0 auto;
-  perspective: 250px;
-  perspective-origin: 50% 50%;
+}
+
+.activeProject {
+  transform: scale(1.2, 1.2);
+  transition: all 1.5s ease-in-out;
+}
+
+.inactiveProject {
+  transition: all 1.0s ease-in-out;
+}
+
+.inactiveProject:hover {
+  transform: scale(1.2, 1.2);
+  transition: all 1.0s ease-in-out;
 }
 
 .circular-carousel--image.far-left {
-  transform: rotateY(-15deg) scale(0.5, 0.5);
+  transform: rotateY(-15deg) scale(0.7, 0.7);
   order: 1;
-  flex-shrink: 10;
+  transition: all 2s ease-in-out;
 }
 
 .circular-carousel--image.left {
   transform: rotateY(-15deg) scale(0.7, 0.7);
   order: 2;
+  transition: all 2s ease-in-out;
 }
 
 .circular-carousel--image.center {
@@ -54,10 +67,11 @@
 .circular-carousel--image.right {
   transform: rotateY(15deg) scale(0.7, 0.7);
   order: 4;
+  transition: all 2s ease-in-out;
 }
 
 .circular-carousel--image.far-right {
-  transform: rotateY(15deg) scale(0.5, 0.5);
+  transform: rotateY(15deg) scale(0.7, 0.7);
   order: 5;
-  flex-shrink: 10;
+  transition: all 2s ease-in-out;
 }
