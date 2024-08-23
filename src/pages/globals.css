@@ -29,34 +29,21 @@
 .circular-carousel {
   display: flex;
   justify-content: center;
-  width: 800px;
-  height: 400px;
+  /* width: 800px;
+  height: 400px; */
   margin: 0 auto;
   perspective: 250px;
   perspective-origin: 50% 50%;
 }
 
-/* something about this image is what's controlling the main effect. I want to move this to a card view. */
-.circular-carousel--image {
-  width: 350px;
-  height: 250px;
-  overflow: hidden;
-  align-self: center;
-  background: #e3e3e3;
-  box-shadow: 1px 1px 5px 1px #000;
-  transition: all 0.5s ease-in-out;
-  flex-basis: auto;
-}
-
 .circular-carousel--image.far-left {
-  transform: rotateY(-35deg) scale(0.5, 0.5);
-  visibility: hidden;
+  transform: rotateY(-15deg) scale(0.5, 0.5);
   order: 1;
   flex-shrink: 10;
 }
 
 .circular-carousel--image.left {
-  transform: rotateY(-25deg) scale(0.7, 0.7);
+  transform: rotateY(-15deg) scale(0.7, 0.7);
   order: 2;
 }
 
@@ -65,13 +52,12 @@
 }
 
 .circular-carousel--image.right {
-  transform: rotateY(25deg) scale(0.7, 0.7);
+  transform: rotateY(15deg) scale(0.7, 0.7);
   order: 4;
 }
 
 .circular-carousel--image.far-right {
-  transform: rotateY(35deg) scale(0.5, 0.5);
-  visibility: hidden;
+  transform: rotateY(15deg) scale(0.5, 0.5);
   order: 5;
   flex-shrink: 10;
 }

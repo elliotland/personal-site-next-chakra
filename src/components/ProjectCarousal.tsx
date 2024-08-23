@@ -30,6 +30,9 @@ const CircularCarousel = () => {
           className={`circular-carousel--image ${order[index]}`}
           onClick={() => rotate(index)}
           overflow={'hidden'}
+          transition={'all 2s ease-in-out'}
+          alignSelf={'center'}
+          size={'lg'}
         >
           <CardHeader>
             <Heading textAlign={'center'}>{project.title}</Heading>
