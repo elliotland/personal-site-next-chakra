@@ -68,7 +68,7 @@ function AI_lliot() {
 
   return (
     <>
-      <Container maxW={"3xl"} display={"flex"} flexDirection={"column"} justifyContent={'space-evenly'} minH={'300px'} minW={'xl'}>
+      <Container maxW={"3xl"} display={"flex"} flexDirection={"column"} justifyContent={'space-between'} minW={'xl'}>
         <Heading size={"4xl"} textAlign={"center"} variant={"Menlo"} width={'max-content'}>
           Skip the Scrolling
         </Heading>
@@ -91,16 +91,17 @@ function AI_lliot() {
         _dark={{
           color: "white",
           bgColor: '#2D3748',
+          borderColor: 'mindaro'
         }}
         
         _light={{
           color: "black",
           bgColor: "white",
+          borderColor: 'blueMunsell'
         }}
           />
           <Button
             ml={"1em"}
-            colorScheme="blue"
             width={"auto"}
             textAlign={"center"}
             leftIcon={<ChatIcon />}
@@ -108,6 +109,16 @@ function AI_lliot() {
             pl={"2.5em"}
             pr={"2.5em"}
             isLoading={isLoading}
+            
+            _dark={{
+              color: "black",
+              bgColor: 'mindaro',
+            }}
+            
+            _light={{
+              color: "snow",
+              bgColor: "blueMunsell",
+            }}
           >
             Ask AI-lliot
           </Button>
@@ -136,17 +147,14 @@ function AI_lliot() {
       >
         <Flex>
           <Card width={"container.lg"} >
-            {/* <CardHeader>
-              <Heading size={"lg"} textAlign={"center"} variant={"Menlo"}>
-                AI Response
-              </Heading>
-            </CardHeader> */}
             <CardBody
               display={"flex"} 
               flexDir={"column"}
               justifyContent={"end"}
+              
+              
             >
-              <Box mt={4}>
+              <Box>
                 {isLoading ? (
                   <SkeletonText noOfLines={4} spacing="4" skeletonHeight="2" />
                 ) : aiText === "" ? (

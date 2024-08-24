@@ -19,7 +19,7 @@ const ExpansionButton: React.FC<MotionButtonProps> = ({ isExpanded, onClick }) =
       right={isExpanded ? "4.5em" : "auto"}
       zIndex={5}
       aria-label="Toggle Site Content"
-      colorScheme="gray"
+      colorScheme="blue"
       onClick={onClick}
       initial={false}
       animate={{

@@ -56,9 +56,19 @@ const Index = () => {
           w={"100%"}
           direction={"column"}
           mt={"1em"}
-          bgColor={"cornflowerblue"}
+          _light={
+            {
+              bgColor: 'apricot'
+            }
+          }
+          _dark={
+            {
+              bgColor: 'blueMunsell'
+            }
+          }
           pt={"2em"}
           pb={'2em'}
+          minH={'350px'}
         >
           <Collapse in={isOpen} animateOpacity>
             <AI_lliot />
