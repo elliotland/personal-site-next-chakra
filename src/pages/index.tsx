@@ -29,6 +29,7 @@ const Index = () => {
         maxW={"100%"}
         m={"0px"}
         color="black"
+        bgColor={"customLightMode.white"}
         _dark={{
           color: "white",
         }}
@@ -36,6 +37,7 @@ const Index = () => {
         display={"flex"}
         flexDirection={"column"}
         alignItems={"center"}
+        h={'100vh'}
       >
         <DarkModeSwitch />
 
@@ -58,7 +60,7 @@ const Index = () => {
           mt={"1em"}
           _light={
             {
-              bgColor: 'apricot'
+              bgColor: 'customLightMode.backgroundBlue'
             }
           }
           _dark={
@@ -68,7 +70,7 @@ const Index = () => {
           }
           pt={"2em"}
           pb={'2em'}
-          minH={'350px'}
+          alignItems={'center'}
         >
           <Collapse in={isOpen} animateOpacity>
             <AI_lliot />
@@ -78,7 +80,7 @@ const Index = () => {
           hidden={!isExpanded}
           w={"100%"}
           direction={"column"}
-          bgColor={"thistle"}
+          bgColor={"customLightMode.secondary"}
           pt={"2em"}
           h={"calc(100vh - 160px)"}
           minH={"800px"}

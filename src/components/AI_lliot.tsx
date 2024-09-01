@@ -67,62 +67,78 @@ function AI_lliot() {
   };
 
   return (
-    <>
-      <Container maxW={"3xl"} display={"flex"} flexDirection={"column"} justifyContent={'space-between'} minW={'xl'}>
-        <Heading size={"4xl"} textAlign={"center"} variant={"Menlo"} width={'max-content'}>
-          Skip the Scrolling
-        </Heading>
-        <Heading size={"md"} textAlign={"center"} variant={"Menlo"}>
-          Ask my AI assistant whatever you want to know about me.
-        </Heading>
+    <Flex
+      direction={"column"}
+      justifyContent={"space-around"}
+      minH={"450px"}
+      maxW={"container.lg"}
+      textAlign={"center"}
+    >
+      <Heading
+        size={"4xl"}
+        alignSelf={"center"}
+        variant={"Menlo"}
+        width={"max-content"}
+        color={"customLightMode.white"}
+        display={"flex"}
+      >
+        Skip the Scrolling
+      </Heading>
+      <Heading
+        size={"md"}
+        alignSelf={"center"}
+        variant={"Menlo"}
+        color={"customLightMode.white"}
+        display={"flex"}
+      >
+        Ask my AI assistant whatever you want to know about me.
+      </Heading>
 
-        <Flex
-          direction={"row"}
-          width={"100%"}
-          maxWidth={"100%"}
-          justifyContent={"space-around"}
-          mt={"1em"}
+      <Flex
+        direction={"row"}
+        width={"100%"}
+        maxWidth={"container.md"}
+        alignSelf={'center'}
+        mt={"2em"}
+      >
+        <Input
+          placeholder="Is Elliot good at..."
+          value={userText}
+          onChange={(e) => setUserText(e.target.value)}
+          _dark={{
+            color: "white",
+            bgColor: "#2D3748",
+            borderColor: "mindaro",
+          }}
+          _light={{
+            color: "black",
+            bgColor: "white",
+            borderColor: "blueMunsell",
+          }}
+        />
+        <Button
+          ml={"1em"}
+          width={"auto"}
+          textAlign={"center"}
+          leftIcon={<ChatIcon />}
+          onClick={sendChat}
+          pl={"2.5em"}
+          pr={"2.5em"}
+          isLoading={isLoading}
+          _dark={{
+            color: "black",
+            bgColor: "mindaro",
+          }}
+          _light={{
+            color: "",
+            bgColor: "customLightMode.primary",
+          }}
         >
-          <Input
-            placeholder="Is Elliot good at..."
-            value={userText}
-            onChange={(e) => setUserText(e.target.value)}
-            
-        _dark={{
-          color: "white",
-          bgColor: '#2D3748',
-          borderColor: 'mindaro'
-        }}
-        
-        _light={{
-          color: "black",
-          bgColor: "white",
-          borderColor: 'blueMunsell'
-        }}
-          />
-          <Button
-            ml={"1em"}
-            width={"auto"}
-            textAlign={"center"}
-            leftIcon={<ChatIcon />}
-            onClick={sendChat}
-            pl={"2.5em"}
-            pr={"2.5em"}
-            isLoading={isLoading}
-            
-            _dark={{
-              color: "black",
-              bgColor: 'mindaro',
-            }}
-            
-            _light={{
-              color: "snow",
-              bgColor: "blueMunsell",
-            }}
-          >
-            Ask AI-lliot
-          </Button>
-          {aiText === '' ? (<></>) : (
+          Ask AI-lliot
+        </Button>
+        {aiText === "" ? (
+          <></>
+        ) : (
           <Button
             ml={"1em"}
             colorScheme="red"
@@ -135,39 +151,37 @@ function AI_lliot() {
             isLoading={isLoading}
           >
             Clear
-          </Button>)
-          }
-        </Flex>
-      </Container>
+          </Button>
+        )}
+      </Flex>
       <Flex
         direction={"column"}
         width={"100%"}
         alignItems={"center"}
         mt={"2em"}
+        textAlign={"left"}
       >
-        <Flex>
-          <Card width={"container.lg"} >
+          <Card width={"container.lg"}>
             <CardBody
-              display={"flex"} 
+              display={"flex"}
               flexDir={"column"}
               justifyContent={"end"}
-              
-              
             >
               <Box>
                 {isLoading ? (
                   <SkeletonText noOfLines={4} spacing="4" skeletonHeight="2" />
                 ) : aiText === "" ? (
-                    <p className="text-gray-500 opacity-35">Elliot is great at designing products.</p>
+                  <p className="text-gray-500 opacity-35">
+                    Elliot is great at designing products.
+                  </p>
                 ) : (
                   <>{aiText}</>
                 )}
               </Box>
             </CardBody>
           </Card>
-        </Flex>
       </Flex>
-    </>
+    </Flex>
   );
 }
 

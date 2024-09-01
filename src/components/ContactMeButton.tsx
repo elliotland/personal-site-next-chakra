@@ -43,7 +43,7 @@ const ContactMeButton: React.FC<ContactMeButtonProps> = ({ expandedSiteView }) =
   return (
     <>
       <Button
-        colorScheme="blue"
+        bgColor={'customLightMode.primary'}
         aria-label="contact button"
         mt={expandedSiteView ? "5px" : "0"}
         h={expandedSiteView ? "50px" : "2.5rem"}

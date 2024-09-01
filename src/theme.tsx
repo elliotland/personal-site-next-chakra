@@ -44,12 +44,14 @@ const theme = extendTheme({
     snow: "#fffbff",
     indigoDye: "#1b4965",
     coyote: "#82735c",
-// light mode
-berkeleyBlue: "#1d3557",
-spaceCadet: "#172747",
-celeste: "#c1f5ef",
-periwinkle: "#bdbdf0",
-thistle: "#dbcbd8",
+    customLightMode: {
+      backgroundBlue: "#1d3557",
+      accentBlue: "#172747",
+      white: "#c1f5ef",
+      primary: "#bdbdf0",
+      secondary: "#dbcbd8",
+
+    },
   },
     fonts,
   breakpoints,
