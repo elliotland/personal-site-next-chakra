@@ -51,6 +51,14 @@ const ContactMeButton: React.FC<ContactMeButtonProps> = ({ expandedSiteView }) =
         leftIcon={<EmailIcon />}
         onClick={onOpen}
         borderTopRadius={expandedSiteView ? undefined : 0}
+        _light={{
+          color: "black",
+          bgColor: "customLightMode.primary",
+        }}
+        _dark={{
+          color: "black",
+          bgColor: "customDarkMode.green",
+        }}
       >
         Contact Me
       </Button>

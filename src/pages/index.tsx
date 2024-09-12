@@ -26,18 +26,21 @@ const Index = () => {
   return (
     <>
       <Box
-        maxW={"100%"}
+        w={"100%"}
         m={"0px"}
-        color="black"
-        bgColor={"customLightMode.white"}
+        _light={{
+          color: "black",
+          bgColor: "customLightMode.white",
+        }}
         _dark={{
           color: "white",
+          bgColor: "customDarkMode.darkBackground",
         }}
         transition="all 0.15s ease-out"
         display={"flex"}
         flexDirection={"column"}
         alignItems={"center"}
-        h={'100vh'}
+        h={"100vh"}
       >
         <DarkModeSwitch />
 
@@ -58,19 +61,15 @@ const Index = () => {
           w={"100%"}
           direction={"column"}
           mt={"1em"}
-          _light={
-            {
-              bgColor: 'customLightMode.backgroundBlue'
-            }
-          }
-          _dark={
-            {
-              bgColor: 'blueMunsell'
-            }
-          }
+          _light={{
+            bgColor: "customLightMode.accentBlue",
+          }}
+          _dark={{
+            bgColor: "customDarkMode.primary",
+          }}
           pt={"2em"}
-          pb={'2em'}
-          alignItems={'center'}
+          pb={"2em"}
+          alignItems={"center"}
         >
           <Collapse in={isOpen} animateOpacity>
             <AI_lliot />
@@ -82,8 +81,7 @@ const Index = () => {
           direction={"column"}
           bgColor={"customLightMode.secondary"}
           pt={"2em"}
-          h={"calc(100vh - 160px)"}
-          minH={"800px"}
+          h={'100%'}
         >
           <Collapse in={isOpen} animateOpacity>
             <CircularCarousel />

@@ -127,7 +127,7 @@ function AI_lliot() {
           isLoading={isLoading}
           _dark={{
             color: "black",
-            bgColor: "mindaro",
+            bgColor: "customDarkMode.green",
           }}
           _light={{
             color: "",

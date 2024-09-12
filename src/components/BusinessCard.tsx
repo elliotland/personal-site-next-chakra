@@ -17,7 +17,21 @@ import ContactMeButton from "./ContactMeButton";
 
 function Feature({ title, desc, ...rest }) {
   return (
-    <Box p={5} shadow="md" borderWidth="1px" {...rest}>
+    <Box
+      p={5}
+      shadow="md"
+      borderWidth="1px"
+       borderRadius='lg' 
+      {...rest}
+      _light={{
+        color: "black",
+        bgColor: "customLightMode.secondary",
+      }}
+      _dark={{
+        color: "black",
+        bgColor: "customDarkMode.white",
+      }}
+    >
       <Heading fontSize="xl">{title}</Heading>
       <Text mt={4}>{desc}</Text>
     </Box>
@@ -70,9 +84,15 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
         h={"auto"}
         mt={"2em"}
         boxShadow={"dark-lg"}
-        _light={{}}
         border={"1px solid #1B9AAA"}
-        colorScheme={"white"}
+        _light={{
+          color: "black",
+          bgColor: "customDarkMode.white",
+        }}
+        _dark={{
+          color: "black",
+          bgColor: "customDarkMode.primary",
+        }}
         transition={"all 0.3s ease-in-out"}
         {...props}
       >

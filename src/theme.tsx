@@ -37,13 +37,16 @@ const theme = extendTheme({
   },
   colors: {
     black: "#16161D",
-    raisinBlack: "#1a202c",
-    mindaro: "#daff7d",
-    blueMunsell: "#1b9aaa",
-    apricot: "#ffcab1",
-    snow: "#fffbff",
-    indigoDye: "#1b4965",
     coyote: "#82735c",
+    indigoDye: "#1b4965",
+    customDarkMode: {
+      darkBackground: "#1a202c",
+      yellow: "#daff7d",
+      primary: "#1b9aaa",
+      pink: "#ffcab1",
+      white: "#fffbff",
+      green: "#2DD881"
+    },
     customLightMode: {
       backgroundBlue: "#1d3557",
       accentBlue: "#172747",
