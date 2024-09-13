@@ -69,36 +69,48 @@ function AI_lliot() {
   return (
     <Flex
       direction={"column"}
-      justifyContent={"space-around"}
-      minH={"450px"}
+      justifyContent={"space-between"}
       maxW={"container.lg"}
       textAlign={"center"}
     >
-      <Heading
-        size={"4xl"}
-        alignSelf={"center"}
-        variant={"Menlo"}
-        width={"max-content"}
-        color={"customLightMode.white"}
-        display={"flex"}
-      >
-        Skip the Scrolling
-      </Heading>
-      <Heading
-        size={"md"}
-        alignSelf={"center"}
-        variant={"Menlo"}
-        color={"customLightMode.white"}
-        display={"flex"}
-      >
-        Ask my AI assistant whatever you want to know about me.
-      </Heading>
+      <Flex direction={'column'}>
+        <Heading
+          size={"3xl"}
+          as={"h2"}
+          alignSelf={"center"}
+          width={"max-content"}
+          _dark={{
+            color: "white",
+          }}
+          _light={{
+            color: "black",
+          }}
+          display={"flex"}
+        >
+          Get to Know Me
+        </Heading>
+        <Heading
+          size={"lg"}
+          as={"h3"}
+          alignSelf={"center"}
+          _dark={{
+            color: "white",
+          }}
+          _light={{
+            color: "black",
+          }}
+          display={"flex"}
+          mt={'.5em'}
+        >
+          Ask My AI Assistant About Me
+        </Heading>
+      </Flex>
 
       <Flex
         direction={"row"}
         width={"100%"}
         maxWidth={"container.md"}
-        alignSelf={'center'}
+        alignSelf={"center"}
         mt={"2em"}
       >
         <Input
@@ -161,25 +173,21 @@ function AI_lliot() {
         mt={"2em"}
         textAlign={"left"}
       >
-          <Card width={"container.lg"}>
-            <CardBody
-              display={"flex"}
-              flexDir={"column"}
-              justifyContent={"end"}
-            >
-              <Box>
-                {isLoading ? (
-                  <SkeletonText noOfLines={4} spacing="4" skeletonHeight="2" />
-                ) : aiText === "" ? (
-                  <p className="text-gray-500 opacity-35">
-                    Elliot is great at designing products.
-                  </p>
-                ) : (
-                  <>{aiText}</>
-                )}
-              </Box>
-            </CardBody>
-          </Card>
+        <Card width={"container.lg"}>
+          <CardBody display={"flex"} flexDir={"column"} justifyContent={"end"}>
+            <Box>
+              {isLoading ? (
+                <SkeletonText noOfLines={4} spacing="4" skeletonHeight="2" />
+              ) : aiText === "" ? (
+                <p className="text-gray-500 opacity-35">
+                  Elliot is great at designing products.
+                </p>
+              ) : (
+                <>{aiText}</>
+              )}
+            </Box>
+          </CardBody>
+        </Card>
       </Flex>
     </Flex>
   );

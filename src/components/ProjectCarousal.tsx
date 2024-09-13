@@ -9,6 +9,9 @@ import {
   Grid,
   Flex,
   Center,
+  Circle,
+  Image,
+  Stack,
 } from "@chakra-ui/react";
 
 const ProjectGallery = () => {
@@ -19,49 +22,78 @@ const ProjectGallery = () => {
   };
 
   return (
-    <Center m={"0 auto"} mt={'1em'} h={'100%'} justifyContent={'space-around'} flexDir={'row'}>
+    <>
+      <Heading textAlign="center" as="h2" size="3xl" noOfLines={1} pb={".5em"}>
+        Project History
+      </Heading>
       <Flex
-        flexDirection={"column"}
-        justifyContent={"space-between"}
-        w={"25%"}
-        h={"800px"}
+        flexDirection={"row"}
+        justifyContent={"space-around"}
         m={"0 auto"}
+        alignItems={"center"}
+        w={"50%"}
+        pt={"1em"}
       >
         {projects.map((project, index) => (
-          <Card
+          <Circle
             key={index}
             onClick={() => handleProjectClick(index)}
-            overflow={"hidden"}
             cursor="pointer"
+            mb={"2em"}
+            p={"2em"}
+            size={"130px"}
             className={
               activeProject === index ? "activeProject" : "inactiveProject"
             }
+            _light={{
+              bgColor: "customLightMode.orange",
+              color: "white",
+            }}
+            _dark={{
+              bgColor: "customDarkMode.primary",
+            }}
+            overflow={"show"}
           >
-            <CardHeader>
-              <Heading textAlign={"center"} fontSize="lg">
-                {project.title}
-              </Heading>
-            </CardHeader>
-            <CardBody>
-              <img
-                src={project.image}
-                alt={project.title}
-                style={{ width: "100%", height: "auto" }}
-              />
-            </CardBody>
-          </Card>
+            <Heading textAlign={"center"} fontSize="sm">
+              {project.title}
+            </Heading>
+          </Circle>
         ))}
       </Flex>
-      <Flex>
-        <Card>
+      <Flex
+        flexDirection={"row"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        w={"container.lg"}
+        margin={"0 auto"}
+      >
+        <Card
+          minH={"300px"}
+          mt={"2em"}
+          direction={{ base: "column", sm: "row" }}
+          overflow="hidden"
+          variant="outline"
+        >
+          <Image
+            objectFit="cover"
+            maxW={{ base: "100%", sm: "300px" }}
+            src={projects[activeProject].image}
+            alt="Caffe Latte"
+          />
+          <Stack>
+          <CardHeader>
+            <Heading textAlign={"center"}>
+              {projects[activeProject].header}
+            </Heading>
+          </CardHeader>
           <CardBody>
-            <Heading>{projects[activeProject].header}</Heading>
-            <img src={projects[activeProject].image} alt="" />
             <p>{projects[activeProject].description}</p>
           </CardBody>
+
+          </Stack>
         </Card>
       </Flex>
-    </Center>
+    </>
   );
 };
 

@@ -53,6 +53,14 @@ const theme = extendTheme({
       white: "#c1f5ef",
       primary: "#bdbdf0",
       secondary: "#dbcbd8",
+      pink: '#F0386B',
+      pear: '#D1D646',
+      green: '#CCE8CC',
+      orange: '#FFA630',
+      sage: '#C5C392',
+      rosewood: '#640D14',
+      citron: '#CACF85',
+      peach: '#ECCE8E'
 
     },
   },

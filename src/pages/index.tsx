@@ -40,7 +40,7 @@ const Index = () => {
         display={"flex"}
         flexDirection={"column"}
         alignItems={"center"}
-        h={"100vh"}
+        height={isExpanded ? '' : '100vh'}
       >
         <DarkModeSwitch />
 
@@ -61,8 +61,9 @@ const Index = () => {
           w={"100%"}
           direction={"column"}
           mt={"1em"}
+          minH={'400px'}
           _light={{
-            bgColor: "customLightMode.accentBlue",
+            bgColor: "customLightMode.orange",
           }}
           _dark={{
             bgColor: "customDarkMode.primary",
@@ -79,12 +80,23 @@ const Index = () => {
           hidden={!isExpanded}
           w={"100%"}
           direction={"column"}
-          bgColor={"customLightMode.secondary"}
           pt={"2em"}
           h={'100%'}
+          minH={'600px'}
         >
           <Collapse in={isOpen} animateOpacity>
             <CircularCarousel />
+          </Collapse>
+        </Flex>        
+        <Flex
+          hidden={!isExpanded}
+          w={"100%"}
+          direction={"column"}
+          pt={"2em"}
+          h={'100%'}
+          minH={'600px'}
+        >
+          <Collapse in={isOpen} animateOpacity>
           </Collapse>
         </Flex>
       </Box>
