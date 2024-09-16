@@ -12,7 +12,14 @@ import {
   Circle,
   Image,
   Stack,
+  keyframes,
+  useColorModeValue,
 } from "@chakra-ui/react";
+
+const scaleUp = keyframes`
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+`;
 
 const ProjectGallery = () => {
   const [activeProject, setActiveProject] = useState(0);
@@ -20,6 +27,17 @@ const ProjectGallery = () => {
   const handleProjectClick = (index) => {
     setActiveProject(index === activeProject ? 0 : index);
   };
+
+  const activeBgColor = useColorModeValue(
+    "customLightMode.orange",
+    "customDarkMode.primary"
+  );
+  const inactiveBgColor = useColorModeValue("white", "darkprimary");
+  const borderColor = useColorModeValue(
+    "customLightMode.orange",
+    "customDarkMode.primary"
+  );
+  const textColor = useColorModeValue("black", "white");
 
   return (
     <>
@@ -42,17 +60,18 @@ const ProjectGallery = () => {
             mb={"2em"}
             p={"2em"}
             size={"130px"}
-            className={
-              activeProject === index ? "activeProject" : "inactiveProject"
-            }
-            _light={{
-              bgColor: "customLightMode.orange",
-              color: "white",
+            as={"button"}
+            bgColor={activeProject === index ? activeBgColor : inactiveBgColor}
+            color={textColor}
+            borderColor={borderColor}
+            borderWidth="2px"
+            _hover={{
+              bgColor: activeBgColor,
+              animation: `${scaleUp} 0.2s ease-in-out forwards`,
             }}
-            _dark={{
-              bgColor: "customDarkMode.primary",
-            }}
-            overflow={"show"}
+            transition="all 0.2s"
+            transform={activeProject === index ? "scale(1.05)" : "scale(1)"}
+            overflow={"visible"}
           >
             <Heading textAlign={"center"} fontSize="sm">
               {project.title}
@@ -73,6 +92,8 @@ const ProjectGallery = () => {
           direction={{ base: "column", sm: "row" }}
           overflow="hidden"
           variant="outline"
+          
+          borderColor={borderColor}
         >
           <Image
             objectFit="cover"
@@ -81,15 +102,14 @@ const ProjectGallery = () => {
             alt="Caffe Latte"
           />
           <Stack>
-          <CardHeader>
-            <Heading textAlign={"center"}>
-              {projects[activeProject].header}
-            </Heading>
-          </CardHeader>
-          <CardBody>
-            <p>{projects[activeProject].description}</p>
-          </CardBody>
-
+            <CardHeader>
+              <Heading textAlign={"center"}>
+                {projects[activeProject].header}
+              </Heading>
+            </CardHeader>
+            <CardBody>
+              <p>{projects[activeProject].description}</p>
+            </CardBody>
           </Stack>
         </Card>
       </Flex>
