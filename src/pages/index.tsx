@@ -4,23 +4,36 @@ import {
   Container,
   Flex,
   useDisclosure,
+  useBreakpointValue, 
 } from "@chakra-ui/react";
-import Hero from "../components/Hero";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AI_lliot from "../components/AI_lliot";
 import BusinessCard from "../components/BusinessCard";
 import ExpansionButton from "../components/ExpansionButton";
-import MovingTaskRole from "../components/MovingRow";
 import CircularCarousel from "../components/ProjectCarousal";
-import { projects } from "../components/projects";
 
 const Index = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen, onToggle, onOpen } = useDisclosure();
+
+  // Use Chakra's useBreakpointValue to detect screen size and set isExpanded based on the screen size
+  const isMobile = useBreakpointValue({ base: true, md: false });
+
+  // Effect to automatically expand when on mobile or small screens
+  useEffect(() => {
+    if (isMobile) {
+      setIsExpanded(true);
+      onOpen(); // Ensure that Collapse content is also opened on mobile view
+    } else {
+      setIsExpanded(false);
+      // If you want to collapse it when going to desktop, you can optionally call onToggle here
+    }
+  }, [isMobile, onOpen]);
+
   const toggleExpansion = () => {
     setIsExpanded((prev) => !prev);
-    onToggle();
+    onToggle(); // Manually toggle the collapse when the expansion button is clicked
   };
 
   return (
@@ -63,7 +76,7 @@ const Index = () => {
           mt={"1em"}
           minH={'400px'}
           _light={{
-            bgColor: "customLightMode.orange",
+            bgColor: "customLightMode.pink",
           }}
           _dark={{
             bgColor: "customDarkMode.primary",
@@ -83,22 +96,12 @@ const Index = () => {
           pt={"2em"}
           h={'100%'}
           minH={'600px'}
+          pb={"2em"}
         >
           <Collapse in={isOpen} animateOpacity>
             <CircularCarousel />
           </Collapse>
-        </Flex>        
-        <Flex
-          hidden={!isExpanded}
-          w={"100%"}
-          direction={"column"}
-          pt={"2em"}
-          h={'100%'}
-          minH={'600px'}
-        >
-          <Collapse in={isOpen} animateOpacity>
-          </Collapse>
-        </Flex>
+        </Flex>      
       </Box>
     </>
   );

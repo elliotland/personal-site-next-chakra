@@ -52,7 +52,7 @@ const ContactMeButton: React.FC<ContactMeButtonProps> = ({ expandedSiteView }) =
         onClick={onOpen}
         borderTopRadius={expandedSiteView ? undefined : 0}
         _light={{
-          color: "black",
+          color: "white",
           bgColor: "customLightMode.primary",
         }}
         _dark={{

@@ -21,7 +21,7 @@ function Feature({ title, desc, ...rest }) {
       p={5}
       shadow="md"
       borderWidth="1px"
-       borderRadius='lg' 
+      borderRadius="lg"
       {...rest}
       _light={{
         color: "black",
@@ -68,23 +68,27 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
         bottom="0"
         height={expandedSiteView ? "6em" : "9em"}
         bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
-        maxW={"100%"}
+        maxW="100%"
       />
-      <Flex direction={"row"} justifyContent={"space-around"} mt={".5em"}>
-        <Hero title="Elliot Land" size={"lg"} smallMode={expandedSiteView} />
+      <Flex
+        direction={["column", "row"]} // Responsive flex direction
+        justifyContent="space-around"
+        mt={["1em", ".5em"]}
+      >
+        <Hero title="Elliot Land" size="lg" smallMode={expandedSiteView} />
         <BadgesAndContactForm />
         <ContactMeButton expandedSiteView={expandedSiteView} />
       </Flex>
     </>
   ) : (
     <>
-      <Hero title="Elliot Land" size={"lg"} smallMode={expandedSiteView} />
+      <Hero title="Elliot Land" size="lg" smallMode={expandedSiteView} />
       <Card
-        w={"100%"}
-        h={"auto"}
-        mt={"2em"}
-        boxShadow={"dark-lg"}
-        border={"1px solid #1B9AAA"}
+        w="100%"
+        h="auto"
+        mt={["1em", "2em"]}
+        boxShadow="dark-lg"
+        border="1px solid #1B9AAA"
         _light={{
           color: "black",
           bgColor: "customDarkMode.white",
@@ -93,11 +97,11 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
           color: "black",
           bgColor: "customDarkMode.primary",
         }}
-        transition={"all 0.3s ease-in-out"}
+        transition="all 0.3s ease-in-out"
         {...props}
       >
         <CardBody>
-          <VStack spacing={0} w={"100%"}>
+          <VStack spacing={0} w="100%">
             <Box
               className="wavy-line-background"
               position="absolute"
@@ -109,12 +113,12 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
               height={expandedSiteView ? "7em" : "9em"}
               bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
             />
-            <Box w={"100%"} mt={expandedSiteView ? "2em" : "5em"}>
+            <Box w="100%" mt={expandedSiteView ? "2em" : ["3em", "5em"]}>
               <Heading
-                colorScheme={"blue"}
-                textAlign={"center"}
-                size={"lg"}
-                pb={"1em"}
+                colorScheme="blue"
+                textAlign="center"
+                size="lg"
+                pb="1em"
               >
                 {expandedSiteView ? shortTitle : fullTitle}
               </Heading>
@@ -122,7 +126,8 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
                 spacing={4}
                 w="100%"
                 alignItems="stretch"
-                textAlign={"center"}
+                textAlign="center"
+                direction={["column", "row"]} // Stack vertically on mobile
               >
                 <Feature
                   title="Designer"
@@ -141,7 +146,7 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
                 />
               </HStack>
             </Box>
-            <Box w={"100%"} mt={"2em"}>
+            <Box w="100%" mt="2em">
               <BadgesAndContactForm />
             </Box>
           </VStack>

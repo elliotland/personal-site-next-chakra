@@ -1,27 +1,12 @@
 import { ChatIcon, DeleteIcon } from "@chakra-ui/icons";
 import {
-  useSteps,
   Box,
-  Stepper,
-  Step,
-  StepIndicator,
-  StepStatus,
-  StepIcon,
-  Progress,
-  StepDescription,
-  StepNumber,
-  StepSeparator,
-  StepTitle,
   Flex,
-  Icon,
-  Container,
   Input,
   Button,
   Heading,
   Card,
   CardBody,
-  CardHeader,
-  SkeletonCircle,
   SkeletonText,
 } from "@chakra-ui/react";
 import { useState } from "react";
@@ -46,12 +31,10 @@ function AI_lliot() {
 
       if (response.ok) {
         const data = await response.json();
-        console.log("response data ----" + data);
         setIsLoading(false);
         setAIText(data);
         setUserText("");
       } else {
-        console.log("Error with AI Chat:", response.statusText);
         setIsLoading(false);
         setAIText("Sorry, there was an error processing your request.");
       }
@@ -72,22 +55,23 @@ function AI_lliot() {
       justifyContent={"space-between"}
       maxW={"container.lg"}
       textAlign={"center"}
+      p={["1em", "2em", "4em"]} // Responsive padding
     >
-      <Flex direction={'column'}>
+      {/* Header Section */}
+      <Flex direction={"column"} mb={["1em", "2em"]}>
         <Heading
           size={"3xl"}
           as={"h2"}
           alignSelf={"center"}
-          width={"max-content"}
           _dark={{
             color: "white",
           }}
           _light={{
             color: "black",
           }}
-          display={"flex"}
+          mb={[".5em", "1em"]} // Responsive margin-bottom
         >
-          Get to Know Me
+          Quiz My AI
         </Heading>
         <Heading
           size={"lg"}
@@ -99,19 +83,20 @@ function AI_lliot() {
           _light={{
             color: "black",
           }}
-          display={"flex"}
-          mt={'.5em'}
+          mt={".5em"}
         >
           Ask My AI Assistant About Me
         </Heading>
       </Flex>
 
+      {/* Chat Input Section */}
       <Flex
-        direction={"row"}
+        direction={["column", "row"]} // Stacks vertically on mobile, horizontally on larger screens
         width={"100%"}
         maxWidth={"container.md"}
         alignSelf={"center"}
         mt={"2em"}
+        alignItems={["stretch", "center"]} // Align input and buttons on larger screens
       >
         <Input
           placeholder="Is Elliot good at..."
@@ -127,45 +112,46 @@ function AI_lliot() {
             bgColor: "white",
             borderColor: "blueMunsell",
           }}
+          mb={["1em", 0]} // Adds bottom margin on mobile to separate input from buttons
         />
-        <Button
-          ml={"1em"}
-          width={"auto"}
-          textAlign={"center"}
-          leftIcon={<ChatIcon />}
-          onClick={sendChat}
-          pl={"2.5em"}
-          pr={"2.5em"}
-          isLoading={isLoading}
-          _dark={{
-            color: "black",
-            bgColor: "customDarkMode.green",
-          }}
-          _light={{
-            color: "",
-            bgColor: "customLightMode.primary",
-          }}
-        >
-          Ask AI-lliot
-        </Button>
-        {aiText === "" ? (
-          <></>
-        ) : (
+        <Flex direction={["column", "row"]} ml={[0, "1em"]}>
           <Button
-            ml={"1em"}
-            colorScheme="red"
-            width={"auto"}
+            mb={["1em", 0]} // Adds bottom margin on mobile for better spacing
+            width={["100%", "auto"]} // Full-width button on mobile
             textAlign={"center"}
-            leftIcon={<DeleteIcon />}
-            onClick={clearMessages}
+            leftIcon={<ChatIcon />}
+            onClick={sendChat}
+            isLoading={isLoading}
             pl={"2.5em"}
             pr={"2.5em"}
-            isLoading={isLoading}
+            _dark={{
+              bgColor: "customDarkMode.green",
+            }}
+            _light={{
+              bgColor: "customLightMode.primary",
+              color: "white",
+            }}
           >
-            Clear
+            Ask AI-lliot
           </Button>
-        )}
+          {aiText !== "" && (
+            <Button
+              colorScheme="red"
+              width={["100%", "auto"]} // Full-width button on mobile
+              textAlign={"center"}
+              leftIcon={<DeleteIcon />}
+              onClick={clearMessages}
+              pl={"2.5em"}
+              pr={"2.5em"}
+              ml={[0, "1em"]} // No margin on mobile, margin-left on larger screens
+            >
+              Clear
+            </Button>
+          )}
+        </Flex>
       </Flex>
+
+      {/* Response Section */}
       <Flex
         direction={"column"}
         width={"100%"}
@@ -173,7 +159,7 @@ function AI_lliot() {
         mt={"2em"}
         textAlign={"left"}
       >
-        <Card width={"container.lg"}>
+        <Card width={["100%", "container.md", "container.lg"]}>
           <CardBody display={"flex"} flexDir={"column"} justifyContent={"end"}>
             <Box>
               {isLoading ? (
