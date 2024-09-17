@@ -57,11 +57,10 @@ function AI_lliot() {
       textAlign={"center"}
       p={["1em", "2em", "4em"]} // Responsive padding
     >
-      {/* Header Section */}
       <Flex direction={"column"} mb={["1em", "2em"]}>
         <Heading
-          size={"3xl"}
-          as={"h2"}
+          size={"2xl"}
+          as={"h3"}
           alignSelf={"center"}
           _dark={{
             color: "white",
@@ -74,8 +73,8 @@ function AI_lliot() {
           Quiz My AI
         </Heading>
         <Heading
-          size={"lg"}
-          as={"h3"}
+          size={"md"}
+          as={"h4"}
           alignSelf={"center"}
           _dark={{
             color: "white",
@@ -83,7 +82,6 @@ function AI_lliot() {
           _light={{
             color: "black",
           }}
-          mt={".5em"}
         >
           Ask My AI Assistant About Me
         </Heading>

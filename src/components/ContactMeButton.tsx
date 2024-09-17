@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Button,
+  IconButton,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -14,10 +15,11 @@ import { EmailIcon } from "@chakra-ui/icons";
 import EmailComponent from "./emailMessage";
 
 interface ContactMeButtonProps {
-  expandedSiteView: boolean;
+  lightSettings: {},
+  darkSettings: {},
 }
 
-const ContactMeButton: React.FC<ContactMeButtonProps> = ({ expandedSiteView }) => {
+const ContactMeButton: React.FC<ContactMeButtonProps> = ({lightSettings, darkSettings }) => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -42,26 +44,17 @@ const ContactMeButton: React.FC<ContactMeButtonProps> = ({ expandedSiteView }) =
 
   return (
     <>
-      <Button
-        bgColor={'customLightMode.primary'}
+      <IconButton
         aria-label="contact button"
-        mt={expandedSiteView ? "5px" : "0"}
-        h={expandedSiteView ? "50px" : "2.5rem"}
-        w={expandedSiteView ? "auto" : "100%"}
-        leftIcon={<EmailIcon />}
+        icon={<EmailIcon />}
         onClick={onOpen}
-        borderTopRadius={expandedSiteView ? undefined : 0}
-        _light={{
-          color: "white",
-          bgColor: "customLightMode.primary",
-        }}
-        _dark={{
-          color: "black",
-          bgColor: "customDarkMode.green",
-        }}
+        _light={lightSettings}
+        
+        _dark={darkSettings}
+        
       >
         Contact Me
-      </Button>
+      </IconButton>
 
       <Modal isCentered isOpen={isOpen} onClose={onClose}>
         <OverlayOne />

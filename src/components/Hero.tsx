@@ -1,52 +1,52 @@
-import {
-  Avatar,
-  Flex,
-  Heading,
-  Collapse,
-} from "@chakra-ui/react";
+import { Avatar, Flex, Heading, Collapse } from "@chakra-ui/react";
 
 type HeroProps = {
   title: string;
   smallMode: boolean;
-  isOpen?: boolean;  
+  isOpen?: boolean;
   onToggle?: () => void;
   size?: string;
 };
 
-const Hero = ({ title, smallMode, isOpen = true, onToggle, size }: HeroProps) => {
-  const animationValue = "all 0.3s ease-in-out";
-
+const Hero = ({
+  title,
+  smallMode,
+  isOpen = true,
+  onToggle,
+  size,
+}: HeroProps) => {
   return (
-    <Collapse animateOpacity in={isOpen} >
-      <Flex
-        justifyContent="center"
-        alignItems="center"
-        marginTop={smallMode ? "em" : '2em'}
-        flexDirection={smallMode ? "row" : "column"}
-        transition={animationValue}
-        alignContent={'center'}
-          >
-        <Avatar
-          src="avatar.jpg"
-          size={smallMode ? "lg" : "2xl"}
-          name="Elliot Land"
-          marginRight={smallMode ? "1em" : "0"}
-          transition={animationValue}
-        />
+    <Flex
+      justifyContent="center"
+      alignItems="center"
+      marginTop={smallMode ? "em" : "2em"}
+      mb={smallMode ? "2em" : "2em"}
+      flexDirection={smallMode ? "row" : "column"}
+      alignContent={"center"}
+      position={smallMode ? "fixed" : "initial"}
+      top={4}
+      left={4}
+      zIndex={5000}
+    >
+      <Avatar
+        src="avatar.jpg"
+        size={smallMode ? "lg" : "2xl"}
+        name="Elliot Land"
+        marginRight={smallMode ? "1em" : "0"}
+      />
 
-        <Heading
-          size={smallMode ? size : "2xl"}
-          transition={animationValue}
-          bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
-          bgClip="text"
-          textStyle="hero"
-          variant={"Bungee"}
-          mt={'10px'}
-        >
-          {title}
-        </Heading>
-      </Flex>
-    </Collapse>
+      <Heading
+        size={smallMode ? size : "2xl"}
+        bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
+        bgClip="text"
+        textStyle="hero"
+        variant={"Bungee"}
+        mt={"10px"}
+        alignSelf={smallMode ? "baseline" : "initial"}
+      >
+        {title}
+      </Heading>
+    </Flex>
   );
 };
 export default Hero;

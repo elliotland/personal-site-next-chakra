@@ -4,7 +4,7 @@ import {
   Container,
   Flex,
   useDisclosure,
-  useBreakpointValue, 
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { DarkModeSwitch } from "../components/DarkModeSwitch";
 import { useEffect, useState } from "react";
@@ -12,28 +12,15 @@ import AI_lliot from "../components/AI_lliot";
 import BusinessCard from "../components/BusinessCard";
 import ExpansionButton from "../components/ExpansionButton";
 import CircularCarousel from "../components/ProjectCarousal";
+import ButtonStack from "../components/ButtonMenu";
 
 const Index = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const { isOpen, onToggle, onOpen } = useDisclosure();
 
-  // Use Chakra's useBreakpointValue to detect screen size and set isExpanded based on the screen size
-  const isMobile = useBreakpointValue({ base: true, md: false });
-
-  // Effect to automatically expand when on mobile or small screens
-  useEffect(() => {
-    if (isMobile) {
-      setIsExpanded(true);
-      onOpen(); // Ensure that Collapse content is also opened on mobile view
-    } else {
-      setIsExpanded(false);
-      // If you want to collapse it when going to desktop, you can optionally call onToggle here
-    }
-  }, [isMobile, onOpen]);
-
   const toggleExpansion = () => {
     setIsExpanded((prev) => !prev);
-    onToggle(); // Manually toggle the collapse when the expansion button is clicked
+    onToggle();
   };
 
   return (
@@ -49,16 +36,11 @@ const Index = () => {
           color: "white",
           bgColor: "customDarkMode.darkBackground",
         }}
-        transition="all 0.15s ease-out"
         display={"flex"}
         flexDirection={"column"}
         alignItems={"center"}
-        height={isExpanded ? '' : '100vh'}
+        height={isExpanded ? "" : "100vh"}
       >
-        <DarkModeSwitch />
-
-        <ExpansionButton isExpanded={isExpanded} onClick={toggleExpansion} />
-
         <Container
           display={"flex"}
           flexDirection={"column"}
@@ -66,7 +48,12 @@ const Index = () => {
           w={"container.lg"}
           mt={isExpanded ? "3em" : "0em"}
           maxW={"100%"}
+          pb={"2em"}
         >
+        <ButtonStack
+          isExpanded={isExpanded}
+          toggleExpansion={toggleExpansion}
+        />
           <BusinessCard expandedSiteView={isExpanded} />
         </Container>
         <Flex
@@ -74,7 +61,7 @@ const Index = () => {
           w={"100%"}
           direction={"column"}
           mt={"1em"}
-          minH={'400px'}
+          minH={"400px"}
           _light={{
             bgColor: "customLightMode.pink",
           }}
@@ -94,14 +81,14 @@ const Index = () => {
           w={"100%"}
           direction={"column"}
           pt={"2em"}
-          h={'100%'}
-          minH={'600px'}
+          h={"100%"}
+          minH={"600px"}
           pb={"2em"}
         >
           <Collapse in={isOpen} animateOpacity>
             <CircularCarousel />
           </Collapse>
-        </Flex>      
+        </Flex>
       </Box>
     </>
   );

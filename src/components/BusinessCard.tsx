@@ -10,6 +10,7 @@ import {
   VStack,
   HStack,
   CardFooter,
+  Stack,
 } from "@chakra-ui/react";
 import BadgesAndContactForm from "./Badges";
 import Hero from "./Hero";
@@ -59,26 +60,7 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
 
   return expandedSiteView ? (
     <>
-      <Box
-        className="wavy-line-background"
-        position="absolute"
-        top="0"
-        left="0"
-        right="0"
-        bottom="0"
-        height={expandedSiteView ? "6em" : "9em"}
-        bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
-        maxW="100%"
-      />
-      <Flex
-        direction={["column", "row"]} // Responsive flex direction
-        justifyContent="space-around"
-        mt={["1em", ".5em"]}
-      >
         <Hero title="Elliot Land" size="lg" smallMode={expandedSiteView} />
-        <BadgesAndContactForm />
-        <ContactMeButton expandedSiteView={expandedSiteView} />
-      </Flex>
     </>
   ) : (
     <>
@@ -113,7 +95,7 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
               height={expandedSiteView ? "7em" : "9em"}
               bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
             />
-            <Box w="100%" mt={expandedSiteView ? "2em" : ["3em", "5em"]}>
+            <Box w="100%" mt={expandedSiteView ? "2em" : "5em"}>
               <Heading
                 colorScheme="blue"
                 textAlign="center"
@@ -122,7 +104,7 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
               >
                 {expandedSiteView ? shortTitle : fullTitle}
               </Heading>
-              <HStack
+              <Stack
                 spacing={4}
                 w="100%"
                 alignItems="stretch"
@@ -144,16 +126,13 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
                   desc="I bring people together to tackle the big problems."
                   flex={1}
                 />
-              </HStack>
+              </Stack>
             </Box>
             <Box w="100%" mt="2em">
               <BadgesAndContactForm />
             </Box>
           </VStack>
         </CardBody>
-        <CardFooter p={0}>
-          <ContactMeButton expandedSiteView={expandedSiteView} />
-        </CardFooter>
       </Card>
     </>
   );
