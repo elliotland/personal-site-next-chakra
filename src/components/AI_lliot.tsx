@@ -123,10 +123,10 @@ function AI_lliot() {
             pl={"2.5em"}
             pr={"2.5em"}
             _dark={{
-              bgColor: "customDarkMode.green",
+              bgColor: "customDarkMode.primary",
             }}
             _light={{
-              bgColor: "customLightMode.primary",
+              bgColor: "customLightMode.orange",
               color: "white",
             }}
           >

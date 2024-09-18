@@ -19,13 +19,11 @@ const Hero = ({
     <Flex
       justifyContent="center"
       alignItems="center"
-      marginTop={smallMode ? "em" : "2em"}
-      mb={smallMode ? "2em" : "2em"}
+      marginTop={smallMode ? "0em" : "2em"}
+      mb={smallMode ? "0em" : "2em"}
       flexDirection={smallMode ? "row" : "column"}
       alignContent={"center"}
-      position={smallMode ? "fixed" : "initial"}
-      top={4}
-      left={4}
+      position={smallMode ? "inherit" : "initial"}
       zIndex={5000}
     >
       <Avatar

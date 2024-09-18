@@ -33,12 +33,12 @@ const ProjectGallery = () => {
 
   const activeBgColor = useColorModeValue(
     "customLightMode.pink",
-    "customDarkMode.primary"
+    "customDarkMode.green"
   );
   const inactiveBgColor = useColorModeValue("white", "darkprimary");
   const borderColor = useColorModeValue(
     "customLightMode.pink",
-    "customDarkMode.primary"
+    "customDarkMode.green"
   );
   const textColor = useColorModeValue("black", "white");
 
