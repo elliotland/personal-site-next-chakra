@@ -22,13 +22,11 @@ const Hero = ({
       marginTop={smallMode ? "0em" : "2em"}
       mb={smallMode ? "0em" : "2em"}
       flexDirection={smallMode ? "row" : "column"}
-      alignContent={"center"}
       position={smallMode ? "inherit" : "initial"}
-      zIndex={5000}
     >
       <Avatar
         src="avatar.jpg"
-        size={smallMode ? "lg" : "2xl"}
+        size={smallMode ? "md" : "2xl"}
         name="Elliot Land"
         marginRight={smallMode ? "1em" : "0"}
       />
@@ -39,8 +37,8 @@ const Hero = ({
         bgClip="text"
         textStyle="hero"
         variant={"Bungee"}
-        mt={"10px"}
         alignSelf={smallMode ? "baseline" : "initial"}
+        mt={smallMode ? "0" : ".2em"}
       >
         {title}
       </Heading>

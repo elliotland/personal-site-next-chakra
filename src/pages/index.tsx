@@ -16,6 +16,7 @@ import BusinessCard from "../components/BusinessCard";
 import CircularCarousel from "../components/ProjectCarousal";
 import ButtonStack from "../components/ButtonMenu";
 import Hero from "../components/Hero";
+import ExpansionButton from "../components/ExpansionButton";
 
 const Index = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -23,7 +24,9 @@ const Index = () => {
 
   const toggleExpansion = () => {
     setIsExpanded((prev) => !prev);
+
     onToggle();
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -47,8 +50,6 @@ const Index = () => {
         {isExpanded ? (
           <>
             <Flex
-              dir="row"
-              alignItems="center"
               position="sticky"
               top={0}
               h={"80px"}
@@ -59,14 +60,16 @@ const Index = () => {
               _dark={{
                 bgColor: "customDarkMode.darkBackground",
               }}
-              justifyContent={"space-around"}
-              zIndex={6000}
+              zIndex={3}
+              alignItems={"center"}
+              pl={'2em'}
+              pr={'2em'}
             >
-              <Hero smallMode={true} />
               <ButtonStack
                 isExpanded={isExpanded}
                 toggleExpansion={toggleExpansion}
               />
+              <Hero smallMode={true} />
             </Flex>
           </>
         ) : (
@@ -84,6 +87,13 @@ const Index = () => {
               toggleExpansion={toggleExpansion}
             />
             <BusinessCard expandedSiteView={isExpanded} />
+            
+      <ExpansionButton
+        isExpanded={isExpanded}
+        toggleExpansion={toggleExpansion}
+        darkSettings={{ bgColor: "customDarkMode.yellow", color:'black' }}
+        lightSettings={{ bgColor: "customLightMode.primary", color:'white' }}
+      />
           </Container>
         )}
         <Flex

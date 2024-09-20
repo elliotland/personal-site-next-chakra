@@ -15,11 +15,14 @@ import { EmailIcon } from "@chakra-ui/icons";
 import EmailComponent from "./emailMessage";
 
 interface ContactMeButtonProps {
-  lightSettings: {},
-  darkSettings: {},
+  lightSettings: {};
+  darkSettings: {};
 }
 
-const ContactMeButton: React.FC<ContactMeButtonProps> = ({lightSettings, darkSettings }) => {
+const ContactMeButton: React.FC<ContactMeButtonProps> = ({
+  lightSettings,
+  darkSettings,
+}) => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -49,9 +52,12 @@ const ContactMeButton: React.FC<ContactMeButtonProps> = ({lightSettings, darkSet
         icon={<EmailIcon />}
         onClick={onOpen}
         _light={lightSettings}
-        
         _dark={darkSettings}
-        
+        size={[
+          "sm", // base
+          "md", // sm
+          "md", // md
+        ]}
       >
         Contact Me
       </IconButton>

@@ -16,6 +16,12 @@ export const DarkModeSwitch: React.FC<DarkModeSwitchProps> = ({lightSettings, da
       _light={lightSettings}
       _dark={darkSettings}
       onClick={toggleColorMode}
+      
+      size={[
+        "sm", // base
+        "md", // sm
+        "md", // md
+      ]}
     />
   );
 };
