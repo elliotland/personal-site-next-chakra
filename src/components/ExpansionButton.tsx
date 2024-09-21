@@ -6,8 +6,8 @@ import { motion } from "framer-motion";
 interface ExpansionButtonProps {
   isExpanded: boolean;
   toggleExpansion?: () => void;
-  lightSettings: {},
-  darkSettings: {}
+  lightSettings?: {},
+  darkSettings?: {}
 }
 
 const ExpansionButton: React.FC<ExpansionButtonProps> = ({
@@ -18,20 +18,19 @@ const ExpansionButton: React.FC<ExpansionButtonProps> = ({
 }) => {
 
   return (
-    <IconButton
+    <Button
       onClick={toggleExpansion}
-      icon={isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
+      rightIcon={isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
       aria-label="Expand Site"
-      className={isExpanded? "" : "animate-pulse"}
-      _light={lightSettings}
-      _dark={darkSettings}
+      variant={"outline"}
+      rounded={'full'}
+      colorScheme={'grey'}
       size={[
         "sm", // base
         "md", // sm
         "md", // md
       ]}
-      mt={isExpanded ? '0' : '2em'}
-    />
+    >{isExpanded ? 'See Less': 'See More'}</Button>
   );
 };
 

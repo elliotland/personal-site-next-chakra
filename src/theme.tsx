@@ -61,7 +61,6 @@ const theme = extendTheme({
       rosewood: '#640D14',
       citron: '#CACF85',
       peach: '#ECCE8E'
-
     },
   },
     fonts,

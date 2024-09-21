@@ -13,8 +13,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import BadgesAndContactForm from "./Badges";
-import Hero from "./Hero";
-import ContactMeButton from "./ContactMeButton";
+import Signature from "./Signature";
 
 function Feature({ title, desc, ...rest }) {
   return (
@@ -58,13 +57,9 @@ const BusinessCard: React.FC<BusinessCardProps> = ({
   const shortTitle = "Product Innovator";
   const fullTitle = title || "Innovating Products through user-focused designs";
 
-  return expandedSiteView ? (
+  return (
     <>
-        <Hero title="Elliot Land" size="lg" smallMode={expandedSiteView} />
-    </>
-  ) : (
-    <>
-      <Hero title="Elliot Land" size="lg" smallMode={expandedSiteView} />
+      <Signature title="Elliot Land" size="lg" smallMode={expandedSiteView} />
       <Card
         w="100%"
         h="auto"

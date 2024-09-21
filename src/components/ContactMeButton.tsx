@@ -47,9 +47,9 @@ const ContactMeButton: React.FC<ContactMeButtonProps> = ({
 
   return (
     <>
-      <IconButton
+      <Button
         aria-label="contact button"
-        icon={<EmailIcon />}
+        rightIcon={<EmailIcon />}
         onClick={onOpen}
         _light={lightSettings}
         _dark={darkSettings}
@@ -58,9 +58,10 @@ const ContactMeButton: React.FC<ContactMeButtonProps> = ({
           "md", // sm
           "md", // md
         ]}
+        rounded={'full'}
       >
         Contact Me
-      </IconButton>
+      </Button>
 
       <Modal isCentered isOpen={isOpen} onClose={onClose}>
         <OverlayOne />

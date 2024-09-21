@@ -9,14 +9,14 @@ import {
   Button,
   Spacer,
 } from "@chakra-ui/react";
-import { DarkModeSwitch } from "../components/DarkModeSwitch";
 import { useEffect, useState } from "react";
 import AI_lliot from "../components/AI_lliot";
 import BusinessCard from "../components/BusinessCard";
 import CircularCarousel from "../components/ProjectCarousal";
 import ButtonStack from "../components/ButtonMenu";
-import Hero from "../components/Hero";
 import ExpansionButton from "../components/ExpansionButton";
+import Signature from "../components/Signature";
+import Hero from "../components/Hero";
 
 const Index = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -69,32 +69,14 @@ const Index = () => {
                 isExpanded={isExpanded}
                 toggleExpansion={toggleExpansion}
               />
-              <Hero smallMode={true} />
+              <Signature smallMode={true} />
             </Flex>
           </>
         ) : (
-          <Container
-            display={"flex"}
-            flexDirection={"column"}
-            justifyContent={"space-between"}
-            w={"container.lg"}
-            mt={isExpanded ? "3em" : "0em"}
-            maxW={"100%"}
-            pb={"2em"}
-          >
-            <ButtonStack
-              isExpanded={isExpanded}
-              toggleExpansion={toggleExpansion}
-            />
-            <BusinessCard expandedSiteView={isExpanded} />
-            
-      <ExpansionButton
-        isExpanded={isExpanded}
-        toggleExpansion={toggleExpansion}
-        darkSettings={{ bgColor: "customDarkMode.yellow", color:'black' }}
-        lightSettings={{ bgColor: "customLightMode.primary", color:'white' }}
-      />
-          </Container>
+          <>
+          <Signature smallMode={isExpanded} />
+          <Hero toggleExpansion={toggleExpansion}/>
+          </>
         )}
         <Flex
           hidden={!isExpanded}
