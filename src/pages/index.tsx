@@ -17,6 +17,7 @@ import ButtonStack from "../components/ButtonMenu";
 import ExpansionButton from "../components/ExpansionButton";
 import Signature from "../components/Signature";
 import Hero from "../components/Hero";
+import { DarkModeSwitch } from "../components/DarkModeSwitch";
 
 const Index = () => {
   const [isExpanded, setIsExpanded] = useState(false);
