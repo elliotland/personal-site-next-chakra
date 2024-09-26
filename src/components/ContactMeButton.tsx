@@ -17,11 +17,13 @@ import EmailComponent from "./emailMessage";
 interface ContactMeButtonProps {
   lightSettings: {};
   darkSettings: {};
+  isExpanded: boolean;
 }
 
 const ContactMeButton: React.FC<ContactMeButtonProps> = ({
   lightSettings,
   darkSettings,
+  isExpanded
 }) => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -59,6 +61,7 @@ const ContactMeButton: React.FC<ContactMeButtonProps> = ({
           "md", // md
         ]}
         rounded={'full'}
+        // display={isExpanded ? "flex" : "none"}
       >
         Contact Me
       </Button>

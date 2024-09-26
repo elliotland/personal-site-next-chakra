@@ -22,9 +22,11 @@ const ExpansionButton: React.FC<ExpansionButtonProps> = ({
       onClick={toggleExpansion}
       rightIcon={isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
       aria-label="Expand Site"
-      variant={"outline"}
-      rounded={'full'}
-      colorScheme={'grey'}
+      variant={'outline'}
+      colorScheme={'gray'}
+      rounded={'full'}      
+      _dark={darkSettings}
+      _light={lightSettings}
       size={[
         "sm", // base
         "md", // sm

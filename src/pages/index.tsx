@@ -69,15 +69,18 @@ const Index = () => {
               <ButtonStack
                 isExpanded={isExpanded}
                 toggleExpansion={toggleExpansion}
+                showContactButton={true}
+                showExpandButton={true}
               />
               <Signature smallMode={true} />
             </Flex>
           </>
         ) : (
-          <>
+          <Box pt={'2em'}>
+          <ButtonStack isExpanded={false} showContactButton={false} showExpandButton={false}/>
           <Signature smallMode={isExpanded} />
           <Hero toggleExpansion={toggleExpansion}/>
-          </>
+          </Box>
         )}
         <Flex
           hidden={!isExpanded}

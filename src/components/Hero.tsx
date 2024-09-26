@@ -23,7 +23,7 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
 
-  const getRandomColor = useRandomThemeColor(["green"]);
+  const getRandomColor = useRandomThemeColor(["green",]);
 
   const handleTypingStart = useCallback(() => {
     setIsTypingComplete(false);
@@ -45,14 +45,13 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
           textAlign={"center"}
           align={"center"}
           spacing={{ base: 8, md: 10 }}
-          pt={"1.5em"}
+          pt={"3em"}
         >
           <Heading
             fontWeight={600}
             fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
             lineHeight={"110%"}
           >
-            is a<br />
             <Text as={"span"}>
               <ReactRotatingText
                 items={heroPhrases.map(phrase => phrase.IAM)}
@@ -66,7 +65,7 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
               />
             </Text>
           </Heading>
-          <SlideFade in={isTypingComplete} >
+          <SlideFade in={isTypingComplete} offsetX={-50} offsetY={0}>
             <Box>
               <Text color={"gray.500"} maxW={"3xl"} fontSize={"xl"}>
                 {heroPhrases[activeIndex].Description}
@@ -81,6 +80,7 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
 
           <Stack spacing={6} direction={"row"}>
             <ContactMeButton
+            isExpanded={false}
               darkSettings={{
                 bgColor: "customDarkMode.primary",
                 color: "black",
@@ -91,14 +91,6 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
               }}
             />
             <ExpansionButton
-              darkSettings={{
-                bgColor: "customDarkMode.yellow",
-                color: "black",
-              }}
-              lightSettings={{
-                bgColor: "customLightMode.primary",
-                color: "white",
-              }}
               isExpanded={false}
               toggleExpansion={toggleExpansion}
             />

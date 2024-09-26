@@ -1,3 +1,4 @@
+import React from "react";
 import {
   ButtonGroup,
   Flex,
@@ -7,34 +8,50 @@ import {
   MenuList,
   Stack,
 } from "@chakra-ui/react";
+import { HamburgerIcon } from "@chakra-ui/icons";
 import { DarkModeSwitch } from "./DarkModeSwitch";
 import ExpansionButton from "./ExpansionButton";
 import ContactMeButton from "./ContactMeButton";
-import { HamburgerIcon } from "@chakra-ui/icons";
 
-const ButtonStack = ({ isExpanded, toggleExpansion }) => {
+type ButtonStackProps = {
+  isExpanded: boolean;
+  toggleExpansion?: () => void;
+  showContactButton: boolean;
+  showExpandButton: boolean;
+};
+
+const ButtonStack: React.FC<ButtonStackProps> = ({
+  isExpanded,
+  toggleExpansion,
+  showContactButton,
+  showExpandButton,
+}) => {
   return (
     <>
       <Menu>
-        <MenuButton>
-          <IconButton
-            variant={"outline"}
-            icon={<HamburgerIcon />}
-            aria-label="Menu"
-            mr={"1em"}
-            display={
-              isExpanded ? ["flex", "none", "none"] : ["none", "none", "none"]
-            }
-          />
-        </MenuButton>
+        <MenuButton
+          as={IconButton}
+          icon={<HamburgerIcon />}
+          aria-label="Menu"
+          variant={"outline"}
+          display={
+            isExpanded ? ["flex", "none", "none"] : "none"
+          }
+        />
         <MenuList>
-          <ContactMeButton
-            darkSettings={{ bgColor: "customDarkMode.primary" }}
-            lightSettings={{
-              bgColor: "customLightMode.orange",
-              color: "white",
-            }}
-          />
+          {showContactButton && (
+            <ContactMeButton
+              darkSettings={{
+                bgColor: "customDarkMode.primary",
+                color: "black",
+              }}
+              isExpanded={isExpanded}
+              lightSettings={{
+                bgColor: "customLightMode.orange",
+                color: "white",
+              }}
+            />
+          )}
           <DarkModeSwitch
             darkSettings={{ bgColor: "customDarkMode.white", color: "black" }}
             lightSettings={{
@@ -42,15 +59,12 @@ const ButtonStack = ({ isExpanded, toggleExpansion }) => {
               color: "white",
             }}
           />
-          <ExpansionButton
-            darkSettings={{ bgColor: "customDarkMode.primary" }}
-            lightSettings={{
-              bgColor: "customLightMode.orange",
-              color: "white",
-            }}
-            isExpanded={true}
-            toggleExpansion={toggleExpansion}
-          />
+          {showExpandButton && (
+            <ExpansionButton
+              isExpanded={true}
+              toggleExpansion={toggleExpansion}
+            />
+          )}
         </MenuList>
       </Menu>
       <ButtonGroup
@@ -63,23 +77,22 @@ const ButtonStack = ({ isExpanded, toggleExpansion }) => {
           isExpanded ? ["none", "flex", "flex"] : ["flex", "flex", "flex"]
         }
       >
-        {isExpanded ? (
+        {isExpanded && showExpandButton && (
           <ExpansionButton
-            darkSettings={{ bgColor: "customDarkMode.primary" }}
+            isExpanded={true}
+            toggleExpansion={toggleExpansion}
+          />
+        )}
+        {showContactButton && (
+          <ContactMeButton
+            darkSettings={{ bgColor: "customDarkMode.primary", color: "black" }}
             lightSettings={{
               bgColor: "customLightMode.orange",
               color: "white",
             }}
             isExpanded={true}
-            toggleExpansion={toggleExpansion}
           />
-        ) : (
-            <></>
         )}
-        <ContactMeButton
-          darkSettings={{ bgColor: "customDarkMode.primary" }}
-          lightSettings={{ bgColor: "customLightMode.orange", color: "white" }}
-        />
         <DarkModeSwitch
           darkSettings={{ bgColor: "customDarkMode.white", color: "black" }}
           lightSettings={{
