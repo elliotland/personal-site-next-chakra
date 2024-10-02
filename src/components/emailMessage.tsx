@@ -29,7 +29,7 @@ const EmailComponent = ({ onClose , onSuccessClose}) => {
   return (
     <>
       <Input
-        placeholder="I want to tell you..."
+        placeholder="We should talk about..."
         type={"string"}
         value={text}
         onChange={(e) => setText(e.target.value)}

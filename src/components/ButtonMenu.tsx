@@ -5,6 +5,7 @@ import {
   IconButton,
   Menu,
   MenuButton,
+  MenuItem,
   MenuList,
   Stack,
 } from "@chakra-ui/react";
@@ -34,24 +35,37 @@ const ButtonStack: React.FC<ButtonStackProps> = ({
           icon={<HamburgerIcon />}
           aria-label="Menu"
           variant={"outline"}
+          colorScheme={'grey'}
+          mr={'2em'}
           display={
             isExpanded ? ["flex", "none", "none"] : "none"
           }
         />
         <MenuList>
           {showContactButton && (
-            <ContactMeButton
-              darkSettings={{
-                bgColor: "customDarkMode.primary",
-                color: "black",
-              }}
-              isExpanded={isExpanded}
-              lightSettings={{
-                bgColor: "customLightMode.orange",
-                color: "white",
-              }}
-            />
+          <MenuItem>
+          <ContactMeButton
+            darkSettings={{
+              bgColor: "customDarkMode.primary",
+              color: "black",
+            }}
+            isExpanded={isExpanded}
+            lightSettings={{
+              bgColor: "customLightMode.orange",
+              color: "white",
+            }}
+          />
+          </MenuItem>
           )}
+          {showExpandButton && (
+            <MenuItem>
+            <ExpansionButton
+              isExpanded={true}
+              toggleExpansion={toggleExpansion}
+            />
+            </MenuItem>
+          )}
+          <MenuItem>
           <DarkModeSwitch
             darkSettings={{ bgColor: "customDarkMode.white", color: "black" }}
             lightSettings={{
@@ -59,12 +73,7 @@ const ButtonStack: React.FC<ButtonStackProps> = ({
               color: "white",
             }}
           />
-          {showExpandButton && (
-            <ExpansionButton
-              isExpanded={true}
-              toggleExpansion={toggleExpansion}
-            />
-          )}
+          </MenuItem>
         </MenuList>
       </Menu>
       <ButtonGroup

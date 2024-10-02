@@ -8,6 +8,10 @@ import {
   Card,
   CardBody,
   SkeletonText,
+  InputRightAddon,
+  InputGroup,
+  InputRightElement,
+  IconButton,
 } from "@chakra-ui/react";
 import { useState } from "react";
 
@@ -53,14 +57,14 @@ function AI_lliot() {
     <Flex
       direction={"column"}
       justifyContent={"space-between"}
-      maxW={"container.lg"}
       textAlign={"center"}
       p={["1em", "2em", "4em"]} // Responsive padding
+      w={'90vw'}
     >
       <Flex direction={"column"} mb={["1em", "2em"]}>
         <Heading
-          size={"2xl"}
-          as={"h3"}
+          size={"3xl"}
+          as={"h2"}
           alignSelf={"center"}
           _dark={{
             color: "white",
@@ -68,7 +72,7 @@ function AI_lliot() {
           _light={{
             color: "black",
           }}
-          mb={[".5em", "1em"]} // Responsive margin-bottom
+          mb={".5em"}
         >
           Quiz My AI
         </Heading>
@@ -89,13 +93,14 @@ function AI_lliot() {
 
       {/* Chat Input Section */}
       <Flex
-        direction={["column", "row"]} // Stacks vertically on mobile, horizontally on larger screens
+        direction={["row", "row"]} // Stacks vertically on mobile, horizontally on larger screens
         width={"100%"}
         maxWidth={"container.md"}
         alignSelf={"center"}
         mt={"2em"}
         alignItems={["stretch", "center"]} // Align input and buttons on larger screens
       >
+        <InputGroup>
         <Input
           placeholder="Is Elliot good at..."
           value={userText}
@@ -110,18 +115,13 @@ function AI_lliot() {
             bgColor: "white",
             borderColor: "blueMunsell",
           }}
-          mb={["1em", 0]} // Adds bottom margin on mobile to separate input from buttons
         />
-        <Flex direction={["column", "row"]} ml={[0, "1em"]}>
+        <InputRightElement w='fit-content'>
           <Button
-            mb={["1em", 0]} // Adds bottom margin on mobile for better spacing
-            width={["100%", "auto"]} // Full-width button on mobile
             textAlign={"center"}
             leftIcon={<ChatIcon />}
             onClick={sendChat}
             isLoading={isLoading}
-            pl={"2.5em"}
-            pr={"2.5em"}
             _dark={{
               bgColor: "customDarkMode.primary",
             }}
@@ -132,24 +132,11 @@ function AI_lliot() {
           >
             Ask AI-lliot
           </Button>
-          {aiText !== "" && (
-            <Button
-              colorScheme="red"
-              width={["100%", "auto"]} // Full-width button on mobile
-              textAlign={"center"}
-              leftIcon={<DeleteIcon />}
-              onClick={clearMessages}
-              pl={"2.5em"}
-              pr={"2.5em"}
-              ml={[0, "1em"]} // No margin on mobile, margin-left on larger screens
-            >
-              Clear
-            </Button>
-          )}
+        </InputRightElement>
+        </InputGroup>
+        <Flex direction={["column", "row"]} ml={[0, "1em"]}>
         </Flex>
       </Flex>
-
-      {/* Response Section */}
       <Flex
         direction={"column"}
         width={"100%"}
@@ -158,8 +145,22 @@ function AI_lliot() {
         textAlign={"left"}
       >
         <Card width={["100%", "container.md", "container.lg"]}>
-          <CardBody display={"flex"} flexDir={"column"} justifyContent={"end"}>
+          <CardBody display={"flex"} flexDir={"column"} justifyContent={"end"} pb={'2em'}>
             <Box>
+              
+          {aiText !== "" && (
+            <IconButton
+              colorScheme="red"
+              textAlign={"center"}
+              icon={<DeleteIcon />}
+              onClick={clearMessages}
+              aria-label="Clear Messages"
+              pl={"1em"}
+              pr={"1em"}
+              position={"absolute"}
+              right={'10'}
+              bottom={'2'} />
+          )}
               {isLoading ? (
                 <SkeletonText noOfLines={4} spacing="4" skeletonHeight="2" />
               ) : aiText === "" ? (

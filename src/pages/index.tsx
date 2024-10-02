@@ -46,7 +46,6 @@ const Index = () => {
         display={"flex"}
         flexDirection={"column"}
         alignItems={"center"}
-        height={isExpanded ? "" : "100vh"}
       >
         {isExpanded ? (
           <>
@@ -56,7 +55,7 @@ const Index = () => {
               h={"80px"}
               w={"100%"}
               _light={{
-                bgColor: "customLightMode.secondary",
+                bgColor: "customLightMode.white",
               }}
               _dark={{
                 bgColor: "customDarkMode.darkBackground",
@@ -76,7 +75,7 @@ const Index = () => {
             </Flex>
           </>
         ) : (
-          <Box pt={'2em'}>
+          <Box pt={'2em'} pb={'2em'} height={'100vh'} minH={'fit-content'}>
           <ButtonStack isExpanded={false} showContactButton={false} showExpandButton={false}/>
           <Signature smallMode={isExpanded} />
           <Hero toggleExpansion={toggleExpansion}/>
@@ -97,7 +96,7 @@ const Index = () => {
           pb={"2em"}
           alignItems={"center"}
         >
-          <Collapse in={isOpen} animateOpacity>
+          <Collapse in={isOpen} animateOpacity >
             <AI_lliot />
           </Collapse>
         </Flex>

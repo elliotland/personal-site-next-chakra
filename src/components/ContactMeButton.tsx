@@ -56,7 +56,7 @@ const ContactMeButton: React.FC<ContactMeButtonProps> = ({
         _light={lightSettings}
         _dark={darkSettings}
         size={[
-          "sm", // base
+          "md", // base
           "md", // sm
           "md", // md
         ]}
