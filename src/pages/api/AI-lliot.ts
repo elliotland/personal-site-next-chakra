@@ -16,7 +16,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { text }: ChatData = JSON.parse(req.body);
+  const { text }: ChatData = req.body;
 
   const claudeScoreStarter = '{"score":';
 

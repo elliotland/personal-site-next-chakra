@@ -19,26 +19,29 @@ const Signature = ({
     <Flex
       justifyContent="center"
       alignItems="center"
-      marginTop={smallMode ? "0em" : "2em"}
-      mb={smallMode ? "0em" : "0em"}
+      marginTop={smallMode ? "0em" : ['0em', '1em', '2em']}
+      mb={smallMode ? "0em" : "1em"}
       flexDirection={smallMode ? "row" : "column"}
       position={smallMode ? "inherit" : "initial"}
     >
       <Avatar
         src="avatar.jpg"
-        size={smallMode ? "md" : "2xl"}
+        size={smallMode ? "lg" : undefined} 
+        w={smallMode ? undefined : "14rem"}     
+        h={smallMode ? undefined : "14rem"}  
         name="Elliot Land"
-        marginRight={smallMode ? "1em" : "0"}
+        marginRight={smallMode ? ".5em" : "0"}
       />
 
       <Heading
-        size={smallMode ? size : "2xl"}
+        size={size}
         bgGradient="linear(to-l, heroGradientStart, heroGradientEnd)"
         bgClip="text"
         textStyle="hero"
         variant={"Bungee"}
-        alignSelf={smallMode ? "baseline" : "initial"}
+        alignSelf={smallMode ? "center" : "initial"}
         mt={smallMode ? "0" : ".2em"}
+        textAlign={smallMode ? "left" : "center"}
       >
         {title}
       </Heading>

@@ -1,49 +1,95 @@
-import { Button, ButtonGroup, Input } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
+import {
+  Button,
+  ButtonGroup,
+  Input,
+  VStack,
+  FormControl,
+  FormLabel,
+  Textarea,
+  useToast,
+} from "@chakra-ui/react";
 
-const EmailComponent = ({ onClose , onSuccessClose}) => {
-  const [text, setText] = useState<string>("");
+interface EmailComponentProps {
+  onClose: () => void;
+  onSuccessClose: () => void;
+}
+
+const EmailComponent: React.FC<EmailComponentProps> = ({ onClose, onSuccessClose }) => {
+  const [message, setMessage] = useState("");
+  const [contactInfo, setContactInfo] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const toast = useToast();
 
   const sendEmail = async () => {
     setIsLoading(true);
     const body = {
-      text: text,
+      message,
+      contactInfo,
     };
 
-    const res = await fetch("/api/email", {
-      method: "POST",
-      body: JSON.stringify(body),
-    });
+    try {
+      const res = await fetch("/api/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
 
-    if (res.ok) {
-        setIsLoading(false);
+      if (res.ok) {
         onSuccessClose();
-    } else {
-      console.log("Error sending email");
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      toast({
+        title: "Error sending message",
+        description: "Please try again later",
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+        position: "bottom-right",
+      });
+    } finally {
       setIsLoading(false);
-      
-    }  
+    }
   };
 
   return (
-    <>
-      <Input
-        placeholder="We should talk about..."
-        type={"string"}
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        h={"6em"}
-      />
-      <ButtonGroup spacing={6} mt={"2em"} display={'flex'} justifyContent={'end'}>
-        <Button onClick={onClose} variant={"outline"}>
+    <VStack spacing={4} align="stretch">
+      <FormControl isRequired>
+        <FormLabel>Contact Information</FormLabel>
+        <Input
+          placeholder="How do I follow up with you?"
+          value={contactInfo}
+          onChange={(e) => setContactInfo(e.target.value)}
+        />
+      </FormControl>
+      <FormControl isRequired>
+        <FormLabel>Message</FormLabel>
+        <Textarea
+          placeholder="What do you want to tell me?"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          minHeight="6em"
+        />
+      </FormControl>
+      <ButtonGroup spacing={4} justifyContent="flex-end">
+        <Button onClick={onClose} variant="outline">
           Close
         </Button>
-        <Button type="submit" onClick={sendEmail} colorScheme="blue" isLoading={isLoading}>
+        <Button
+          onClick={sendEmail}
+          colorScheme="blue"
+          isLoading={isLoading}
+          loadingText="Sending"
+          isDisabled={!message || !contactInfo}
+        >
           Send Message
         </Button>
       </ButtonGroup>
-    </>
+    </VStack>
   );
 };
 

@@ -24,6 +24,7 @@
     "popper.js": "^1.16.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.1",
     "react-rotating-text": "^1.4.1"
   },
   "devDependencies": {

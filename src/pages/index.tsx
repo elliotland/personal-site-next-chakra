@@ -1,23 +1,15 @@
 import {
   Box,
   Collapse,
-  Container,
   Flex,
   useDisclosure,
-  useBreakpointValue,
-  Stack,
-  Button,
-  Spacer,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import AI_lliot from "../components/AI_lliot";
-import BusinessCard from "../components/BusinessCard";
 import CircularCarousel from "../components/ProjectCarousal";
 import ButtonStack from "../components/ButtonMenu";
-import ExpansionButton from "../components/ExpansionButton";
 import Signature from "../components/Signature";
 import Hero from "../components/Hero";
-import { DarkModeSwitch } from "../components/DarkModeSwitch";
 
 const Index = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -77,7 +69,7 @@ const Index = () => {
         ) : (
           <Box pt={'2em'} pb={'2em'} height={'100vh'} minH={'fit-content'}>
           <ButtonStack isExpanded={false} showContactButton={false} showExpandButton={false}/>
-          <Signature smallMode={isExpanded} />
+          <Signature smallMode={isExpanded} size="4xl"/>
           <Hero toggleExpansion={toggleExpansion}/>
           </Box>
         )}
@@ -95,6 +87,7 @@ const Index = () => {
           pt={"2em"}
           pb={"2em"}
           alignItems={"center"}
+          className="hero-background"
         >
           <Collapse in={isOpen} animateOpacity >
             <AI_lliot />
@@ -108,6 +101,12 @@ const Index = () => {
           h={"100%"}
           minH={"600px"}
           pb={"2em"}
+        _light={{
+         className: "light-stars"
+        }}
+        _dark={{
+          className: "dark-stars"
+        }}
         >
           <Collapse in={isOpen} animateOpacity>
             <CircularCarousel />

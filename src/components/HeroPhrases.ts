@@ -17,7 +17,7 @@ export const heroPhrases = [
     },
     {
         IAM: 'Leader',
-        Tech: 'Public Speaking, Mentoring, Company Culture, Management, Cross-Depart, Business Reporting',
+        Tech: 'Public Speaking, Mentoring, Company Culture, Management, Cross-Department, Business Reporting',
         Description: 'Together we are greater than the sum of our parts. I love bringing teams together to accomplish big projects and making business visions come true.',
     },
 ]

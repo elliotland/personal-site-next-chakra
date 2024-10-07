@@ -35,44 +35,47 @@ const ButtonStack: React.FC<ButtonStackProps> = ({
           icon={<HamburgerIcon />}
           aria-label="Menu"
           variant={"outline"}
-          colorScheme={'grey'}
-          mr={'2em'}
-          display={
-            isExpanded ? ["flex", "none", "none"] : "none"
-          }
+          colorScheme={"grey"}
+          mr={"2em"}
+          display={isExpanded ? ["flex", "none", "none"] : "none"}
         />
         <MenuList>
           {showContactButton && (
-          <MenuItem>
-          <ContactMeButton
-            darkSettings={{
-              bgColor: "customDarkMode.primary",
-              color: "black",
-            }}
-            isExpanded={isExpanded}
-            lightSettings={{
-              bgColor: "customLightMode.orange",
-              color: "white",
-            }}
-          />
-          </MenuItem>
+            <MenuItem>
+              <ContactMeButton
+                aria-label="Contact Me"
+                isExpanded={isExpanded}
+                darkSettings={{
+                  bgColor: "customDarkMode.primary",
+                  color: "black",
+                }}
+                lightSettings={{
+                  bgColor: "customLightMode.orange",
+                  color: "white",
+                }}
+                w={"100%"}
+              />
+            </MenuItem>
           )}
           {showExpandButton && (
             <MenuItem>
-            <ExpansionButton
-              isExpanded={true}
-              toggleExpansion={toggleExpansion}
-            />
+              <ExpansionButton
+                isExpanded={true}
+                toggleExpansion={toggleExpansion}
+                w={"100%"}
+              />
             </MenuItem>
           )}
           <MenuItem>
-          <DarkModeSwitch
-            darkSettings={{ bgColor: "customDarkMode.white", color: "black" }}
-            lightSettings={{
-              bgColor: "customLightMode.backgroundBlue",
-              color: "white",
-            }}
-          />
+            <DarkModeSwitch
+              aria-label="Toggle Dark Mode"
+              darkSettings={{ bgColor: "customDarkMode.white", color: "black" }}
+              lightSettings={{
+                bgColor: "customLightMode.backgroundBlue",
+                color: "white",
+              }}
+              w={"100%"}
+            />
           </MenuItem>
         </MenuList>
       </Menu>
@@ -86,23 +89,24 @@ const ButtonStack: React.FC<ButtonStackProps> = ({
           isExpanded ? ["none", "flex", "flex"] : ["flex", "flex", "flex"]
         }
       >
+        {showContactButton && (
+          <ContactMeButton
+            isExpanded={isExpanded}
+            darkSettings={{ bgColor: "customDarkMode.primary", color: "black" }}
+            lightSettings={{
+              bgColor: "customLightMode.orange",
+              color: "white",
+            }}
+          />
+        )}
         {isExpanded && showExpandButton && (
           <ExpansionButton
             isExpanded={true}
             toggleExpansion={toggleExpansion}
           />
         )}
-        {showContactButton && (
-          <ContactMeButton
-            darkSettings={{ bgColor: "customDarkMode.primary", color: "black" }}
-            lightSettings={{
-              bgColor: "customLightMode.orange",
-              color: "white",
-            }}
-            isExpanded={true}
-          />
-        )}
         <DarkModeSwitch
+          aria-label="Toggle Dark Mode"
           darkSettings={{ bgColor: "customDarkMode.white", color: "black" }}
           lightSettings={{
             bgColor: "customLightMode.backgroundBlue",

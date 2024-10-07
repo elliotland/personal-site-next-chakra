@@ -2,7 +2,7 @@ import { extendTheme } from "@chakra-ui/react";
 
 const fonts = { mono: `'Menlo', monospace` };
 
-import {headerTheme} from './headerTheme';
+import { headerTheme } from "./headerTheme";
 
 const breakpoints = {
   sm: "40em",
@@ -14,8 +14,15 @@ const breakpoints = {
 const theme = extendTheme({
   components: {
     Heading: headerTheme,
-},
-  
+    Avatar: {
+      sizes: {
+        xlCustom: {
+          w: "14rem",
+          h: "14rem",
+        },
+      },
+    },
+  },
   semanticTokens: {
     colors: {
       text: {
@@ -45,7 +52,7 @@ const theme = extendTheme({
       primary: "#1b9aaa",
       pink: "#ffcab1",
       white: "#fffbff",
-      green: "#2DD881"
+      green: "#2DD881",
     },
     customLightMode: {
       backgroundBlue: "#1d3557",
@@ -53,26 +60,26 @@ const theme = extendTheme({
       white: "#c1f5ef",
       primary: "#7928CA",
       secondary: "#dbcbd8",
-      pink: '#FF0080',
-      pear: '#D1D646',
-      green: '#CCE8CC',
-      orange: '#FFA630',
-      sage: '#C5C392',
-      rosewood: '#640D14',
-      citron: '#CACF85',
-      peach: '#ECCE8E'
+      pink: "#FF0080",
+      pear: "#D1D646",
+      green: "#CCE8CC",
+      orange: "#FFA630",
+      sage: "#C5C392",
+      rosewood: "#640D14",
+      citron: "#CACF85",
+      peach: "#ECCE8E",
     },
   },
-    fonts,
+  fonts,
   breakpoints,
-  textStyles: { 
+  textStyles: {
     hero: {
-        fontFamily: `'Bungee Shade'`,
+      fontFamily: `'Bungee Shade'`,
     },
     title: {
-        fontFamily: `'Menlo', monospace`, 
+      fontFamily: `'Menlo', monospace`,
     },
-},
+  },
 });
 
 export default theme;

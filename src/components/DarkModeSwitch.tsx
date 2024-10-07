@@ -1,12 +1,14 @@
-import { useColorMode, IconButton } from "@chakra-ui/react";
+import { useColorMode, IconButton, IconButtonProps } from "@chakra-ui/react";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 
-type DarkModeSwitchProps = {
+
+
+type DarkModeSwitchProps = IconButtonProps & {
   lightSettings: {};
   darkSettings: {};
 };
 
-export const DarkModeSwitch: React.FC<DarkModeSwitchProps> = ({lightSettings, darkSettings}) => {
+export const DarkModeSwitch: React.FC<DarkModeSwitchProps> = ({lightSettings, darkSettings, ...props}) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const isDark = colorMode === "dark";
   return (
@@ -22,6 +24,7 @@ export const DarkModeSwitch: React.FC<DarkModeSwitchProps> = ({lightSettings, da
         "md", // sm
         "md", // md
       ]}
+      {...props}
     />
   );
 };

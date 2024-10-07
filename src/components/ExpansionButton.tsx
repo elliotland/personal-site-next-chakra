@@ -1,9 +1,9 @@
 import React from "react";
-import { Button, IconButton } from "@chakra-ui/react";
+import { Button, ButtonProps, IconButton } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 import { motion } from "framer-motion";
 
-interface ExpansionButtonProps {
+interface ExpansionButtonProps extends ButtonProps {
   isExpanded: boolean;
   toggleExpansion?: () => void;
   lightSettings?: {},
@@ -14,7 +14,8 @@ const ExpansionButton: React.FC<ExpansionButtonProps> = ({
   isExpanded,
   toggleExpansion,
   lightSettings,
-  darkSettings
+  darkSettings,
+  ...props
 }) => {
 
   return (
@@ -23,15 +24,16 @@ const ExpansionButton: React.FC<ExpansionButtonProps> = ({
       rightIcon={isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
       aria-label="Expand Site"
       variant={'outline'}
-      colorScheme={'grey'}
+      colorScheme={'blue'}
       rounded={'full'}      
-      _dark={darkSettings}
-      _light={lightSettings}
+      // _dark={darkSettings}
+      // _light={lightSettings}
       size={[
         "md", // base
         "md", // sm
         "md", // md
       ]}
+      {...props}
     >{isExpanded ? 'See Less': 'See More'}</Button>
   );
 };

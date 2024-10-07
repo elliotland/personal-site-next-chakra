@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Button,
+  ButtonProps,
   IconButton,
   Modal,
   ModalBody,
@@ -14,7 +15,7 @@ import {
 import { EmailIcon } from "@chakra-ui/icons";
 import EmailComponent from "./emailMessage";
 
-interface ContactMeButtonProps {
+interface ContactMeButtonProps extends ButtonProps {
   lightSettings: {};
   darkSettings: {};
   isExpanded: boolean;
@@ -23,7 +24,8 @@ interface ContactMeButtonProps {
 const ContactMeButton: React.FC<ContactMeButtonProps> = ({
   lightSettings,
   darkSettings,
-  isExpanded
+  isExpanded,
+  ...props
 }) => {
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -53,23 +55,22 @@ const ContactMeButton: React.FC<ContactMeButtonProps> = ({
         aria-label="contact button"
         rightIcon={<EmailIcon />}
         onClick={onOpen}
-        _light={lightSettings}
-        _dark={darkSettings}
+        // _light={lightSettings}
+        // _dark={darkSettings}
         size={[
           "md", // base
           "md", // sm
           "md", // md
         ]}
         rounded={'full'}
-        // display={isExpanded ? "flex" : "none"}
+        colorScheme={'blue'}
+        {...props}
       >
         Contact Me
       </Button>
-
       <Modal isCentered isOpen={isOpen} onClose={onClose}>
         <OverlayOne />
-        <ModalContent>
-          <ModalHeader>Hey Elliot</ModalHeader>
+        <ModalContent pt={'1em'}>
           <ModalCloseButton />
           <ModalBody>
             <EmailComponent
