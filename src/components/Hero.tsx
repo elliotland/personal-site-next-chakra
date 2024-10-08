@@ -24,7 +24,7 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
 
-  const getRandomColor = useRandomThemeColor(["orange"]);
+  const getRandomColor = useRandomThemeColor(["green"]);
 
   const handleTypingStart = useCallback(() => {
     setIsTypingComplete(false);
@@ -69,7 +69,7 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
           </Heading>
           <SlideFade in={isTypingComplete} offsetX={-50} offsetY={0}>
             <Box>
-              <Text color={"gray.500"} maxW={"3xl"} fontSize={"xl"}>
+              <Text color={"gray.500"} maxW={"3xl"} fontSize={"lg"}>
                 {heroPhrases[activeIndex].Description}
               </Text>
               <Stack direction={["column", "row"]} spacing={4} mt={"2em"}>
@@ -79,7 +79,7 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
                 alignItems="center"
                 gap={2}
               >
-                <TechKeywords keywords={heroPhrases[activeIndex].Tech} />
+                <TechKeywords keywords={heroPhrases[activeIndex].Tech} size={'md'}/>
               </Flex>
               </Stack>
             </Box>
