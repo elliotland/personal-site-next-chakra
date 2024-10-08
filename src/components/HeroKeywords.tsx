@@ -1,21 +1,25 @@
-import React from 'react';
-import { Badge, Tag, Text } from "@chakra-ui/react";
-import useRandomThemeColor from './ColorPicker';
+import React from "react";
+import { Badge, Tag, TagProps, Text } from "@chakra-ui/react";
+import useRandomThemeColor from "./ColorPicker";
 
-const TechKeywords = ({ keywords }) => {
+// type for TechKeywords
+interface TechKeywordsProps extends TagProps {
+  keywords: string;
+}
 
+const TechKeywords: React.FC<TechKeywordsProps> = ({ keywords, ...props }) => {
   return (
     <>
-      {keywords.split(',').map((keyword, index) => (
-        <Tag variant={'outline'}  key={index}
-        display={['none', 'inline-flex']}
-        w={['50%', 'fit-content']}
-        m={'0 auto'}
-
-        textAlign={'center'}
-        _light={{ color: 'black', bgColor:'customLightMode.peach'} }
-        _dark={{ color: 'black', bgColor:'customDarkMode.green'}}
-        color={'white'}>
+      {keywords.split(",").map((keyword, index) => (
+        <Tag
+          variant={"outline"}
+          key={index}
+          textAlign={"center"}
+          _light={{ color: "black", bgColor: "customLightMode.peach" }}
+          _dark={{ color: "black", bgColor: "customDarkMode.green" }}
+          color={"white"}
+          {...props}
+        >
           {keyword.trim()}
         </Tag>
       ))}

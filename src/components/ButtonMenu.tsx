@@ -29,6 +29,7 @@ const ButtonStack: React.FC<ButtonStackProps> = ({
 }) => {
   return (
     <>
+    {isExpanded? <>
       <Menu>
         <MenuButton
           as={IconButton}
@@ -78,7 +79,7 @@ const ButtonStack: React.FC<ButtonStackProps> = ({
             />
           </MenuItem>
         </MenuList>
-      </Menu>
+      </Menu></> : null}
       <ButtonGroup
         spacing={4}
         position={"fixed"}

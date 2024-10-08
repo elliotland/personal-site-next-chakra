@@ -6,6 +6,7 @@ import {
   Text,
   Box,
   SlideFade,
+  Flex,
 } from "@chakra-ui/react";
 import ReactRotatingText from "react-rotating-text";
 import { heroPhrases } from "./HeroPhrases";
@@ -23,7 +24,7 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
 
-  const getRandomColor = useRandomThemeColor(["green",]);
+  const getRandomColor = useRandomThemeColor(["orange"]);
 
   const handleTypingStart = useCallback(() => {
     setIsTypingComplete(false);
@@ -51,10 +52,11 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
             fontWeight={600}
             fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
             lineHeight={"110%"}
+            variant={'Balsamiq'}
           >
             <Text as={"span"}>
               <ReactRotatingText
-                items={heroPhrases.map(phrase => phrase.IAM)}
+                items={heroPhrases.map((phrase) => phrase.IAM)}
                 onTypingStart={handleTypingStart}
                 onTypingEnd={handleTypingEnd}
                 onDeletingEnd={handleDeletingEnd}
@@ -70,8 +72,15 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
               <Text color={"gray.500"} maxW={"3xl"} fontSize={"xl"}>
                 {heroPhrases[activeIndex].Description}
               </Text>
-              <Stack direction={["column", "row"]} spacing={4} mt={'2em'}>
+              <Stack direction={["column", "row"]} spacing={4} mt={"2em"}>
+              <Flex
+                flexWrap="wrap"
+                justifyContent="center"
+                alignItems="center"
+                gap={2}
+              >
                 <TechKeywords keywords={heroPhrases[activeIndex].Tech} />
+              </Flex>
               </Stack>
             </Box>
           </SlideFade>
@@ -80,8 +89,8 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
 
           <Stack spacing={6} direction={"row"}>
             <ContactMeButton
-            isExpanded={false}
-            size={"lg"}
+              isExpanded={false}
+              size={"lg"}
               darkSettings={{
                 bgColor: "customDarkMode.primary",
                 color: "black",
@@ -92,7 +101,7 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
               }}
             />
             <ExpansionButton
-            size={"lg"}
+              size={"lg"}
               isExpanded={false}
               toggleExpansion={toggleExpansion}
             />

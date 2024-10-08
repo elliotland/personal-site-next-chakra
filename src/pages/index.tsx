@@ -69,7 +69,7 @@ const Index = () => {
         ) : (
           <Box pt={'2em'} pb={'2em'} height={'100vh'} minH={'fit-content'}>
           <ButtonStack isExpanded={false} showContactButton={false} showExpandButton={false}/>
-          <Signature smallMode={isExpanded} size="4xl"/>
+          <Signature smallMode={isExpanded} size="3xl"/>
           <Hero toggleExpansion={toggleExpansion}/>
           </Box>
         )}

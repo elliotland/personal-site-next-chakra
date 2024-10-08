@@ -16,7 +16,7 @@ import {
   VStack,
   useToast,
 } from "@chakra-ui/react";
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from "react-markdown";
 
 function AI_lliot() {
   const [userText, setUserText] = useState<string>("");
@@ -76,29 +76,31 @@ function AI_lliot() {
       maxWidth="container.xl"
       mx="auto"
       p={[4, 6, 8]}
-      w={['container.xs', 'container.md', 'container.lg']}
+      w={["container.xs", "container.md", "container.lg"]}
     >
       <VStack spacing={4} width="100%" mb={8}>
-        <Heading 
-        size={["xl", "2xl", "3xl"]} >Quiz My AI</Heading>
+        <Heading size={["xl", "2xl", "3xl"]}>Quiz My AI</Heading>
       </VStack>
 
-      <Card width="100%" mb={8} 
+      <Card
+        width="100%"
+        mb={8}
         _light={{
           bgColor: "customLightMode.white",
         }}
         _dark={{
           bgColor: "customDarkMode.darkBackground",
         }}
-        colorScheme={'blue'}
-        >
+        variant={"elevated"}
+      >
         <CardBody>
-          <InputGroup size="lg" 
-        _light={{
-          borderColor: "customLightMode.primary",
-        }}
-        _dark={{
-        }}>
+          <InputGroup
+            size="lg"
+            _light={{
+              borderColor: "customLightMode.primary",
+            }}
+            _dark={{}}
+          >
             <Input
               pr="8rem"
               placeholder="Is Elliot good at..."
@@ -121,22 +123,30 @@ function AI_lliot() {
         </CardBody>
       </Card>
 
-      <Card width="100%"
+      <Card
+        width="100%"
         _light={{
           bgColor: "customLightMode.white",
         }}
         _dark={{
           bgColor: "customDarkMode.darkBackground",
-        }}>
+        }}
+        variant={"elevated"}
+      >
         <CardBody position="relative" minHeight="150px">
           {isLoading ? (
             <SkeletonText noOfLines={4} spacing="4" skeletonHeight="2" />
           ) : aiText === "" ? (
-            <Text color="gray.500" opacity={0.8} align={'center'} fontSize={'xl'}>
+            <Text
+              color="gray.500"
+              opacity={0.8}
+              align={"center"}
+              fontSize={"xl"}
+            >
               AI-lliot is ready to answer your questions about Elliot.
             </Text>
           ) : (
-            <Box overflow="auto" maxHeight="400px" pr={'1em'} >
+            <Box overflow="auto" maxHeight="400px" pr={"1em"}>
               <ReactMarkdown>{aiText}</ReactMarkdown>
             </Box>
           )}
@@ -146,7 +156,7 @@ function AI_lliot() {
               onClick={clearMessages}
               aria-label="Clear Messages"
               position="absolute"
-              top={4}
+              bottom={4}
               right={4}
               colorScheme="red"
               size="sm"

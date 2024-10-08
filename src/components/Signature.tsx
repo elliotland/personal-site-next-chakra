@@ -27,8 +27,8 @@ const Signature = ({
       <Avatar
         src="avatar.jpg"
         size={smallMode ? "lg" : undefined} 
-        w={smallMode ? undefined : "14rem"}     
-        h={smallMode ? undefined : "14rem"}  
+        w={smallMode ? undefined : "12rem"}     
+        h={smallMode ? undefined : "12rem"}  
         name="Elliot Land"
         marginRight={smallMode ? ".5em" : "0"}
       />

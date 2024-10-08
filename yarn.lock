@@ -895,10 +895,20 @@
   resolved "https://registry.npmjs.org/@emotion/weak-memoize/-/weak-memoize-0.4.0.tgz"
   integrity sha512-snKqtPW01tN0ui7yu9rGv69aJXr/a/Ywvl11sUjNtEcRc+ng/mQriFL0wLXMef74iHa/EkftbDzU9F8iFbH+zg==
 
+"@fontsource/balsamiq-sans@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.npmjs.org/@fontsource/balsamiq-sans/-/balsamiq-sans-5.1.0.tgz"
+  integrity sha512-jeyAoEm03yFj0pQerywtSXxGejq7Gno5QEgo6P8CwimpxF/YKJASIIP9yzOBJrtqvONp7QKtJoX2jhvMQO/RqA==
+
 "@fontsource/bungee-shade@^5.0.21":
   version "5.0.21"
   resolved "https://registry.npmjs.org/@fontsource/bungee-shade/-/bungee-shade-5.0.21.tgz"
   integrity sha512-1fY40KzQ8Mq011fR8yMTfUJKyWdyTdSaEWTJ8q/BHgoRewCWUE1c3ky3LnIqF2RAQRp7sJ4h6B2hMm0FttRM+Q==
+
+"@fontsource/michroma@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.npmjs.org/@fontsource/michroma/-/michroma-5.1.0.tgz"
+  integrity sha512-4beBYgkdnGOrBB7jT8caSCFBZIXzDb9ZEbpGl/AonQfnO995dUAzWuvLfor25RQV4ok0JMgTGQvWRAh3BcfhEw==
 
 "@fontsource/open-sans@^5.0.28":
   version "5.0.28"
