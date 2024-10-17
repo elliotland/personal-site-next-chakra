@@ -11,9 +11,9 @@ export const heroPhrases = [
         Description: 'Intuitive user design is magic and brings boring business logic to life.',
     },
     {
-        IAM: 'Product Owner',
-        Tech: 'Jira, Aha!, Agile, Lean Six Sigma, Scrum, Requirements Gathering, Feedback, Beta Testing',
-        Description: 'Owning something is different than just working on it. I have product passion.',
+        IAM: 'Productizer',
+        Tech: 'LGTM, Roadmaps, Agile, Scrum, Requirements Gathering, Feedback, Beta Testing',
+        Description: `Let's build an experience our customers will love.`,
     },
     {
         IAM: 'Leader',

@@ -1,9 +1,4 @@
-import {
-  Box,
-  Collapse,
-  Flex,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Box, Collapse, Flex, Stack, StackItem, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import AI_lliot from "../components/AI_lliot";
 import CircularCarousel from "../components/ProjectCarousal";
@@ -54,8 +49,8 @@ const Index = () => {
               }}
               zIndex={3}
               alignItems={"center"}
-              pl={'2em'}
-              pr={'2em'}
+              pl={"2em"}
+              pr={"2em"}
             >
               <ButtonStack
                 isExpanded={isExpanded}
@@ -67,51 +62,63 @@ const Index = () => {
             </Flex>
           </>
         ) : (
-          <Box pt={'2em'} pb={'2em'} height={'100vh'} minH={'fit-content'}>
-          <ButtonStack isExpanded={false} showContactButton={false} showExpandButton={false}/>
-          <Signature smallMode={isExpanded} size="3xl"/>
-          <Hero toggleExpansion={toggleExpansion}/>
+          <Box pt={"2em"} pb={"2em"} height={"100vh"} minH={"fit-content"}>
+            <ButtonStack
+              isExpanded={false}
+              showContactButton={false}
+              showExpandButton={false}
+            />
+            <Signature smallMode={isExpanded} size="3xl" />
+            <Hero toggleExpansion={toggleExpansion} />
           </Box>
         )}
-        <Flex
-          hidden={!isExpanded}
-          w={"100%"}
-          direction={"column"}
-          minH={"400px"}
-          _light={{
-            bgColor: "customLightMode.pink",
-          }}
-          _dark={{
-            bgColor: "customDarkMode.green",
-          }}
-          pt={"2em"}
-          pb={"2em"}
-          alignItems={"center"}
-          className="hero-background"
-        >
-          <Collapse in={isOpen} animateOpacity >
+        <Collapse in={isOpen} animateOpacity className="w-full">
+          {/* <Box
+            w="100%"
+            h="100vh"
+            bg="blue"
+            bgAttachment="fixed"
+            bgPos="50% 100%"
+            pos="relative"
+          >
+          </Box> */}
+
+          <Flex
+            hidden={!isExpanded}
+            w={"100%"}
+            direction={"column"}
+            minH={"400px"}
+            _light={{
+              bgColor: "customLightMode.pink",
+            }}
+            _dark={{
+              bgColor: "customDarkMode.green",
+            }}
+            pt={"2em"}
+            pb={"2em"}
+            alignItems={"center"}
+            className="hero-background"
+          >
             <AI_lliot />
-          </Collapse>
-        </Flex>
-        <Flex
-          hidden={!isExpanded}
-          w={"100%"}
-          direction={"column"}
-          pt={"2em"}
-          h={"100%"}
-          minH={"600px"}
-          pb={"2em"}
-        _light={{
-         className: "light-stars"
-        }}
-        _dark={{
-          className: "dark-stars"
-        }}
-        >
-          <Collapse in={isOpen} animateOpacity>
+          </Flex>
+          <Flex
+            hidden={!isExpanded}
+            w={"100%"}
+            direction={"column"}
+            pt={"2em"}
+            h={"100%"}
+            minH={"600px"}
+            pb={"2em"}
+            _light={{
+              className: "light-stars",
+            }}
+            _dark={{
+              className: "dark-stars",
+            }}
+          >
             <CircularCarousel />
-          </Collapse>
-        </Flex>
+          </Flex>
+        </Collapse>
       </Box>
     </>
   );

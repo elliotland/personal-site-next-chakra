@@ -16,7 +16,85 @@ import {
   VStack,
   useToast,
 } from "@chakra-ui/react";
-import ReactMarkdown from "react-markdown";
+import { micromark } from "micromark";
+import { marked } from "marked";
+
+const markdownStyles = {
+  h1: {
+    fontSize: "2em",
+    color: "#000",
+    fontWeight: "bold",
+  },
+  h2: {
+    fontSize: "1.6em",
+    color: "#111",
+    fontWeight: "bold",
+  },
+  h3: {
+    fontSize: "1.2em",
+    color: "#222",
+    fontWeight: "bold",
+  },
+  p: {
+    margin: "15px 0",
+  },
+  blockquote: {
+    borderLeft: "4px solid #DDD",
+    padding: "0 15px",
+    color: "#777",
+    margin: "15px 0",
+  },
+  a: {
+    color: "#dd0000",
+    textDecoration: "none",
+    _hover: {
+      color: "#333333",
+      textDecoration: "underline",
+    },
+  },
+  ul: {
+    paddingLeft: "30px",
+    margin: "15px 0",
+  },
+  ol: {
+    paddingLeft: "30px",
+    margin: "15px 0",
+  },
+  code: {
+    fontSize: "12px",
+    fontFamily: 'Consolas, "Liberation Mono", Courier, monospace',
+    backgroundColor: "#f8f8f8",
+    border: "1px solid #eaeaea",
+    borderRadius: "3px",
+    padding: "2px 4px",
+  },
+  pre: {
+    backgroundColor: "#f8f8f8",
+    padding: "10px 15px",
+    borderRadius: "3px",
+    fontSize: "13px",
+    lineHeight: "19px",
+    overflow: "auto",
+  },
+  table: {
+    width: "100%",
+    borderWidth: "1px",
+    borderStyle: "solid",
+    borderColor: "#e5e5e5",
+    marginBottom: "1em",
+  },
+  th: {
+    padding: "6px 13px",
+    backgroundColor: "#fdfdfd",
+    color: "#666",
+  },
+  td: {
+    padding: "6px 13px",
+  },
+  img: {
+    maxWidth: "100%",
+  },
+};
 
 function AI_lliot() {
   const [userText, setUserText] = useState<string>("");
@@ -147,7 +225,7 @@ function AI_lliot() {
             </Text>
           ) : (
             <Box overflow="auto" maxHeight="400px" pr={"1em"}>
-              <ReactMarkdown>{aiText}</ReactMarkdown>
+              <Box sx={markdownStyles} dangerouslySetInnerHTML={{__html: marked.parse(aiText)}}></Box>
             </Box>
           )}
           {aiText !== "" && (

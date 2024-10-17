@@ -24,7 +24,6 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
 
-  const getRandomColor = useRandomThemeColor(["green"]);
 
   const handleTypingStart = useCallback(() => {
     setIsTypingComplete(false);
@@ -52,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
             fontWeight={600}
             fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
             lineHeight={"110%"}
-            variant={'Balsamiq'}
+            variant={'Archivo'}
           >
             <Text as={"span"}>
               <ReactRotatingText
@@ -63,7 +62,6 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
                 pause={5000}
                 typingInterval={60}
                 deletingInterval={15}
-                color={getRandomColor()}
               />
             </Text>
           </Heading>
