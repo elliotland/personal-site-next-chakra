@@ -18,35 +18,23 @@ const Index = () => {
   };
 
   return (
-    <>
       <Box
-        w={"100%"}
-        m={"0px"}
-        _light={{
-          color: "black",
-          bgColor: "customLightMode.white",
-        }}
-        _dark={{
-          color: "white",
-          bgColor: "customDarkMode.darkBackground",
-        }}
-        display={"flex"}
-        flexDirection={"column"}
-        alignItems={"center"}
+      minH={'100vh'}
+      _light={{
+        color: "black",
+        bgColor: "customLightMode.white",
+      }}
+      _dark={{
+        color: "white",
+        bgColor: "customDarkMode.darkBackground",
+      }}
       >
         {isExpanded ? (
-          <>
             <Flex
               position="sticky"
               top={0}
               h={"80px"}
               w={"100%"}
-              _light={{
-                bgColor: "customLightMode.white",
-              }}
-              _dark={{
-                bgColor: "customDarkMode.darkBackground",
-              }}
               zIndex={3}
               alignItems={"center"}
               pl={"2em"}
@@ -58,11 +46,10 @@ const Index = () => {
                 showContactButton={true}
                 showExpandButton={true}
               />
-              <Signature smallMode={true} />
+              <Signature smallMode={true} size="lg" />
             </Flex>
-          </>
         ) : (
-          <Box pt={"2em"} pb={"2em"} height={"100vh"} minH={"fit-content"}>
+          <Box pt={"2em"} pb={"2em"} minH={"fit-content"}>
             <ButtonStack
               isExpanded={false}
               showContactButton={false}
@@ -86,22 +73,21 @@ const Index = () => {
           <Flex
             hidden={!isExpanded}
             w={"100%"}
-            direction={"column"}
-            minH={"400px"}
+            borderTop={'10px solid'}
+            borderBottom={'10px solid'}
             _light={{
-              bgColor: "customLightMode.pink",
+              borderColor: "customLightMode.pink",
             }}
             _dark={{
-              bgColor: "customDarkMode.green",
+              borderColor: "customDarkMode.green",
             }}
             pt={"2em"}
             pb={"2em"}
-            alignItems={"center"}
             className="hero-background"
           >
             <AI_lliot />
           </Flex>
-          <Flex
+          {/* <Flex
             hidden={!isExpanded}
             w={"100%"}
             direction={"column"}
@@ -117,10 +103,9 @@ const Index = () => {
             }}
           >
             <CircularCarousel />
-          </Flex>
+          </Flex> */}
         </Collapse>
       </Box>
-    </>
   );
 };
 

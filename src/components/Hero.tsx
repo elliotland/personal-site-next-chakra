@@ -88,7 +88,6 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
           <Stack spacing={6} direction={"row"}>
             <ContactMeButton
               isExpanded={false}
-              size={"lg"}
               darkSettings={{
                 bgColor: "customDarkMode.primary",
                 color: "black",
@@ -99,7 +98,6 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
               }}
             />
             <ExpansionButton
-              size={"lg"}
               isExpanded={false}
               toggleExpansion={toggleExpansion}
             />

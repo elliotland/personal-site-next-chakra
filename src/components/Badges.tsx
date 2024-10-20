@@ -6,7 +6,7 @@ const BadgesAndContactForm = () => {
     <Flex justifyContent="space-evenly" alignItems="center">
       <Tooltip label="I'm a certified scrum product owner.">
         <Box>
-          <Image src="cspoBadge.webp" alt="cspo badge" boxSize="50px" />
+          <Image src="cspoBadge.webp" alt="cspo badge" boxSize="35px" />
         </Box>
       </Tooltip>
       <Tooltip label="I'm a certified GenAI Professional.">
@@ -14,8 +14,9 @@ const BadgesAndContactForm = () => {
           <Image
             src="genaiBadge.png"
             alt="genAI badge"
-            boxSize="50px"
-            width={"100px"}
+            boxSize="35px"
+            width={"70px"}
+            pr={"5px"}
           />
         </Box>
       </Tooltip>
@@ -24,7 +25,7 @@ const BadgesAndContactForm = () => {
           <Image
             src="typescript-icon.256x256.png"
             alt="typescript badge"
-            boxSize="50px"
+            boxSize="35px"
             borderRadius={"8px"}
           />
         </Box>
@@ -34,7 +35,7 @@ const BadgesAndContactForm = () => {
           <Image
             src="javascript-js.256x256.png"
             alt="javascript badge"
-            boxSize="50px"
+            boxSize="35px"
             borderRadius={"8px"}
           />
         </Box>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChatIcon, DeleteIcon } from "@chakra-ui/icons";
+import { ArrowRightIcon, ChatIcon, DeleteIcon } from "@chakra-ui/icons";
 import {
   Box,
   Flex,
@@ -14,10 +14,17 @@ import {
   IconButton,
   Text,
   VStack,
+  Image,
   useToast,
+  Icon,
+  Stack,
+  StackItem,
+  SimpleGrid,
+  CardHeader,
 } from "@chakra-ui/react";
 import { micromark } from "micromark";
 import { marked } from "marked";
+import AnimatedLines from "./AnimatedLines";
 
 const markdownStyles = {
   h1: {
@@ -100,9 +107,11 @@ function AI_lliot() {
   const [userText, setUserText] = useState<string>("");
   const [aiText, setAIText] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [aiImageSrc, setAiImageSrc] = useState<string>("");
   const toast = useToast();
 
   const sendChat = async () => {
+    clearMessages();
     if (!userText.trim()) {
       toast({
         title: "Empty question",
@@ -113,9 +122,8 @@ function AI_lliot() {
       });
       return;
     }
-
     setIsLoading(true);
-    clearMessages();
+    setAiImageSrc("thinking.jpg");
 
     try {
       const response = await fetch("/api/AI-lliot", {
@@ -127,8 +135,24 @@ function AI_lliot() {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        setAIText(data);
+        const { questionJudgement, aiComment } = await response.json();
+
+        setAiImageSrc(
+          questionJudgement === "bad" ? "badQuestion.jpg" : "goodQuestion.jpg"
+        );
+
+        setAIText(aiComment);
+
+        if (response.status === 500) {
+          toast({
+            title: "Server Error",
+            description: "Try again later.",
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+          });
+        }
+
         setUserText("");
       } else {
         setAIText("Sorry, there was an error processing your request.");
@@ -144,102 +168,118 @@ function AI_lliot() {
   const clearMessages = () => {
     setUserText("");
     setAIText("");
+    setAiImageSrc("waiting.jpg");
   };
 
   return (
     <Flex
       direction="column"
       alignItems="center"
-      width="100%"
-      maxWidth="container.xl"
       mx="auto"
       p={[4, 6, 8]}
-      w={["container.xs", "container.md", "container.lg"]}
+      w={["container.xs", "container.md", "8xl"]}
+      maxW={"100%"}
     >
-      <VStack spacing={4} width="100%" mb={8}>
-        <Heading size={["xl", "2xl", "3xl"]}>Quiz My AI</Heading>
-      </VStack>
-
       <Card
-        width="100%"
-        mb={8}
+      w={'100%'}
         _light={{
           bgColor: "customLightMode.white",
+          borderColor: "customLightMode.pink",
         }}
         _dark={{
           bgColor: "customDarkMode.darkBackground",
+          borderColor: "customDarkMode.green",
         }}
-        variant={"elevated"}
+        border={'1px solid'}
       >
-        <CardBody>
-          <InputGroup
-            size="lg"
-            _light={{
-              borderColor: "customLightMode.primary",
-            }}
-            _dark={{}}
+        <CardHeader>
+          <Heading
+            size={["xl", "2xl", "3xl"]}
+            shadow={"dark"}
+            textAlign={"center"}
           >
-            <Input
-              pr="8rem"
-              placeholder="Is Elliot good at..."
-              value={userText}
-              onChange={(e) => setUserText(e.target.value)}
-            />
-            <InputRightElement width="8rem">
-              <Button
-                h="2rem"
-                size="sm"
+            Don't scroll, just talk to my AI!
+          </Heading>
+        </CardHeader>
+        <CardBody>
+          <SimpleGrid columns={[1, 3]} borderRadius={"md"} w={"100%"}>
+            <Box>
+              <Box h={"100%"} w={'100%'} padding={"1em"}>
+                <Input
+                  placeholder="Is Elliot good at..."
+                  value={userText}
+                  onChange={(e) => setUserText(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      sendChat();
+                    }
+                  }}
+                  alignSelf={"center"}
+                  position={"relative"}
+                  height={"100%"}
+                  minH={['50px',"100px"]}
+                  colorScheme={"blue"}
+                  borderWidth={"2px"}
+                />
+              </Box>
+              <IconButton
                 onClick={sendChat}
                 isLoading={isLoading}
-                leftIcon={<ChatIcon />}
+                icon={<ChatIcon />}
                 colorScheme="blue"
-              >
-                Ask AI-lliot
-              </Button>
-            </InputRightElement>
-          </InputGroup>
-        </CardBody>
-      </Card>
-
-      <Card
-        width="100%"
-        _light={{
-          bgColor: "customLightMode.white",
-        }}
-        _dark={{
-          bgColor: "customDarkMode.darkBackground",
-        }}
-        variant={"elevated"}
-      >
-        <CardBody position="relative" minHeight="150px">
-          {isLoading ? (
-            <SkeletonText noOfLines={4} spacing="4" skeletonHeight="2" />
-          ) : aiText === "" ? (
-            <Text
-              color="gray.500"
-              opacity={0.8}
-              align={"center"}
-              fontSize={"xl"}
-            >
-              AI-lliot is ready to answer your questions about Elliot.
-            </Text>
-          ) : (
-            <Box overflow="auto" maxHeight="400px" pr={"1em"}>
-              <Box sx={markdownStyles} dangerouslySetInnerHTML={{__html: marked.parse(aiText)}}></Box>
+                aria-label={"Ask AI-lliot"}
+                zIndex={"200"}
+                margin={"0 auto"}
+                position={"relative"}
+                left={["46%", "42%"]}
+                bottom={[12, 12]}
+              />
             </Box>
-          )}
-          {aiText !== "" && (
-            <IconButton
-              icon={<DeleteIcon />}
-              onClick={clearMessages}
-              aria-label="Clear Messages"
-              position="absolute"
-              bottom={4}
-              right={4}
-              colorScheme="red"
-              size="sm"
-            />
-          )}
+            <Box padding={"1em"}>
+              <Image
+                src={aiImageSrc}
+                borderRadius={"xl"}
+                alignSelf={"center"}
+                display={"flex"}
+                fallbackSrc="waiting.jpg"
+                boxSize={["200px", "auto", "250px"]}
+                objectFit={"cover"}
+                margin={["0 auto", null, null]}
+                zIndex={"100"}
+              />
+            </Box>
+            <Box>
+              <Box  h={"100%"} w={'100%'} padding={"1em"}>
+                {isLoading ? (
+                  <SkeletonText noOfLines={5} spacing="4" skeletonHeight="2"
+                    mt={'25%'} />
+                ) : aiText === "" ? (
+                  <Text
+                    color="gray.500"
+                    opacity={0.8}
+                    align={"center"}
+                    fontSize={"xl"}
+                    mt={'25%'}
+                  >
+                    AI-lliot is ready to answer your questions.
+                  </Text>
+                ) : (
+                  <Box>{aiText}</Box>
+                )}
+              </Box>
+              {aiText !== "" && (
+                <IconButton
+                  icon={<DeleteIcon />}
+                  onClick={clearMessages}
+                  aria-label="Clear Messages"
+                  position="relative"
+                  left={["46%", "42%"]}
+                  bottom={[12, 12]}
+                  colorScheme="red"
+                />
+              )}
+            </Box>
+          </SimpleGrid>
         </CardBody>
       </Card>
     </Flex>
