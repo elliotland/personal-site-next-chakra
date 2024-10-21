@@ -21,6 +21,8 @@ import {
   StackItem,
   SimpleGrid,
   CardHeader,
+  Spacer,
+  Textarea,
 } from "@chakra-ui/react";
 import { micromark } from "micromark";
 import { marked } from "marked";
@@ -109,9 +111,12 @@ function AI_lliot() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [aiImageSrc, setAiImageSrc] = useState<string>("");
   const toast = useToast();
+  const [isBadQuestion, setIsBadQuestion] = useState<boolean>(false);
+  
 
   const sendChat = async () => {
     clearMessages();
+    setIsBadQuestion(false);
     if (!userText.trim()) {
       toast({
         title: "Empty question",
@@ -136,10 +141,12 @@ function AI_lliot() {
 
       if (response.ok) {
         const { questionJudgement, aiComment } = await response.json();
+        if (questionJudgement === "bad") setIsBadQuestion(true);
 
         setAiImageSrc(
           questionJudgement === "bad" ? "badQuestion.jpg" : "goodQuestion.jpg"
         );
+        
 
         setAIText(aiComment);
 
@@ -171,6 +178,7 @@ function AI_lliot() {
     setAiImageSrc("waiting.jpg");
   };
 
+
   return (
     <Flex
       direction="column"
@@ -181,7 +189,7 @@ function AI_lliot() {
       maxW={"100%"}
     >
       <Card
-      w={'100%'}
+        w={"100%"}
         _light={{
           bgColor: "customLightMode.white",
           borderColor: "customLightMode.pink",
@@ -190,23 +198,35 @@ function AI_lliot() {
           bgColor: "customDarkMode.darkBackground",
           borderColor: "customDarkMode.green",
         }}
-        border={'1px solid'}
+        border={"1px solid"}
       >
         <CardHeader>
           <Heading
             size={["xl", "2xl", "3xl"]}
             shadow={"dark"}
             textAlign={"center"}
+            zIndex={300}
           >
-            Don't scroll, just talk to my AI!
+            Why Scroll?
+            <br />
+            <span className="font-light">Talk to My AI</span>
           </Heading>
         </CardHeader>
-        <CardBody>
-          <SimpleGrid columns={[1, 3]} borderRadius={"md"} w={"100%"}>
+        <CardBody pt={10} pb={10}>
+          <AnimatedLines
+            width={100}
+            height={50}
+            verticalRange={15}
+            lineSpacing={2}
+
+          />
+          <SimpleGrid columns={[1, 5]} borderRadius={"md"} w={"100%"}>
             <Box>
-              <Box h={"100%"} w={'100%'} padding={"1em"}>
-                <Input
+              <Box h={"100%"} w={"100%"}
+                  >
+                <Textarea
                   placeholder="Is Elliot good at..."
+                  alignContent={'space-evenly'}
                   value={userText}
                   onChange={(e) => setUserText(e.target.value)}
                   onKeyDown={(e) => {
@@ -217,25 +237,36 @@ function AI_lliot() {
                   alignSelf={"center"}
                   position={"relative"}
                   height={"100%"}
-                  minH={['50px',"100px"]}
+                  minH={["100px", "100px"]}
                   colorScheme={"blue"}
                   borderWidth={"2px"}
+                  _light={{
+                    bgColor: "customLightMode.white",
+                    borderColor: "customLightMode.primary"
+                  }}
+                  _dark={{
+                    bgColor: "customDarkMode.darkBackground",
+                    borderColor: "customDarkMode.primary"
+                  }}
+                  zIndex={200}
                 />
               </Box>
-              <IconButton
-                onClick={sendChat}
-                isLoading={isLoading}
-                icon={<ChatIcon />}
-                colorScheme="blue"
-                aria-label={"Ask AI-lliot"}
-                zIndex={"200"}
-                margin={"0 auto"}
-                position={"relative"}
-                left={["46%", "42%"]}
-                bottom={[12, 12]}
-              />
+                  <IconButton
+                    onClick={sendChat}
+                    isLoading={isLoading}
+                    icon={<ChatIcon />}
+                    colorScheme="blue"
+                    aria-label={"Ask AI-lliot"}
+                    zIndex={"200"}
+                    margin={"0 auto"}
+                    position={"relative"}
+                    left={["46%", "42%"]}
+                    bottom={[12, 12]}
+                    className="z-[300]"
+                  />
             </Box>
-            <Box padding={"1em"}>
+            <Spacer />
+            <Box padding={"2em"} zIndex={300}>
               <Image
                 src={aiImageSrc}
                 borderRadius={"xl"}
@@ -245,23 +276,43 @@ function AI_lliot() {
                 boxSize={["200px", "auto", "250px"]}
                 objectFit={"cover"}
                 margin={["0 auto", null, null]}
-                zIndex={"100"}
               />
             </Box>
-            <Box>
-              <Box  h={"100%"} w={'100%'} padding={"1em"}>
+            <Spacer />
+            <Box zIndex={300}>
+              <Box
+                h={"100%"}
+                w={"100%"}
+                zIndex={301}
+                _light={{
+                  bgColor: "customLightMode.white",
+                  borderColor: "customLightMode.primary"
+                }}
+                _dark={{
+                  bgColor: "customDarkMode.darkBackground",
+                  borderColor: "customDarkMode.primary"
+                }}
+                padding={"1em"}
+                borderWidth={"2px"}
+                borderRadius={"md"}
+              >
                 {isLoading ? (
-                  <SkeletonText noOfLines={5} spacing="4" skeletonHeight="2"
-                    mt={'25%'} />
+                  <SkeletonText
+                    noOfLines={5}
+                    spacing="4"
+                    skeletonHeight="2"
+                    mt={"25%"}
+                  />
                 ) : aiText === "" ? (
                   <Text
                     color="gray.500"
                     opacity={0.8}
                     align={"center"}
                     fontSize={"xl"}
-                    mt={'25%'}
+                    
+                  minH={["100px", "100px"]}
                   >
-                    AI-lliot is ready to answer your questions.
+                    AI-lliot here!<br /><br />I'm ready to answer your questions.
                   </Text>
                 ) : (
                   <Box>{aiText}</Box>

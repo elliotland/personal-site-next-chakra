@@ -1,8 +1,9 @@
-import { extendTheme } from "@chakra-ui/react";
+import { background, ColorModeContext, extendTheme, LightMode } from "@chakra-ui/react";
 
 const fonts = { mono: `'Menlo', monospace` };
 
 import { headerTheme } from "./headerTheme";
+import { initial } from "lodash";
 
 const breakpoints = {
   sm: "40em",
@@ -12,6 +13,21 @@ const breakpoints = {
 };
 
 const theme = extendTheme({
+  initialColorMode: "dark",
+  useSystemColorMode: true,
+  
+  styles: {
+    global: (props) => ({
+      'html, body': {
+        background: props.colorMode === 'dark' ? '#1a202c' : '#c1f5ef',
+        lineHeight: 'tall',
+      },
+      a: {
+        color: props.colorMode === 'dark' ? 'teal.300' : 'teal.500',
+      },
+    }),
+  },
+
   components: {
     Heading: headerTheme,
     Avatar: {

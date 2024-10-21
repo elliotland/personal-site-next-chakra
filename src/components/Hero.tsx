@@ -45,12 +45,10 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
           textAlign={"center"}
           align={"center"}
           spacing={{ base: 8, md: 10 }}
-          pt={"2em"}
+          pt={['2em', '2em',"4em"]}
         >
           <Heading
-            fontWeight={600}
             fontSize={{ base: "4xl", sm: "5xl", md: "6xl" }}
-            lineHeight={"110%"}
             variant={'Archivo'}
           >
             <Text as={"span"}>
@@ -62,6 +60,7 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
                 pause={5000}
                 typingInterval={60}
                 deletingInterval={15}
+                className="font-thin"
               />
             </Text>
           </Heading>
@@ -70,7 +69,7 @@ const Hero: React.FC<HeroProps> = ({ toggleExpansion }) => {
               <Text color={"gray.500"} maxW={"3xl"} fontSize={"lg"}>
                 {heroPhrases[activeIndex].Description}
               </Text>
-              <Stack direction={["column", "row"]} spacing={4} mt={"2em"}>
+              <Stack direction={["column", "row"]} spacing={4} mt={"1em"}>
               <Flex
                 flexWrap="wrap"
                 justifyContent="center"

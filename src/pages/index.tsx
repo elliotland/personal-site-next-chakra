@@ -1,4 +1,11 @@
-import { Box, Collapse, Flex, Stack, StackItem, useDisclosure } from "@chakra-ui/react";
+import {
+  Box,
+  Collapse,
+  Flex,
+  Stack,
+  StackItem,
+  useDisclosure,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import AI_lliot from "../components/AI_lliot";
 import CircularCarousel from "../components/ProjectCarousal";
@@ -18,49 +25,50 @@ const Index = () => {
   };
 
   return (
-      <Box
-      minH={'100vh'}
-      _light={{
-        color: "black",
-        bgColor: "customLightMode.white",
-      }}
-      _dark={{
-        color: "white",
-        bgColor: "customDarkMode.darkBackground",
-      }}
-      >
-        {isExpanded ? (
-            <Flex
-              position="sticky"
-              top={0}
-              h={"80px"}
-              w={"100%"}
-              zIndex={3}
-              alignItems={"center"}
-              pl={"2em"}
-              pr={"2em"}
-            >
-              <ButtonStack
-                isExpanded={isExpanded}
-                toggleExpansion={toggleExpansion}
-                showContactButton={true}
-                showExpandButton={true}
-              />
-              <Signature smallMode={true} size="lg" />
-            </Flex>
-        ) : (
-          <Box pt={"2em"} pb={"2em"} minH={"fit-content"}>
-            <ButtonStack
-              isExpanded={false}
-              showContactButton={false}
-              showExpandButton={false}
-            />
-            <Signature smallMode={isExpanded} size="3xl" />
-            <Hero toggleExpansion={toggleExpansion} />
-          </Box>
-        )}
-        <Collapse in={isOpen} animateOpacity className="w-full">
-          {/* <Box
+    <Box minH={"100vh"}>
+      {isExpanded ? (
+        <Flex
+          position="sticky"
+          top={0}
+          h={"80px"}
+          w={"100%"}
+          zIndex={500}
+          alignItems={"center"}
+          pl={"2em"}
+          pr={"2em"}
+          borderBottom={"1px solid"}
+          _light={{
+            color: "black",
+            bgColor: "customLightMode.white",
+            borderColor: "customLightMode.pink",
+          }}
+          _dark={{
+            color: "white",
+            bgColor: "customDarkMode.darkBackground",
+            borderColor: "customDarkMode.green",
+          }}
+        >
+          <ButtonStack
+            isExpanded={isExpanded}
+            toggleExpansion={toggleExpansion}
+            showContactButton={true}
+            showExpandButton={true}
+          />
+          <Signature smallMode={true} size="lg" />
+        </Flex>
+      ) : (
+        <Box pt={"2em"} pb={"2em"} minH={"fit-content"}>
+          <ButtonStack
+            isExpanded={false}
+            showContactButton={false}
+            showExpandButton={false}
+          />
+          <Signature smallMode={isExpanded} size="3xl" />
+          <Hero toggleExpansion={toggleExpansion} />
+        </Box>
+      )}
+      <Collapse in={isOpen} animateOpacity className="w-full">
+        {/* <Box
             w="100%"
             h="100vh"
             bg="blue"
@@ -70,24 +78,24 @@ const Index = () => {
           >
           </Box> */}
 
-          <Flex
-            hidden={!isExpanded}
-            w={"100%"}
-            borderTop={'10px solid'}
-            borderBottom={'10px solid'}
-            _light={{
-              borderColor: "customLightMode.pink",
-            }}
-            _dark={{
-              borderColor: "customDarkMode.green",
-            }}
-            pt={"2em"}
-            pb={"2em"}
-            className="hero-background"
-          >
-            <AI_lliot />
-          </Flex>
-          {/* <Flex
+        <Flex
+          hidden={!isExpanded}
+          w={"100%"}
+          borderTop={"10px solid"}
+          borderBottom={"10px solid"}
+          _light={{
+            borderColor: "customLightMode.pink",
+          }}
+          _dark={{
+            borderColor: "customDarkMode.green",
+          }}
+          pt={"2em"}
+          pb={"2em"}
+          className="hero-background"
+        >
+          <AI_lliot />
+        </Flex>
+        {/* <Flex
             hidden={!isExpanded}
             w={"100%"}
             direction={"column"}
@@ -104,8 +112,8 @@ const Index = () => {
           >
             <CircularCarousel />
           </Flex> */}
-        </Collapse>
-      </Box>
+      </Collapse>
+    </Box>
   );
 };
 
