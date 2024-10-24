@@ -17,38 +17,26 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const { text }: ChatData = req.body;
-
   const claudeScoreStarter = '{"score":';
 
   try {
     let message = await getClaudeResponse(text, claudeScoreStarter);
 
-    if (
-      message &&
-      !message.error &&
-      (message.score === 1 || message.score === 2)
-    ) {
-      const followUpMessage = await getFollowUpResponse(text);
-
-      message = followUpMessage;
-    } else {
-      res
-        .status(200)
-        .json({ questionJudgement: "bad", aiComment: message.response });
+    if (!message || message.error) {
+      return res.status(500).json({
+        error: message?.error || "Failed to get a response from Claude",
+      });
     }
 
-    if (message && !message.error) {
-      res.status(200).json({ questionJudgement: "good", aiComment: message });
+    if (message.score === 1 || message.score === 2) {
+      const followUpMessage = await getFollowUpResponse(text);
+      return res.status(200).json({ questionJudgement: "good", aiComment: followUpMessage });
     } else {
-      res.status(500).json({
-        error: message.error || "Failed to get a response from Claude",
-      });
+      return res.status(200).json({ questionJudgement: "bad", aiComment: message.response });
     }
   } catch (error) {
     console.error("Error:", error);
-    res
-      .status(500)
-      .json({ error: "An error occurred while processing the request" });
+    return res.status(500).json({ error: "An error occurred while processing the request" });
   }
 }
 
