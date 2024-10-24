@@ -42,7 +42,7 @@ const ButtonStack: React.FC<ButtonStackProps> = ({
         />
         <MenuList>
           {showContactButton && (
-            <MenuItem>
+            <MenuItem as={'div'}>
               <ContactMeButton
                 aria-label="Contact Me"
                 isExpanded={isExpanded}
@@ -59,7 +59,7 @@ const ButtonStack: React.FC<ButtonStackProps> = ({
             </MenuItem>
           )}
           {showExpandButton && (
-            <MenuItem>
+            <MenuItem as={'div'}>
               <ExpansionButton
                 isExpanded={true}
                 toggleExpansion={toggleExpansion}
@@ -67,7 +67,7 @@ const ButtonStack: React.FC<ButtonStackProps> = ({
               />
             </MenuItem>
           )}
-          <MenuItem>
+          <MenuItem as={'div'}>
             <DarkModeSwitch
               aria-label="Toggle Dark Mode"
               darkSettings={{ bgColor: "customDarkMode.white", color: "black" }}

@@ -68,15 +68,6 @@ const Index = () => {
         </Box>
       )}
       <Collapse in={isOpen} animateOpacity className="w-full">
-        {/* <Box
-            w="100%"
-            h="100vh"
-            bg="blue"
-            bgAttachment="fixed"
-            bgPos="50% 100%"
-            pos="relative"
-          >
-          </Box> */}
 
         <Flex
           hidden={!isExpanded}

@@ -2,68 +2,22 @@
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
-    colors: {
-      raisin_black: {
-        DEFAULT: "#1a202c",
-        100: "#050709",
-        200: "#0b0d12",
-        300: "#10141b",
-        400: "#151a24",
-        500: "#1a202c",
-        600: "#3b4964",
-        700: "#5b719c",
-        800: "#90a0be",
-        900: "#c8cfdf",
-      },
-      mindaro: {
-        DEFAULT: "#daff7d",
-        100: "#374d00",
-        200: "#6e9900",
-        300: "#a4e600",
-        400: "#c5ff33",
-        500: "#daff7d",
-        600: "#e2ff99",
-        700: "#e9ffb3",
-        800: "#f1ffcc",
-        900: "#f8ffe5",
-      },
-      "blue_(munsell)": {
-        DEFAULT: "#1b9aaa",
-        100: "#051f22",
-        200: "#0b3e45",
-        300: "#105d67",
-        400: "#157c8a",
-        500: "#1b9aaa",
-        600: "#28c8dd",
-        700: "#5ed6e6",
-        800: "#93e4ee",
-        900: "#c9f1f7",
-      },
-      apricot: {
-        DEFAULT: "#ffcab1",
-        100: "#571b00",
-        200: "#ad3700",
-        300: "#ff5405",
-        400: "#ff8f5c",
-        500: "#ffcab1",
-        600: "#ffd5c2",
-        700: "#ffe0d1",
-        800: "#ffeae0",
-        900: "#fff5f0",
-      },
-      snow: {
-        DEFAULT: "#fffbff",
-        100: "#650065",
-        200: "#ca00ca",
-        300: "#ff30ff",
-        400: "#ff95ff",
-        500: "#fffbff",
-        600: "#fffbff",
-        700: "#fffcff",
-        800: "#fffdff",
-        900: "#fffeff",
-      },
-    },
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': 'inherit',
+            '--tw-prose-headings': 'inherit',
+            '--tw-prose-links': 'inherit',
+            color: 'inherit',
+            '*': {
+              color: 'inherit',
+              borderColor: 'inherit'
+            }
+          }
+        }
+      }
+    }
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

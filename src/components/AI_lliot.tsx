@@ -24,86 +24,8 @@ import {
   Spacer,
   Textarea,
 } from "@chakra-ui/react";
-import { micromark } from "micromark";
-import { marked } from "marked";
+import Markdown from "react-markdown";
 import AnimatedLines from "./AnimatedLines";
-
-const markdownStyles = {
-  h1: {
-    fontSize: "2em",
-    color: "#000",
-    fontWeight: "bold",
-  },
-  h2: {
-    fontSize: "1.6em",
-    color: "#111",
-    fontWeight: "bold",
-  },
-  h3: {
-    fontSize: "1.2em",
-    color: "#222",
-    fontWeight: "bold",
-  },
-  p: {
-    margin: "15px 0",
-  },
-  blockquote: {
-    borderLeft: "4px solid #DDD",
-    padding: "0 15px",
-    color: "#777",
-    margin: "15px 0",
-  },
-  a: {
-    color: "#dd0000",
-    textDecoration: "none",
-    _hover: {
-      color: "#333333",
-      textDecoration: "underline",
-    },
-  },
-  ul: {
-    paddingLeft: "30px",
-    margin: "15px 0",
-  },
-  ol: {
-    paddingLeft: "30px",
-    margin: "15px 0",
-  },
-  code: {
-    fontSize: "12px",
-    fontFamily: 'Consolas, "Liberation Mono", Courier, monospace',
-    backgroundColor: "#f8f8f8",
-    border: "1px solid #eaeaea",
-    borderRadius: "3px",
-    padding: "2px 4px",
-  },
-  pre: {
-    backgroundColor: "#f8f8f8",
-    padding: "10px 15px",
-    borderRadius: "3px",
-    fontSize: "13px",
-    lineHeight: "19px",
-    overflow: "auto",
-  },
-  table: {
-    width: "100%",
-    borderWidth: "1px",
-    borderStyle: "solid",
-    borderColor: "#e5e5e5",
-    marginBottom: "1em",
-  },
-  th: {
-    padding: "6px 13px",
-    backgroundColor: "#fdfdfd",
-    color: "#666",
-  },
-  td: {
-    padding: "6px 13px",
-  },
-  img: {
-    maxWidth: "100%",
-  },
-};
 
 function AI_lliot() {
   const [userText, setUserText] = useState<string>("");
@@ -112,7 +34,6 @@ function AI_lliot() {
   const [aiImageSrc, setAiImageSrc] = useState<string>("");
   const toast = useToast();
   const [isBadQuestion, setIsBadQuestion] = useState<boolean>(false);
-  
 
   const sendChat = async () => {
     clearMessages();
@@ -146,7 +67,6 @@ function AI_lliot() {
         setAiImageSrc(
           questionJudgement === "bad" ? "badQuestion.jpg" : "goodQuestion.jpg"
         );
-        
 
         setAIText(aiComment);
 
@@ -177,7 +97,6 @@ function AI_lliot() {
     setAIText("");
     setAiImageSrc("waiting.jpg");
   };
-
 
   return (
     <Flex
@@ -216,17 +135,18 @@ function AI_lliot() {
           <AnimatedLines
             width={100}
             height={50}
-            verticalRange={15}
-            lineSpacing={2}
-
+            verticalRange={13}
+            lineSpacing={6}
+            maxLines={8}
+            lineInterval={500}
+            lineDuration={4000}
           />
           <SimpleGrid columns={[1, 5]} borderRadius={"md"} w={"100%"}>
-            <Box>
-              <Box h={"100%"} w={"100%"}
-                  >
+            <Box h="314px">
+              <Box h={"100%"} w={"100%"}>
                 <Textarea
                   placeholder="Is Elliot good at..."
-                  alignContent={'space-evenly'}
+                  alignContent={"space-evenly"}
                   value={userText}
                   onChange={(e) => setUserText(e.target.value)}
                   onKeyDown={(e) => {
@@ -237,33 +157,34 @@ function AI_lliot() {
                   alignSelf={"center"}
                   position={"relative"}
                   height={"100%"}
-                  minH={["100px", "100px"]}
                   colorScheme={"blue"}
                   borderWidth={"2px"}
                   _light={{
                     bgColor: "customLightMode.white",
-                    borderColor: "customLightMode.primary"
+                    borderColor: "customLightMode.primary",
                   }}
                   _dark={{
                     bgColor: "customDarkMode.darkBackground",
-                    borderColor: "customDarkMode.primary"
+                    borderColor: "customDarkMode.primary",
                   }}
                   zIndex={200}
+                  resize="none" // Prevents manual resizing
+                  overflowY="auto"
                 />
               </Box>
-                  <IconButton
-                    onClick={sendChat}
-                    isLoading={isLoading}
-                    icon={<ChatIcon />}
-                    colorScheme="blue"
-                    aria-label={"Ask AI-lliot"}
-                    zIndex={"200"}
-                    margin={"0 auto"}
-                    position={"relative"}
-                    left={["46%", "42%"]}
-                    bottom={[12, 12]}
-                    className="z-[300]"
-                  />
+              <IconButton
+                onClick={sendChat}
+                isLoading={isLoading}
+                icon={<ChatIcon />}
+                colorScheme="blue"
+                aria-label={"Ask AI-lliot"}
+                zIndex={"200"}
+                margin={"0 auto"}
+                position={"relative"}
+                left={["46%", "42%"]}
+                bottom={[12, 12]}
+                className="z-[300]"
+              />
             </Box>
             <Spacer />
             <Box padding={"2em"} zIndex={300}>
@@ -279,22 +200,50 @@ function AI_lliot() {
               />
             </Box>
             <Spacer />
-            <Box zIndex={300}>
+            <Box zIndex={300} h="314px">
               <Box
                 h={"100%"}
                 w={"100%"}
                 zIndex={301}
                 _light={{
                   bgColor: "customLightMode.white",
-                  borderColor: "customLightMode.primary"
+                  borderColor: "customLightMode.primary",
                 }}
                 _dark={{
                   bgColor: "customDarkMode.darkBackground",
-                  borderColor: "customDarkMode.primary"
+                  borderColor: "customDarkMode.primary",
                 }}
                 padding={"1em"}
                 borderWidth={"2px"}
                 borderRadius={"md"}
+                overflowY="auto"
+                maxH={"300px"}
+                css={{
+                  "&::-webkit-scrollbar": {
+                    width: "8px",
+                    height: "8px",
+                  },
+                  "&::-webkit-scrollbar-track": {
+                    background: "rgba(0, 0, 0, 0.1)",
+                    borderRadius: "4px",
+                  },
+                  "&::-webkit-scrollbar-thumb": {
+                    background: "rgba(0, 0, 0, 0.2)",
+                    borderRadius: "4px",
+                  },
+                  "&::-webkit-scrollbar-thumb:hover": {
+                    background: "rgba(0, 0, 0, 0.3)",
+                  },
+                  '[data-theme="dark"] &::-webkit-scrollbar-track': {
+                    background: "rgba(255, 255, 255, 0.1)",
+                  },
+                  '[data-theme="dark"] &::-webkit-scrollbar-thumb': {
+                    background: "rgba(255, 255, 255, 0.2)",
+                  },
+                  '[data-theme="dark"] &::-webkit-scrollbar-thumb:hover': {
+                    background: "rgba(255, 255, 255, 0.3)",
+                  },
+                }}
               >
                 {isLoading ? (
                   <SkeletonText
@@ -309,13 +258,17 @@ function AI_lliot() {
                     opacity={0.8}
                     align={"center"}
                     fontSize={"xl"}
-                    
-                  minH={["100px", "100px"]}
+                    minH={["100px", "100px"]}
                   >
-                    AI-lliot here!<br /><br />I'm ready to answer your questions.
+                    AI-lliot here!
+                    <br />
+                    <br />
+                    I'm ready to answer your questions.
                   </Text>
                 ) : (
-                  <Box>{aiText}</Box>
+                  <Box>
+                    <Markdown className="prose">{aiText}</Markdown>
+                  </Box>
                 )}
               </Box>
               {aiText !== "" && (
